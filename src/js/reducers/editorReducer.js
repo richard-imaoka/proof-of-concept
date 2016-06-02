@@ -1,5 +1,5 @@
 import { Map } from 'immutable'
-import { SHOW_EDITOR, CLOSE_EDITOR } from "../actions/cssActions"
+import { SHOW_EDITOR, CLOSE_EDITOR } from "../actions/editorActions"
 import prettyPrint from "../print/prettyPrint"
 
 export default function editorReducer(state = Map(), action = undefined){

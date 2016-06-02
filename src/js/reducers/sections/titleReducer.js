@@ -1,6 +1,6 @@
 import { Map } from 'immutable'
-import { SHOW_EDITOR, CLOSE_EDITOR } from "../actions/cssActions"
-import prettyPrint from "../print/prettyPrint"
+import { SHOW_EDITOR, CLOSE_EDITOR } from "../../actions/editorActions"
+import prettyPrint from "../../print/prettyPrint"
 
 export default function titleReducer(state = Map(), action = undefined){
   switch(action.type) {
