@@ -25183,7 +25183,7 @@ var App = function (_React$Component) {
 
 exports.default = App;
 
-},{"../actions/modeActions":180,"./front/FrontContainer.js":187,"./landing/LandingContainer.js":195,"react":163}],183:[function(require,module,exports){
+},{"../actions/modeActions":180,"./front/FrontContainer.js":187,"./landing/LandingContainer.js":196,"react":163}],183:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25677,6 +25677,52 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var AddMore = function (_React$Component) {
+  _inherits(AddMore, _React$Component);
+
+  function AddMore() {
+    _classCallCheck(this, AddMore);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(AddMore).apply(this, arguments));
+  }
+
+  _createClass(AddMore, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'button',
+        null,
+        'AddMore'
+      );
+    }
+  }]);
+
+  return AddMore;
+}(_react2.default.Component);
+
+exports.default = AddMore;
+
+},{"react":163}],193:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var Deploy = function (_React$Component) {
   _inherits(Deploy, _React$Component);
 
@@ -25702,7 +25748,7 @@ var Deploy = function (_React$Component) {
 
 exports.default = Deploy;
 
-},{"react":163}],193:[function(require,module,exports){
+},{"react":163}],194:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25748,7 +25794,7 @@ var Feature = function (_React$Component) {
 
 exports.default = Feature;
 
-},{"react":163}],194:[function(require,module,exports){
+},{"react":163}],195:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25793,7 +25839,7 @@ var FeatureList = function (_React$Component) {
 
 exports.default = FeatureList;
 
-},{"react":163}],195:[function(require,module,exports){
+},{"react":163}],196:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25805,6 +25851,14 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _Title = require('./Title');
+
+var _Title2 = _interopRequireDefault(_Title);
+
+var _AddMore = require('./AddMore');
+
+var _AddMore2 = _interopRequireDefault(_AddMore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25829,8 +25883,8 @@ var LandingContainer = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(Title, null),
-        _react2.default.createElement(FeatureList, null)
+        _react2.default.createElement(_Title2.default, null),
+        _react2.default.createElement(_AddMore2.default, null)
       );
     }
   }]);
@@ -25840,7 +25894,7 @@ var LandingContainer = function (_React$Component) {
 
 exports.default = LandingContainer;
 
-},{"react":163}],196:[function(require,module,exports){
+},{"./AddMore":192,"./Title":198,"react":163}],197:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25886,7 +25940,7 @@ var Social = function (_React$Component) {
 
 exports.default = Social;
 
-},{"react":163}],197:[function(require,module,exports){
+},{"react":163}],198:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25932,7 +25986,7 @@ var Title = function (_React$Component) {
 
 exports.default = Title;
 
-},{"react":163}],198:[function(require,module,exports){
+},{"react":163}],199:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -25959,7 +26013,7 @@ var store = (0, _redux.createStore)(_rootReducer2.default);
 
 _reactDom2.default.render(_react2.default.createElement(_App2.default, { store: store }), document.getElementById("app"));
 
-},{"../components/App.js":182,"../reducers/rootReducer":202,"react":163,"react-dom":34,"redux":175}],199:[function(require,module,exports){
+},{"../components/App.js":182,"../reducers/rootReducer":203,"react":163,"react-dom":34,"redux":175}],200:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25973,7 +26027,7 @@ function prettyPrint(jsonObj) {
   if (_immutable.Map.isMap(jsonObj)) console.log(JSON.stringify(jsonObj.toJS(), null, " "));else console.log(JSON.stringify(jsonObj, null, " "));
 }
 
-},{"immutable":28}],200:[function(require,module,exports){
+},{"immutable":28}],201:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26007,7 +26061,7 @@ function editorReducer() {
   }
 }
 
-},{"../actions/editorActions":179,"../print/prettyPrint":199,"immutable":28}],201:[function(require,module,exports){
+},{"../actions/editorActions":179,"../print/prettyPrint":200,"immutable":28}],202:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26018,7 +26072,7 @@ exports.default = editorReducer;
 var _modeActions = require("../actions/modeActions");
 
 function editorReducer() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? _modeActions.TOP_PAGE_MODE : arguments[0];
+  var state = arguments.length <= 0 || arguments[0] === undefined ? _modeActions.LANDING_PAGE_MODE : arguments[0];
   var action = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
 
   switch (action.type) {
@@ -26031,7 +26085,7 @@ function editorReducer() {
   }
 }
 
-},{"../actions/modeActions":180}],202:[function(require,module,exports){
+},{"../actions/modeActions":180}],203:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26060,7 +26114,7 @@ exports.default = (0, _reduxImmutable.combineReducers)({
   sections: _sectionsReducer2.default
 });
 
-},{"./editorReducer":200,"./modeReducers":201,"./sectionsReducer":203,"redux-immutable":165}],203:[function(require,module,exports){
+},{"./editorReducer":201,"./modeReducers":202,"./sectionsReducer":204,"redux-immutable":165}],204:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26094,7 +26148,7 @@ function sectionsReducer() {
   }
 }
 
-},{"../actions/sectionActions":181,"../print/prettyPrint":199,"immutable":28}],204:[function(require,module,exports){
+},{"../actions/sectionActions":181,"../print/prettyPrint":200,"immutable":28}],205:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26125,7 +26179,7 @@ function featureReducer() {
   }
 }
 
-},{"../../actions/editorActions":179,"../../print/prettyPrint":199,"immutable":28}],205:[function(require,module,exports){
+},{"../../actions/editorActions":179,"../../print/prettyPrint":200,"immutable":28}],206:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26156,7 +26210,7 @@ function gitHubReducer() {
   }
 }
 
-},{"../../actions/editorActions":179,"../../print/prettyPrint":199,"immutable":28}],206:[function(require,module,exports){
+},{"../../actions/editorActions":179,"../../print/prettyPrint":200,"immutable":28}],207:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26187,7 +26241,7 @@ function titleReducer() {
   }
 }
 
-},{"../../actions/editorActions":179,"../../print/prettyPrint":199,"immutable":28}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,204,205,206,203])
+},{"../../actions/editorActions":179,"../../print/prettyPrint":200,"immutable":28}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,193,194,195,196,197,198,199,200,201,202,203,205,206,207,204])
 
 
 //# sourceMappingURL=bundle.js.map
