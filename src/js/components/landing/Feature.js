@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class LandingPage extends React.Component {
+export default class Feature extends React.Component {
   render() {
     return <div>Landing Page</div>;
   }
