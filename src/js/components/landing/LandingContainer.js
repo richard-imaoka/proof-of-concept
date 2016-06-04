@@ -10,9 +10,9 @@ export default class LandingContainer extends React.Component {
     let i=0;
     return (
       <main>
-        { contents.map(x => <ContentFactory key={i++} /> ) }
+        { contents.map( x => <ContentFactory key={i++} /> ) }
         <AddMore store={this.props.store} index={contents.size}/>
-        <EditorFactory index={contents.size} type={editor.type} data={editor}/>
+        <EditorFactory index={editor.get("index")} editorType={editor.get("editorType")} data={editor.get("data")}/>
       </main>
     );
   }

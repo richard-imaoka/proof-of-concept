@@ -7,7 +7,6 @@ export default class AddMore extends React.Component {
   }
 
   onClick() {
-    this.props.store.dispatch(appendContent("blank"));
-    this.props.store.dispatch(showContentEditor("selector", this.props.index));
+    this.props.store.dispatch(showContentEditor("SelectorEditor", this.props.index));
   }
 }

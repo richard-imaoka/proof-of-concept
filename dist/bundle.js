@@ -25190,7 +25190,7 @@ var App = function (_React$Component) {
 
 exports.default = App;
 
-},{"../actions/modeActions":181,"./front/FrontContainer.js":199,"./landing/LandingContainer.js":202,"react":163}],183:[function(require,module,exports){
+},{"../actions/modeActions":181,"./front/FrontContainer.js":200,"./landing/LandingContainer.js":203,"react":163}],183:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25704,29 +25704,34 @@ var _TitleEditor = require('./TitleEditor');
 
 var _TitleEditor2 = _interopRequireDefault(_TitleEditor);
 
+var _SelectorEditor = require('./SelectorEditor');
+
+var _SelectorEditor2 = _interopRequireDefault(_SelectorEditor);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function EditorFactory(contentType, props, children) {
-
-  switch (contentType) {
+function EditorFactory(props) {
+  switch (props.editorType) {
     case _FeatureListEditor2.default.name:
-      return _react2.default.createElement(_FeatureListEditor2.default, props, children);
+      return _react2.default.createElement(_FeatureListEditor2.default, props);
     case _FeatureListEditor2.default.name:
-      return _react2.default.createElement(_FeatureListEditor2.default, props, children);
+      return _react2.default.createElement(_FeatureListEditor2.default, props);
     case _SocialEditor2.default.name:
-      return _react2.default.createElement(_SocialEditor2.default, props, children);
+      return _react2.default.createElement(_SocialEditor2.default, props);
     case _TitleEditor2.default.name:
-      return _react2.default.createElement(_TitleEditor2.default, props, children);
+      return _react2.default.createElement(_TitleEditor2.default, props);
+    case _SelectorEditor2.default.name:
+      return _react2.default.createElement(_SelectorEditor2.default, props);
     default:
       return _react2.default.createElement(
         'div',
         null,
-        "No Such Editor = " + props.contentType
+        "No Such Editor = " + props.editorType
       );
   }
 }
 
-},{"./FeatureListEditor":196,"./SocialEditor":197,"./TitleEditor":198,"react":163}],194:[function(require,module,exports){
+},{"./FeatureListEditor":196,"./SelectorEditor":197,"./SocialEditor":198,"./TitleEditor":199,"react":163}],194:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25885,6 +25890,52 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var SelectorEditor = function (_React$Component) {
+  _inherits(SelectorEditor, _React$Component);
+
+  function SelectorEditor() {
+    _classCallCheck(this, SelectorEditor);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(SelectorEditor).apply(this, arguments));
+  }
+
+  _createClass(SelectorEditor, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        'sss'
+      );
+    }
+  }]);
+
+  return SelectorEditor;
+}(_react2.default.Component);
+
+exports.default = SelectorEditor;
+
+},{"react":163}],198:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var SocialEditor = function (_React$Component) {
   _inherits(SocialEditor, _React$Component);
 
@@ -25910,7 +25961,7 @@ var SocialEditor = function (_React$Component) {
 
 exports.default = SocialEditor;
 
-},{"react":163}],198:[function(require,module,exports){
+},{"react":163}],199:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25956,7 +26007,7 @@ var TitleEditor = function (_React$Component) {
 
 exports.default = TitleEditor;
 
-},{"react":163}],199:[function(require,module,exports){
+},{"react":163}],200:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26016,7 +26067,7 @@ var FrontContainer = function (_React$Component) {
 
 exports.default = FrontContainer;
 
-},{"../contents/HowToUse.js":188,"../contents/Workflow.js":192,"./ProjectEntry.js":200,"react":163}],200:[function(require,module,exports){
+},{"../contents/HowToUse.js":188,"../contents/Workflow.js":192,"./ProjectEntry.js":201,"react":163}],201:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26077,7 +26128,7 @@ var ProjectEntry = function (_React$Component) {
 
 exports.default = ProjectEntry;
 
-},{"react":163}],201:[function(require,module,exports){
+},{"react":163}],202:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26121,8 +26172,7 @@ var AddMore = function (_React$Component) {
   }, {
     key: 'onClick',
     value: function onClick() {
-      this.props.store.dispatch(appendContent("blank"));
-      this.props.store.dispatch((0, _contentEditorActions.showContentEditor)("selector", this.props.index));
+      this.props.store.dispatch((0, _contentEditorActions.showContentEditor)("SelectorEditor", this.props.index));
     }
   }]);
 
@@ -26131,7 +26181,7 @@ var AddMore = function (_React$Component) {
 
 exports.default = AddMore;
 
-},{"../../actions/contentEditorActions":180,"react":163}],202:[function(require,module,exports){
+},{"../../actions/contentEditorActions":180,"react":163}],203:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26186,7 +26236,7 @@ var LandingContainer = function (_React$Component) {
           return _react2.default.createElement(_ContentFactory2.default, { key: i++ });
         }),
         _react2.default.createElement(_AddMore2.default, { store: this.props.store, index: contents.size }),
-        _react2.default.createElement(_EditorFactory2.default, { index: contents.size, type: editor.type, data: editor })
+        _react2.default.createElement(_EditorFactory2.default, { index: editor.get("index"), editorType: editor.get("editorType"), data: editor.get("data") })
       );
     }
   }]);
@@ -26196,7 +26246,7 @@ var LandingContainer = function (_React$Component) {
 
 exports.default = LandingContainer;
 
-},{"../contents/ContentFactory":184,"../editors/EditorFactory":193,"./AddMore":201,"react":163}],203:[function(require,module,exports){
+},{"../contents/ContentFactory":184,"../editors/EditorFactory":193,"./AddMore":202,"react":163}],204:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -26226,7 +26276,7 @@ store.subscribe(function () {
 });
 _reactDom2.default.render(_react2.default.createElement(_App2.default, { store: store }), document.getElementById("app"));
 
-},{"../components/App.js":182,"../reducers/rootReducer":212,"react":163,"react-dom":34,"redux":175}],204:[function(require,module,exports){
+},{"../components/App.js":182,"../reducers/rootReducer":213,"react":163,"react-dom":34,"redux":175}],205:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26240,7 +26290,7 @@ function prettyString(jsonObj) {
   if (_immutable.Map.isMap(jsonObj)) return JSON.stringify(jsonObj.toJS(), null, " ");else return JSON.stringify(jsonObj, null, " ");
 }
 
-},{"immutable":28}],205:[function(require,module,exports){
+},{"immutable":28}],206:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26268,7 +26318,7 @@ function contents() {
   }
 }
 
-},{"../actions/contentActions":179,"immutable":28}],206:[function(require,module,exports){
+},{"../actions/contentActions":179,"immutable":28}],207:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26286,15 +26336,15 @@ function editorReducer() {
 
   switch (action.type) {
     case _contentEditorActions.SHOW_CONTENT_EDITOR:
-      return (0, _immutable.Map)({ actionType: action.Type, contentType: action.contentType, data: action.data });
+      return (0, _immutable.Map)({ actionType: action.type, editorType: action.editorType, data: action.data });
     case _contentEditorActions.CLOSE_CONTENT_EDITOR:
-      return state.set("actionType", action.path);
+      return state.set("actionType", action.type);
     default:
       return state;
   }
 }
 
-},{"../actions/contentEditorActions":180,"immutable":28}],207:[function(require,module,exports){
+},{"../actions/contentEditorActions":180,"immutable":28}],208:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26314,7 +26364,7 @@ function feature() {
   }
 }
 
-},{"immutable":28}],208:[function(require,module,exports){
+},{"immutable":28}],209:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26334,7 +26384,7 @@ function front() {
   }
 }
 
-},{"immutable":28}],209:[function(require,module,exports){
+},{"immutable":28}],210:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26354,7 +26404,7 @@ function gitHub() {
   }
 }
 
-},{"immutable":28}],210:[function(require,module,exports){
+},{"immutable":28}],211:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26378,7 +26428,7 @@ exports.default = (0, _reduxImmutable.combineReducers)({
   editor: _editorReducer2.default
 });
 
-},{"./contentsReducer":205,"./editorReducer":206,"redux-immutable":165}],211:[function(require,module,exports){
+},{"./contentsReducer":206,"./editorReducer":207,"redux-immutable":165}],212:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26401,7 +26451,7 @@ function editorReducer() {
   }
 }
 
-},{"../actions/modeActions":181}],212:[function(require,module,exports){
+},{"../actions/modeActions":181}],213:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26444,7 +26494,7 @@ function log() {
   return state;
 }
 
-},{"../print/prettyString":204,"./frontReducer":208,"./landingReducer":210,"./modeReducers":211,"redux-immutable":165}],213:[function(require,module,exports){
+},{"../print/prettyString":205,"./frontReducer":209,"./landingReducer":211,"./modeReducers":212,"redux-immutable":165}],214:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26464,7 +26514,7 @@ function title() {
   }
 }
 
-},{"immutable":28}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213])
+},{"immutable":28}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214])
 
 
 //# sourceMappingURL=bundle.js.map
