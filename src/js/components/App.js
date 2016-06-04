@@ -23,5 +23,4 @@ export default class App extends React.Component {
     else
       return <div>{ "no such mode = " + mode }</div>
   }
-
 }

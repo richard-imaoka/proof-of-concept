@@ -4,6 +4,7 @@ import Deploy       from './Deploy'
 import FeatureList  from './FeatureList'
 import Social       from './Social'
 import Title        from './Title'
+import Workflow     from './Workflow'
 
 export default function Content(props){
 
@@ -18,8 +19,10 @@ export default function Content(props){
       return React.createElement(Social, props);
     case Title.name :
       return React.createElement(Title, props);
+    case Workflow.name :
+      return React.createElement(Workflow, props);
     default:
-      return <div>{"No Such Component = " + props.contentType}</div>
+      return <div>{"No Such Content = " + props.contentType}</div>
   }
 
 }

@@ -25077,12 +25077,12 @@ var APPEND_CONTENT = exports.APPEND_CONTENT = 'APPEND_CONTENT';
 var INSERT_CONTENT = exports.INSERT_CONTENT = 'INSERT_CONTENT';
 var REMOVE_CONTENT = exports.REMOVE_CONTENT = 'REMOVE_CONTENT';
 
-function appendContent() {
-  return { type: APPEND_CONTENT };
+function appendContent(contentType, data) {
+  return { type: APPEND_CONTENT, contentType: contentType, data: data };
 }
 
-function insertContent(index, data) {
-  return { type: INSERT_CONTENT, index: index, data: data };
+function insertContent(index, contentType, data) {
+  return { type: INSERT_CONTENT, index: index, contentType: contentType, data: data };
 }
 
 function removeContent(index) {
@@ -25268,6 +25268,10 @@ var _Title = require('./Title');
 
 var _Title2 = _interopRequireDefault(_Title);
 
+var _Workflow = require('./Workflow');
+
+var _Workflow2 = _interopRequireDefault(_Workflow);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Content(props) {
@@ -25283,16 +25287,18 @@ function Content(props) {
       return _react2.default.createElement(_Social2.default, props);
     case _Title2.default.name:
       return _react2.default.createElement(_Title2.default, props);
+    case _Workflow2.default.name:
+      return _react2.default.createElement(_Workflow2.default, props);
     default:
       return _react2.default.createElement(
         'div',
         null,
-        "No Such Component = " + props.contentType
+        "No Such Content = " + props.contentType
       );
   }
 }
 
-},{"./Blank":183,"./Deploy":185,"./FeatureList":187,"./Social":189,"./Title":191,"react":163}],185:[function(require,module,exports){
+},{"./Blank":183,"./Deploy":185,"./FeatureList":187,"./Social":189,"./Title":191,"./Workflow":192,"react":163}],185:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25397,6 +25403,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Feature = require('./Feature');
+
+var _Feature2 = _interopRequireDefault(_Feature);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25418,9 +25428,13 @@ var FeatureList = function (_React$Component) {
     key: 'render',
     value: function render() {
       var a = [1, 2, 3];
-      return a.map(function (x) {
-        return _react2.default.createElement(Feature, null);
-      });
+      return _react2.default.createElement(
+        'div',
+        null,
+        a.map(function (x) {
+          return _react2.default.createElement(_Feature2.default, null);
+        })
+      );
     }
   }]);
 
@@ -25429,7 +25443,7 @@ var FeatureList = function (_React$Component) {
 
 exports.default = FeatureList;
 
-},{"react":163}],188:[function(require,module,exports){
+},{"./Feature":186,"react":163}],188:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25882,6 +25896,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _contentActions = require('../../actions/contentActions');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25905,8 +25921,31 @@ var SelectorEditor = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        'sss'
+        _react2.default.createElement(
+          'ul',
+          null,
+          _react2.default.createElement(
+            'li',
+            { onClick: this.onClick.bind(this) },
+            'FeatureList'
+          ),
+          _react2.default.createElement(
+            'li',
+            { onClick: this.onClick.bind(this) },
+            'Workflow'
+          ),
+          _react2.default.createElement(
+            'li',
+            { onClick: this.onClick.bind(this) },
+            'Social'
+          )
+        )
       );
+    }
+  }, {
+    key: 'onClick',
+    value: function onClick(event) {
+      this.props.store.dispatch((0, _contentActions.appendContent)(event.target.innerText, this.props.index));
     }
   }]);
 
@@ -25915,7 +25954,7 @@ var SelectorEditor = function (_React$Component) {
 
 exports.default = SelectorEditor;
 
-},{"react":163}],198:[function(require,module,exports){
+},{"../../actions/contentActions":179,"react":163}],198:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26226,14 +26265,16 @@ var LandingContainer = function (_React$Component) {
   _createClass(LandingContainer, [{
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var contents = this.props.landing.get("contents");
       var editor = this.props.landing.get("editor");
       var i = 0;
       return _react2.default.createElement(
         'main',
         null,
-        contents.map(function (x) {
-          return _react2.default.createElement(_Content2.default, { key: i++ });
+        contents.map(function (c) {
+          return _react2.default.createElement(_Content2.default, { key: i++, store: _this2.props.store, contentType: c.get("contentType"), data: c.get("data") });
         }),
         _react2.default.createElement(_AddMore2.default, { store: this.props.store, index: contents.size }),
         _react2.default.createElement(_Editor2.default, { store: this.props.store, index: editor.get("index"), editorType: editor.get("editorType"), data: editor.get("data") })
@@ -26308,9 +26349,9 @@ function contents() {
 
   switch (action.type) {
     case _contentActions.APPEND_CONTENT:
-      return state.push({ something: "everything" });
+      return state.push((0, _immutable.Map)({ contentType: action.contentType, data: action.data }));
     case _contentActions.INSERT_CONTENT:
-      return state.insert(action.index, action.data);
+      return state.insert(action.index, (0, _immutable.Map)({ contentType: action.contentType, data: action.data }));
     case _contentActions.REMOVE_CONTENT:
       return state.remove(action.index);
     default:
