@@ -25114,25 +25114,6 @@ function closeCpntentEditor() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.showContentSelector = showContentSelector;
-exports.closeContentSelector = closeContentSelector;
-var SHOW_CONTENT_SELECTOR = exports.SHOW_CONTENT_SELECTOR = 'SHOW_CONTENT_SELECTOR';
-var CLOSE_CONTENT_SELECTOR = exports.CLOSE_CONTENT_SELECTOR = 'CLOSE_CONTENT_SELECTOR';
-
-function showContentSelector(editorType, data) {
-  return { type: SHOW_CONTENT_SELECTOR, editorType: editorType, data: data };
-}
-
-function closeContentSelector() {
-  return { type: CLOSE_CONTENT_SELECTOR };
-}
-
-},{}],182:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 exports.gotoTopPageMode = gotoTopPageMode;
 exports.gotoLandingPageMode = gotoLandingPageMode;
 var TOP_PAGE_MODE = exports.TOP_PAGE_MODE = 'TOP_PAGE_MODE';
@@ -25146,7 +25127,7 @@ function gotoLandingPageMode() {
   return { type: LANDING_PAGE_MODE };
 }
 
-},{}],183:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25209,7 +25190,7 @@ var App = function (_React$Component) {
 
 exports.default = App;
 
-},{"../actions/modeActions":182,"./front/FrontContainer.js":201,"./landing/LandingContainer.js":204,"react":163}],184:[function(require,module,exports){
+},{"../actions/modeActions":181,"./front/FrontContainer.js":199,"./landing/LandingContainer.js":202,"react":163}],183:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25255,7 +25236,7 @@ var Blank = function (_React$Component) {
 
 exports.default = Blank;
 
-},{"react":163}],185:[function(require,module,exports){
+},{"react":163}],184:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25311,7 +25292,7 @@ function ContentFactory(contentType, props, children) {
   }
 }
 
-},{"./Blank":184,"./Deploy":186,"./FeatureList":188,"./Social":190,"./Title":192,"react":163}],186:[function(require,module,exports){
+},{"./Blank":183,"./Deploy":185,"./FeatureList":187,"./Social":189,"./Title":191,"react":163}],185:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25357,7 +25338,7 @@ var Deploy = function (_React$Component) {
 
 exports.default = Deploy;
 
-},{"react":163}],187:[function(require,module,exports){
+},{"react":163}],186:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25403,7 +25384,7 @@ var Feature = function (_React$Component) {
 
 exports.default = Feature;
 
-},{"react":163}],188:[function(require,module,exports){
+},{"react":163}],187:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25448,7 +25429,7 @@ var FeatureList = function (_React$Component) {
 
 exports.default = FeatureList;
 
-},{"react":163}],189:[function(require,module,exports){
+},{"react":163}],188:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25500,7 +25481,7 @@ var HowToUse = function (_React$Component) {
 
 exports.default = HowToUse;
 
-},{"./Feature":187,"react":163}],190:[function(require,module,exports){
+},{"./Feature":186,"react":163}],189:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25546,7 +25527,7 @@ var Social = function (_React$Component) {
 
 exports.default = Social;
 
-},{"react":163}],191:[function(require,module,exports){
+},{"react":163}],190:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25601,7 +25582,7 @@ var Step = function (_React$Component) {
 
 exports.default = Step;
 
-},{"react":163}],192:[function(require,module,exports){
+},{"react":163}],191:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25647,7 +25628,7 @@ var Title = function (_React$Component) {
 
 exports.default = Title;
 
-},{"react":163}],193:[function(require,module,exports){
+},{"react":163}],192:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25699,63 +25680,7 @@ var Workflow = function (_React$Component) {
 
 exports.default = Workflow;
 
-},{"./Step":191,"react":163}],194:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Editor = function (_React$Component) {
-  _inherits(Editor, _React$Component);
-
-  function Editor() {
-    _classCallCheck(this, Editor);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Editor).apply(this, arguments));
-  }
-
-  _createClass(Editor, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        'Editor',
-        _react2.default.createElement(
-          'span',
-          null,
-          this.props.index
-        ),
-        _react2.default.createElement(
-          'span',
-          null,
-          this.props.type
-        )
-      );
-    }
-  }]);
-
-  return Editor;
-}(_react2.default.Component);
-
-exports.default = Editor;
-
-},{"react":163}],195:[function(require,module,exports){
+},{"./Step":190,"react":163}],193:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25796,12 +25721,12 @@ function EditorFactory(contentType, props, children) {
       return _react2.default.createElement(
         'div',
         null,
-        "No Such Editor = " + contentType
+        "No Such Editor = " + props.contentType
       );
   }
 }
 
-},{"./FeatureListEditor":198,"./SocialEditor":199,"./TitleEditor":200,"react":163}],196:[function(require,module,exports){
+},{"./FeatureListEditor":196,"./SocialEditor":197,"./TitleEditor":198,"react":163}],194:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25847,7 +25772,7 @@ var Feature = function (_React$Component) {
 
 exports.default = Feature;
 
-},{"react":163}],197:[function(require,module,exports){
+},{"react":163}],195:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25893,7 +25818,7 @@ var FeatureEditor = function (_React$Component) {
 
 exports.default = FeatureEditor;
 
-},{"react":163}],198:[function(require,module,exports){
+},{"react":163}],196:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25939,7 +25864,7 @@ var FeatureListEditor = function (_React$Component) {
 
 exports.default = FeatureListEditor;
 
-},{"react":163}],199:[function(require,module,exports){
+},{"react":163}],197:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25985,7 +25910,7 @@ var SocialEditor = function (_React$Component) {
 
 exports.default = SocialEditor;
 
-},{"react":163}],200:[function(require,module,exports){
+},{"react":163}],198:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26031,7 +25956,7 @@ var TitleEditor = function (_React$Component) {
 
 exports.default = TitleEditor;
 
-},{"react":163}],201:[function(require,module,exports){
+},{"react":163}],199:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26091,7 +26016,7 @@ var FrontContainer = function (_React$Component) {
 
 exports.default = FrontContainer;
 
-},{"../contents/HowToUse.js":189,"../contents/Workflow.js":193,"./ProjectEntry.js":202,"react":163}],202:[function(require,module,exports){
+},{"../contents/HowToUse.js":188,"../contents/Workflow.js":192,"./ProjectEntry.js":200,"react":163}],200:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26152,7 +26077,7 @@ var ProjectEntry = function (_React$Component) {
 
 exports.default = ProjectEntry;
 
-},{"react":163}],203:[function(require,module,exports){
+},{"react":163}],201:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26165,7 +26090,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _contentSelectorActions = require('../../actions/contentSelectorActions');
+var _contentEditorActions = require('../../actions/contentEditorActions');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26196,8 +26121,8 @@ var AddMore = function (_React$Component) {
   }, {
     key: 'onClick',
     value: function onClick() {
-      //    this.props.store.dispatch(appendContent());
-      this.props.store.dispatch((0, _contentSelectorActions.showContentSelector)("selector", this.props.index));
+      this.props.store.dispatch(appendContent("blank"));
+      this.props.store.dispatch((0, _contentEditorActions.showContentEditor)("selector", this.props.index));
     }
   }]);
 
@@ -26206,7 +26131,7 @@ var AddMore = function (_React$Component) {
 
 exports.default = AddMore;
 
-},{"../../actions/contentSelectorActions":181,"react":163}],204:[function(require,module,exports){
+},{"../../actions/contentEditorActions":180,"react":163}],202:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26230,8 +26155,6 @@ var _EditorFactory2 = _interopRequireDefault(_EditorFactory);
 var _ContentFactory = require('../contents/ContentFactory');
 
 var _ContentFactory2 = _interopRequireDefault(_ContentFactory);
-
-var _contentActions = require('../../actions/contentActions');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26273,7 +26196,7 @@ var LandingContainer = function (_React$Component) {
 
 exports.default = LandingContainer;
 
-},{"../../actions/contentActions":179,"../contents/ContentFactory":185,"../editors/EditorFactory":195,"./AddMore":203,"react":163}],205:[function(require,module,exports){
+},{"../contents/ContentFactory":184,"../editors/EditorFactory":193,"./AddMore":201,"react":163}],203:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -26303,7 +26226,7 @@ store.subscribe(function () {
 });
 _reactDom2.default.render(_react2.default.createElement(_App2.default, { store: store }), document.getElementById("app"));
 
-},{"../components/App.js":183,"../reducers/rootReducer":214,"react":163,"react-dom":34,"redux":175}],206:[function(require,module,exports){
+},{"../components/App.js":182,"../reducers/rootReducer":212,"react":163,"react-dom":34,"redux":175}],204:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26317,7 +26240,7 @@ function prettyString(jsonObj) {
   if (_immutable.Map.isMap(jsonObj)) return JSON.stringify(jsonObj.toJS(), null, " ");else return JSON.stringify(jsonObj, null, " ");
 }
 
-},{"immutable":28}],207:[function(require,module,exports){
+},{"immutable":28}],205:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26345,7 +26268,7 @@ function contents() {
   }
 }
 
-},{"../actions/contentActions":179,"immutable":28}],208:[function(require,module,exports){
+},{"../actions/contentActions":179,"immutable":28}],206:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26371,7 +26294,7 @@ function editorReducer() {
   }
 }
 
-},{"../actions/contentEditorActions":180,"immutable":28}],209:[function(require,module,exports){
+},{"../actions/contentEditorActions":180,"immutable":28}],207:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26391,7 +26314,7 @@ function feature() {
   }
 }
 
-},{"immutable":28}],210:[function(require,module,exports){
+},{"immutable":28}],208:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26411,7 +26334,7 @@ function front() {
   }
 }
 
-},{"immutable":28}],211:[function(require,module,exports){
+},{"immutable":28}],209:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26431,7 +26354,7 @@ function gitHub() {
   }
 }
 
-},{"immutable":28}],212:[function(require,module,exports){
+},{"immutable":28}],210:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26455,7 +26378,7 @@ exports.default = (0, _reduxImmutable.combineReducers)({
   editor: _editorReducer2.default
 });
 
-},{"./contentsReducer":207,"./editorReducer":208,"redux-immutable":165}],213:[function(require,module,exports){
+},{"./contentsReducer":205,"./editorReducer":206,"redux-immutable":165}],211:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26478,7 +26401,7 @@ function editorReducer() {
   }
 }
 
-},{"../actions/modeActions":182}],214:[function(require,module,exports){
+},{"../actions/modeActions":181}],212:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26521,7 +26444,7 @@ function log() {
   return state;
 }
 
-},{"../print/prettyString":206,"./frontReducer":210,"./landingReducer":212,"./modeReducers":213,"redux-immutable":165}],215:[function(require,module,exports){
+},{"../print/prettyString":204,"./frontReducer":208,"./landingReducer":210,"./modeReducers":211,"redux-immutable":165}],213:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26541,7 +26464,7 @@ function title() {
   }
 }
 
-},{"immutable":28}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215])
+},{"immutable":28}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213])
 
 
 //# sourceMappingURL=bundle.js.map

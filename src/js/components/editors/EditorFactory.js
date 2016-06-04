@@ -16,7 +16,7 @@ export default function EditorFactory(contentType, props, children){
     case TitleEditor.name :
       return React.createElement(TitleEditor, props, children);
     default:
-      return <div>{"No Such Editor = " + contentType}</div>
+      return <div>{"No Such Editor = " + props.contentType}</div>
   }
 
 }

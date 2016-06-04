@@ -2,7 +2,6 @@ import React from 'react'
 import AddMore from './AddMore'
 import EditorFactory  from '../editors/EditorFactory'
 import ContentFactory from '../contents/ContentFactory'
-import { appendContent } from '../../actions/contentActions'
 
 export default class LandingContainer extends React.Component {
   render() {
