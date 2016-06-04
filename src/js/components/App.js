@@ -7,9 +7,9 @@ export default class App extends React.Component {
   render() {
     const mode = this.props.store.getState().get("mode");
     if( mode === TOP_PAGE_MODE )
-      return <FrontContainer />
+      return <FrontContainer   store={this.props.store} contents={this.props.store.getState().get("front")} />
     else if(mode === LANDING_PAGE_MODE)
-      return <LandingContainer />
+      return <LandingContainer store={this.props.store} contents={this.props.store.getState().get("landing")} />
     else
       return <div>{ "no such mode = " + mode }</div>
   }

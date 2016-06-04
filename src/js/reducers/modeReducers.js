@@ -4,7 +4,6 @@ export default function editorReducer(state = LANDING_PAGE_MODE, action = undefi
   switch(action.type) {
     case TOP_PAGE_MODE:
     case LANDING_PAGE_MODE:
-      console.log("action received", action);
       return action.type;
     default:
       return state;

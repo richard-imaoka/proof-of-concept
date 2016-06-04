@@ -25070,20 +25070,45 @@ module.exports = function symbolObservablePonyfill(root) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.appendContent = appendContent;
+exports.insertContent = insertContent;
+exports.removeContent = removeContent;
+var APPEND_CONTENT = exports.APPEND_CONTENT = 'APPEND_CONTENT';
+var INSERT_CONTENT = exports.INSERT_CONTENT = 'INSERT_CONTENT';
+var REMOVE_CONTENT = exports.REMOVE_CONTENT = 'REMOVE_CONTENT';
+
+function appendContent() {
+  return { type: APPEND_CONTENT };
+}
+
+function insertContent(index, data) {
+  return { type: INSERT_CONTENT, index: index, data: data };
+}
+
+function removeContent(index) {
+  return { type: REMOVE_CONTENT, index: index };
+}
+
+},{}],180:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.showEditor = showEditor;
 exports.closeEditor = closeEditor;
 var SHOW_EDITOR = exports.SHOW_EDITOR = 'SHOW_EDITOR';
 var CLOSE_EDITOR = exports.CLOSE_EDITOR = 'CLOSE_EDITOR';
 
-function showEditor(contentType, data) {
-  return { type: SHOW_EDITOR, contentType: contentType, data: data };
+function showEditor(data) {
+  return { type: SHOW_EDITOR, data: data };
 }
 
 function closeEditor() {
   return { type: CLOSE_EDITOR };
 }
 
-},{}],180:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25100,30 +25125,6 @@ function gotoTopPageMode() {
 
 function gotoLandingPageMode() {
   return { type: LANDING_PAGE_MODE };
-}
-
-},{}],181:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.addSection = addSection;
-exports.insertSection = insertSection;
-exports.removeSection = removeSection;
-var ADD_SECTION = exports.ADD_SECTION = 'ADD_SECTION';
-var INSERT_SECTION = exports.INSERT_SECTION = 'INSERT_SECTION';
-var REMOVE_SECTION = exports.REMOVE_SECTION = 'REMOVE_SECTION';
-
-function addSection() {
-  return { type: ADD_SECTION };
-}
-
-function insertSection() {
-  return { type: INSERT_SECTION };
-}
-function removeSection(id) {
-  return { type: REMOVE_SECTION, id: id };
 }
 
 },{}],182:[function(require,module,exports){
@@ -25170,7 +25171,7 @@ var App = function (_React$Component) {
     key: 'render',
     value: function render() {
       var mode = this.props.store.getState().get("mode");
-      if (mode === _modeActions.TOP_PAGE_MODE) return _react2.default.createElement(_FrontContainer2.default, null);else if (mode === _modeActions.LANDING_PAGE_MODE) return _react2.default.createElement(_LandingContainer2.default, null);else return _react2.default.createElement(
+      if (mode === _modeActions.TOP_PAGE_MODE) return _react2.default.createElement(_FrontContainer2.default, { store: this.props.store, contents: this.props.store.getState().get("front") });else if (mode === _modeActions.LANDING_PAGE_MODE) return _react2.default.createElement(_LandingContainer2.default, { store: this.props.store, contents: this.props.store.getState().get("landing") });else return _react2.default.createElement(
         'div',
         null,
         "no such mode = " + mode
@@ -25183,7 +25184,7 @@ var App = function (_React$Component) {
 
 exports.default = App;
 
-},{"../actions/modeActions":180,"./front/FrontContainer.js":187,"./landing/LandingContainer.js":196,"react":163}],183:[function(require,module,exports){
+},{"../actions/modeActions":181,"./front/FrontContainer.js":187,"./landing/LandingContainer.js":198,"react":163}],183:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25669,6 +25670,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _contentActions = require('../../actions/contentActions');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25691,9 +25694,14 @@ var AddMore = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'button',
-        null,
-        'AddMore'
+        { onClick: this.onClick.bind(this) },
+        'add'
       );
+    }
+  }, {
+    key: 'onClick',
+    value: function onClick() {
+      this.props.store.dispatch((0, _contentActions.appendContent)());
     }
   }]);
 
@@ -25702,7 +25710,109 @@ var AddMore = function (_React$Component) {
 
 exports.default = AddMore;
 
-},{"react":163}],193:[function(require,module,exports){
+},{"../../actions/contentActions":179,"react":163}],193:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Blank = function (_React$Component) {
+  _inherits(Blank, _React$Component);
+
+  function Blank() {
+    _classCallCheck(this, Blank);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Blank).apply(this, arguments));
+  }
+
+  _createClass(Blank, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        'Blank'
+      );
+    }
+  }]);
+
+  return Blank;
+}(_react2.default.Component);
+
+exports.default = Blank;
+
+},{"react":163}],194:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = ContentFactory;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Blank = require('./Blank');
+
+var _Blank2 = _interopRequireDefault(_Blank);
+
+var _Deploy = require('./Deploy');
+
+var _Deploy2 = _interopRequireDefault(_Deploy);
+
+var _FeatureList = require('./FeatureList');
+
+var _FeatureList2 = _interopRequireDefault(_FeatureList);
+
+var _Social = require('./Social');
+
+var _Social2 = _interopRequireDefault(_Social);
+
+var _Title = require('./Title');
+
+var _Title2 = _interopRequireDefault(_Title);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ContentFactory(contentType, props, children) {
+
+  switch (contentType) {
+    case _Blank2.default.name:
+      return _react2.default.createElement(_Blank2.default, props, children);
+    case _Deploy2.default.name:
+      return _react2.default.createElement(_Deploy2.default, props, children);
+    case _FeatureList2.default.name:
+      return _react2.default.createElement(_FeatureList2.default, props, children);
+    case _Social2.default.name:
+      return _react2.default.createElement(_Social2.default, props, children);
+    case _Title2.default.name:
+      return _react2.default.createElement(_Title2.default, props, children);
+    default:
+      return _react2.default.createElement(
+        'div',
+        null,
+        "No Sucn Component = " + contentType
+      );
+  }
+}
+
+},{"./Blank":193,"./Deploy":195,"./FeatureList":197,"./Social":199,"./Title":200,"react":163}],195:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25738,7 +25848,7 @@ var Deploy = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        'Landing Page'
+        'Deploy'
       );
     }
   }]);
@@ -25748,7 +25858,7 @@ var Deploy = function (_React$Component) {
 
 exports.default = Deploy;
 
-},{"react":163}],194:[function(require,module,exports){
+},{"react":163}],196:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25784,7 +25894,7 @@ var Feature = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        'Landing Page'
+        'Feature'
       );
     }
   }]);
@@ -25794,7 +25904,7 @@ var Feature = function (_React$Component) {
 
 exports.default = Feature;
 
-},{"react":163}],195:[function(require,module,exports){
+},{"react":163}],197:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25839,7 +25949,7 @@ var FeatureList = function (_React$Component) {
 
 exports.default = FeatureList;
 
-},{"react":163}],196:[function(require,module,exports){
+},{"react":163}],198:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25852,13 +25962,15 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Title = require('./Title');
+var _ContentFactory = require('./ContentFactory');
 
-var _Title2 = _interopRequireDefault(_Title);
+var _ContentFactory2 = _interopRequireDefault(_ContentFactory);
 
 var _AddMore = require('./AddMore');
 
 var _AddMore2 = _interopRequireDefault(_AddMore);
+
+var _contentActions = require('../../actions/contentActions');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25881,11 +25993,15 @@ var LandingContainer = function (_React$Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'div',
+        'main',
         null,
-        _react2.default.createElement(_Title2.default, null),
-        _react2.default.createElement(_AddMore2.default, null)
+        _react2.default.createElement(_AddMore2.default, { store: this.props.store })
       );
+    }
+  }, {
+    key: 'onClick',
+    value: function onClick() {
+      this.props.store.dispatch((0, _contentActions.appendContent)());
     }
   }]);
 
@@ -25894,7 +26010,7 @@ var LandingContainer = function (_React$Component) {
 
 exports.default = LandingContainer;
 
-},{"./AddMore":192,"./Title":198,"react":163}],197:[function(require,module,exports){
+},{"../../actions/contentActions":179,"./AddMore":192,"./ContentFactory":194,"react":163}],199:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25930,7 +26046,7 @@ var Social = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        'Landing Page'
+        'Twitter'
       );
     }
   }]);
@@ -25940,7 +26056,7 @@ var Social = function (_React$Component) {
 
 exports.default = Social;
 
-},{"react":163}],198:[function(require,module,exports){
+},{"react":163}],200:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25976,7 +26092,7 @@ var Title = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        'Landing Page'
+        'Title'
       );
     }
   }]);
@@ -25986,7 +26102,7 @@ var Title = function (_React$Component) {
 
 exports.default = Title;
 
-},{"react":163}],199:[function(require,module,exports){
+},{"react":163}],201:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -26013,21 +26129,21 @@ var store = (0, _redux.createStore)(_rootReducer2.default);
 
 _reactDom2.default.render(_react2.default.createElement(_App2.default, { store: store }), document.getElementById("app"));
 
-},{"../components/App.js":182,"../reducers/rootReducer":203,"react":163,"react-dom":34,"redux":175}],200:[function(require,module,exports){
+},{"../components/App.js":182,"../reducers/rootReducer":209,"react":163,"react-dom":34,"redux":175}],202:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = prettyPrint;
+exports.default = prettyString;
 
 var _immutable = require("immutable");
 
-function prettyPrint(jsonObj) {
-  if (_immutable.Map.isMap(jsonObj)) console.log(JSON.stringify(jsonObj.toJS(), null, " "));else console.log(JSON.stringify(jsonObj, null, " "));
+function prettyString(jsonObj) {
+  if (_immutable.Map.isMap(jsonObj)) return JSON.stringify(jsonObj.toJS(), null, " ");else return JSON.stringify(jsonObj, null, " ");
 }
 
-},{"immutable":28}],201:[function(require,module,exports){
+},{"immutable":28}],203:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26039,29 +26155,117 @@ var _immutable = require("immutable");
 
 var _editorActions = require("../actions/editorActions");
 
-var _prettyPrint = require("../print/prettyPrint");
-
-var _prettyPrint2 = _interopRequireDefault(_prettyPrint);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function editorReducer() {
   var state = arguments.length <= 0 || arguments[0] === undefined ? (0, _immutable.Map)() : arguments[0];
   var action = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
 
   switch (action.type) {
     case _editorActions.SHOW_EDITOR:
-      console.log("action received", (0, _prettyPrint2.default)(action));
       return (0, _immutable.Map)({ actionType: action.Type, contentType: action.contentType, data: action.data });
     case _editorActions.CLOSE_EDITOR:
-      console.log("action received", (0, _prettyPrint2.default)(action));
       return state.set("actionType", action.path);
     default:
       return state;
   }
 }
 
-},{"../actions/editorActions":179,"../print/prettyPrint":200,"immutable":28}],202:[function(require,module,exports){
+},{"../actions/editorActions":180,"immutable":28}],204:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = featureReducer;
+
+var _immutable = require("immutable");
+
+var _editorActions = require("../actions/editorActions");
+
+function featureReducer() {
+  var state = arguments.length <= 0 || arguments[0] === undefined ? (0, _immutable.Map)() : arguments[0];
+  var action = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
+
+  switch (action.type) {
+    case _editorActions.SHOW_EDITOR:
+      return (0, _immutable.Map)({ icon: action.icon, feature: action.feature, description: action.description });
+    default:
+      return state;
+  }
+}
+
+},{"../actions/editorActions":180,"immutable":28}],205:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = front;
+
+var _immutable = require('immutable');
+
+function front() {
+  var state = arguments.length <= 0 || arguments[0] === undefined ? (0, _immutable.Map)() : arguments[0];
+  var action = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
+
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
+},{"immutable":28}],206:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = gitHubReducer;
+
+var _immutable = require("immutable");
+
+var _editorActions = require("../actions/editorActions");
+
+function gitHubReducer() {
+  var state = arguments.length <= 0 || arguments[0] === undefined ? (0, _immutable.Map)() : arguments[0];
+  var action = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
+
+  switch (action.type) {
+    case _editorActions.SHOW_EDITOR:
+      return (0, _immutable.Map)({ user: action.user, repository: action.repository });
+    default:
+      return state;
+  }
+}
+
+},{"../actions/editorActions":180,"immutable":28}],207:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = landing;
+
+var _immutable = require("immutable");
+
+var _contentActions = require("../actions/contentActions");
+
+function landing() {
+  var state = arguments.length <= 0 || arguments[0] === undefined ? (0, _immutable.List)() : arguments[0];
+  var action = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
+
+  switch (action.type) {
+    case _contentActions.APPEND_CONTENT:
+      return state.push({ something: "everything" });
+    case _contentActions.INSERT_CONTENT:
+      return state.insert(action.index, action.data);
+    case _contentActions.REMOVE_CONTENT:
+      return state.remove(action.index);
+    default:
+      return state;
+  }
+}
+
+},{"../actions/contentActions":179,"immutable":28}],208:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26078,14 +26282,13 @@ function editorReducer() {
   switch (action.type) {
     case _modeActions.TOP_PAGE_MODE:
     case _modeActions.LANDING_PAGE_MODE:
-      console.log("action received", action);
       return action.type;
     default:
       return state;
   }
 }
 
-},{"../actions/modeActions":180}],203:[function(require,module,exports){
+},{"../actions/modeActions":181}],209:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26102,115 +26305,38 @@ var _modeReducers = require('./modeReducers');
 
 var _modeReducers2 = _interopRequireDefault(_modeReducers);
 
-var _sectionsReducer = require('./sectionsReducer');
+var _frontReducer = require('./frontReducer');
 
-var _sectionsReducer2 = _interopRequireDefault(_sectionsReducer);
+var _frontReducer2 = _interopRequireDefault(_frontReducer);
+
+var _landingReducer = require('./landingReducer');
+
+var _landingReducer2 = _interopRequireDefault(_landingReducer);
+
+var _prettyString = require('../print/prettyString');
+
+var _prettyString2 = _interopRequireDefault(_prettyString);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _reduxImmutable.combineReducers)({
-  editor: _editorReducer2.default,
+  log: log,
   mode: _modeReducers2.default,
-  sections: _sectionsReducer2.default
+  front: _frontReducer2.default,
+  landing: _landingReducer2.default,
+  editor: _editorReducer2.default
 });
 
-},{"./editorReducer":201,"./modeReducers":202,"./sectionsReducer":204,"redux-immutable":165}],204:[function(require,module,exports){
-"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = sectionsReducer;
-
-var _immutable = require("immutable");
-
-var _sectionActions = require("../actions/sectionActions");
-
-var _prettyPrint = require("../print/prettyPrint");
-
-var _prettyPrint2 = _interopRequireDefault(_prettyPrint);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function sectionsReducer() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? (0, _immutable.List)() : arguments[0];
+function log() {
+  var state = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
   var action = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
 
-  switch (action.type) {
-    case _sectionActions.ADD_SECTION:
-      console.log("action received", (0, _prettyPrint2.default)(action));
-      return state.push();
-    case _sectionActions.REMOVE_SECTION:
-      console.log("action received", (0, _prettyPrint2.default)(action));
-      return state.remove(action.index);
-    default:
-      return state;
-  }
+  console.log("action received", (0, _prettyString2.default)(action));
+  return state;
 }
 
-},{"../actions/sectionActions":181,"../print/prettyPrint":200,"immutable":28}],205:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = featureReducer;
-
-var _immutable = require("immutable");
-
-var _editorActions = require("../../actions/editorActions");
-
-var _prettyPrint = require("../../print/prettyPrint");
-
-var _prettyPrint2 = _interopRequireDefault(_prettyPrint);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function featureReducer() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? (0, _immutable.Map)() : arguments[0];
-  var action = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
-
-  switch (action.type) {
-    case _editorActions.SHOW_EDITOR:
-      console.log("action received", (0, _prettyPrint2.default)(action));
-      return (0, _immutable.Map)({ icon: action.icon, feature: action.feature, description: action.description });
-    default:
-      return state;
-  }
-}
-
-},{"../../actions/editorActions":179,"../../print/prettyPrint":200,"immutable":28}],206:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = gitHubReducer;
-
-var _immutable = require("immutable");
-
-var _editorActions = require("../../actions/editorActions");
-
-var _prettyPrint = require("../../print/prettyPrint");
-
-var _prettyPrint2 = _interopRequireDefault(_prettyPrint);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function gitHubReducer() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? (0, _immutable.Map)() : arguments[0];
-  var action = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
-
-  switch (action.type) {
-    case _editorActions.SHOW_EDITOR:
-      console.log("action received", (0, _prettyPrint2.default)(action));
-      return (0, _immutable.Map)({ user: action.user, repository: action.repository });
-    default:
-      return state;
-  }
-}
-
-},{"../../actions/editorActions":179,"../../print/prettyPrint":200,"immutable":28}],207:[function(require,module,exports){
+},{"../print/prettyString":202,"./editorReducer":203,"./frontReducer":205,"./landingReducer":207,"./modeReducers":208,"redux-immutable":165}],210:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26220,11 +26346,11 @@ exports.default = titleReducer;
 
 var _immutable = require("immutable");
 
-var _editorActions = require("../../actions/editorActions");
+var _editorActions = require("../actions/editorActions");
 
-var _prettyPrint = require("../../print/prettyPrint");
+var _prettyString = require("../print/prettyString");
 
-var _prettyPrint2 = _interopRequireDefault(_prettyPrint);
+var _prettyString2 = _interopRequireDefault(_prettyString);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26234,14 +26360,13 @@ function titleReducer() {
 
   switch (action.type) {
     case _editorActions.SHOW_EDITOR:
-      console.log("action received", (0, _prettyPrint2.default)(action));
       return (0, _immutable.Map)({ title: action.title, description: action.description });
     default:
       return state;
   }
 }
 
-},{"../../actions/editorActions":179,"../../print/prettyPrint":200,"immutable":28}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,193,194,195,196,197,198,199,200,201,202,203,205,206,207,204])
+},{"../actions/editorActions":180,"../print/prettyString":202,"immutable":28}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210])
 
 
 //# sourceMappingURL=bundle.js.map
