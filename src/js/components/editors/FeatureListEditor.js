@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class FeatureEditor extends React.Component {
+export default class FeatureListEditor extends React.Component {
   render() {
     return (
       <div>

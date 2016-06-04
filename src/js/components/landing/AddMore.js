@@ -1,5 +1,5 @@
 import React from 'react'
-import { appendContent } from '../../actions/contentActions'
+import { showContentSelector } from '../../actions/contentSelectorActions'
 
 export default class AddMore extends React.Component {
   render() {
@@ -7,6 +7,7 @@ export default class AddMore extends React.Component {
   }
 
   onClick() {
-    this.props.store.dispatch(appendContent());
+    this.props.store.dispatch(appendContent("blank"));
+    this.props.store.dispatch(showContentSelector("selector", this.props.index));
   }
 }

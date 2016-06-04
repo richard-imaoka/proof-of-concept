@@ -1,20 +1,20 @@
 import React from 'react'
-import ContentFactory from './ContentFactory'
 import AddMore from './AddMore'
+import EditorFactory  from '../editors/EditorFactory'
+import ContentFactory from '../contents/ContentFactory'
 import { appendContent } from '../../actions/contentActions'
 
 export default class LandingContainer extends React.Component {
   render() {
+    const contents = this.props.landing.get("contents");
+    const editor   = this.props.landing.get("editor");
     let i=0;
     return (
       <main>
-        { this.props.contents.map(x => <ContentFactory key={i++} /> ) }
-        <AddMore store={this.props.store} />
+        { contents.map(x => <ContentFactory key={i++} /> ) }
+        <AddMore store={this.props.store} index={contents.size}/>
+        <EditorFactory index={contents.size} type={editor.type} data={editor}/>
       </main>
     );
-  }
-
-  onClick() {
-    this.props.store.dispatch(appendContent());
   }
 }

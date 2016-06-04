@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux-immutable'
-import editor   from './editorReducer'
 import mode     from './modeReducers'
 import front    from './frontReducer'
 import landing  from './landingReducer'
@@ -9,8 +8,7 @@ export default combineReducers({
   log,
   mode,
   front,
-  landing,
-  editor
+  landing
 });
 
 function log(state = null, action = undefined)  {
