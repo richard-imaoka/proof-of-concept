@@ -5,7 +5,7 @@ import SocialEditor       from './SocialEditor'
 import TitleEditor        from './TitleEditor'
 import SelectorEditor     from './SelectorEditor'
 
-export default function EditorFactory(props){
+export default function Editor(props){
   switch(props.editorType) {
     case FeatureListEditor.name :
       return React.createElement(FeatureListEditor, props);

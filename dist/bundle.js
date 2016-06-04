@@ -25242,7 +25242,7 @@ exports.default = Blank;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = ContentFactory;
+exports.default = Content;
 
 var _react = require('react');
 
@@ -25270,24 +25270,24 @@ var _Title2 = _interopRequireDefault(_Title);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function ContentFactory(contentType, props, children) {
+function Content(props) {
 
-  switch (contentType) {
+  switch (props.contentType) {
     case _Blank2.default.name:
-      return _react2.default.createElement(_Blank2.default, props, children);
+      return _react2.default.createElement(_Blank2.default, props);
     case _Deploy2.default.name:
-      return _react2.default.createElement(_Deploy2.default, props, children);
+      return _react2.default.createElement(_Deploy2.default, props);
     case _FeatureList2.default.name:
-      return _react2.default.createElement(_FeatureList2.default, props, children);
+      return _react2.default.createElement(_FeatureList2.default, props);
     case _Social2.default.name:
-      return _react2.default.createElement(_Social2.default, props, children);
+      return _react2.default.createElement(_Social2.default, props);
     case _Title2.default.name:
-      return _react2.default.createElement(_Title2.default, props, children);
+      return _react2.default.createElement(_Title2.default, props);
     default:
       return _react2.default.createElement(
         'div',
         null,
-        "No Sucn Component = " + contentType
+        "No Such Component = " + props.contentType
       );
   }
 }
@@ -26198,13 +26198,13 @@ var _AddMore = require('./AddMore');
 
 var _AddMore2 = _interopRequireDefault(_AddMore);
 
-var _EditorFactory = require('../editors/EditorFactory');
+var _Editor = require('../editors/Editor');
 
-var _EditorFactory2 = _interopRequireDefault(_EditorFactory);
+var _Editor2 = _interopRequireDefault(_Editor);
 
-var _ContentFactory = require('../contents/ContentFactory');
+var _Content = require('../contents/Content');
 
-var _ContentFactory2 = _interopRequireDefault(_ContentFactory);
+var _Content2 = _interopRequireDefault(_Content);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26233,10 +26233,10 @@ var LandingContainer = function (_React$Component) {
         'main',
         null,
         contents.map(function (x) {
-          return _react2.default.createElement(_ContentFactory2.default, { key: i++ });
+          return _react2.default.createElement(_Content2.default, { key: i++ });
         }),
         _react2.default.createElement(_AddMore2.default, { store: this.props.store, index: contents.size }),
-        _react2.default.createElement(_EditorFactory2.default, { index: editor.get("index"), editorType: editor.get("editorType"), data: editor.get("data") })
+        _react2.default.createElement(_Editor2.default, { store: this.props.store, index: editor.get("index"), editorType: editor.get("editorType"), data: editor.get("data") })
       );
     }
   }]);
@@ -26246,7 +26246,7 @@ var LandingContainer = function (_React$Component) {
 
 exports.default = LandingContainer;
 
-},{"../contents/ContentFactory":184,"../editors/EditorFactory":193,"./AddMore":202,"react":163}],204:[function(require,module,exports){
+},{"../contents/Content":184,"../editors/Editor":193,"./AddMore":202,"react":163}],204:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -26514,7 +26514,7 @@ function title() {
   }
 }
 
-},{"immutable":28}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214])
+},{"immutable":28}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214])
 
 
 //# sourceMappingURL=bundle.js.map

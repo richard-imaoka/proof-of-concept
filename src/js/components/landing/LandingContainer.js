@@ -1,7 +1,7 @@
 import React from 'react'
 import AddMore from './AddMore'
-import EditorFactory  from '../editors/EditorFactory'
-import ContentFactory from '../contents/ContentFactory'
+import Editor  from '../editors/Editor'
+import Content from '../contents/Content'
 
 export default class LandingContainer extends React.Component {
   render() {
@@ -10,9 +10,13 @@ export default class LandingContainer extends React.Component {
     let i=0;
     return (
       <main>
-        { contents.map( x => <ContentFactory key={i++} /> ) }
+        {
+          contents.map(
+            x => <Content key={i++}/>
+          )
+        }
         <AddMore store={this.props.store} index={contents.size}/>
-        <EditorFactory index={editor.get("index")} editorType={editor.get("editorType")} data={editor.get("data")}/>
+        <Editor  store={this.props.store} index={editor.get("index")} editorType={editor.get("editorType")} data={editor.get("data")}/>
       </main>
     );
   }
