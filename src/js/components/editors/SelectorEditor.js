@@ -1,5 +1,7 @@
 import React from 'react'
 import {appendContent}  from '../../actions/contentActions'
+import {closeEditor}    from '../../actions/editorActions'
+
 export default class SelectorEditor extends React.Component {
   render() {
     return (
@@ -15,5 +17,6 @@ export default class SelectorEditor extends React.Component {
 
   onClick(event) {
     this.props.store.dispatch(appendContent(event.target.innerText, this.props.index));
+    this.props.store.dispatch(closeEditor());
   }
 }

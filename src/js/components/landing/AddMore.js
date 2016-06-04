@@ -1,5 +1,5 @@
 import React from 'react'
-import { showContentEditor } from '../../actions/contentEditorActions'
+import { showEditor } from '../../actions/editorActions'
 
 export default class AddMore extends React.Component {
   render() {
@@ -7,6 +7,6 @@ export default class AddMore extends React.Component {
   }
 
   onClick() {
-    this.props.store.dispatch(showContentEditor("SelectorEditor", this.props.index));
+    this.props.store.dispatch(showEditor("SelectorEditor", this.props.index));
   }
 }

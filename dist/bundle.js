@@ -25095,17 +25095,17 @@ function removeContent(index) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.showContentEditor = showContentEditor;
-exports.closeCpntentEditor = closeCpntentEditor;
-var SHOW_CONTENT_EDITOR = exports.SHOW_CONTENT_EDITOR = 'SHOW_CONTENT_EDITOR';
-var CLOSE_CONTENT_EDITOR = exports.CLOSE_CONTENT_EDITOR = 'CLOSE_CONTENT_EDITOR';
+exports.showEditor = showEditor;
+exports.closeEditor = closeEditor;
+var SHOW_EDITOR = exports.SHOW_EDITOR = 'SHOW_EDITOR';
+var CLOSE_EDITOR = exports.CLOSE_EDITOR = 'CLOSE_EDITOR';
 
-function showContentEditor(editorType, data) {
-  return { type: SHOW_CONTENT_EDITOR, editorType: editorType, data: data };
+function showEditor(editorType, data) {
+  return { type: SHOW_EDITOR, editorType: editorType, data: data };
 }
 
-function closeCpntentEditor() {
-  return { type: CLOSE_CONTENT_EDITOR };
+function closeEditor() {
+  return { type: CLOSE_EDITOR };
 }
 
 },{}],181:[function(require,module,exports){
@@ -25428,11 +25428,12 @@ var FeatureList = function (_React$Component) {
     key: 'render',
     value: function render() {
       var a = [1, 2, 3];
+      var i = 0;
       return _react2.default.createElement(
         'div',
         null,
         a.map(function (x) {
-          return _react2.default.createElement(_Feature2.default, null);
+          return _react2.default.createElement(_Feature2.default, { key: i++ });
         })
       );
     }
@@ -25700,7 +25701,7 @@ exports.default = Workflow;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = EditorFactory;
+exports.default = Editor;
 
 var _react = require('react');
 
@@ -25722,10 +25723,18 @@ var _SelectorEditor = require('./SelectorEditor');
 
 var _SelectorEditor2 = _interopRequireDefault(_SelectorEditor);
 
+var _editorActions = require('../../actions/editorActions');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function EditorFactory(props) {
+function Editor(props) {
   switch (props.editorType) {
+    case undefined:
+      return _react2.default.createElement(
+        'div',
+        null,
+        'Closed'
+      );
     case _FeatureListEditor2.default.name:
       return _react2.default.createElement(_FeatureListEditor2.default, props);
     case _FeatureListEditor2.default.name:
@@ -25745,7 +25754,7 @@ function EditorFactory(props) {
   }
 }
 
-},{"./FeatureListEditor":196,"./SelectorEditor":197,"./SocialEditor":198,"./TitleEditor":199,"react":163}],194:[function(require,module,exports){
+},{"../../actions/editorActions":180,"./FeatureListEditor":196,"./SelectorEditor":197,"./SocialEditor":198,"./TitleEditor":199,"react":163}],194:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25898,6 +25907,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _contentActions = require('../../actions/contentActions');
 
+var _editorActions = require('../../actions/editorActions');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25946,6 +25957,7 @@ var SelectorEditor = function (_React$Component) {
     key: 'onClick',
     value: function onClick(event) {
       this.props.store.dispatch((0, _contentActions.appendContent)(event.target.innerText, this.props.index));
+      this.props.store.dispatch((0, _editorActions.closeEditor)());
     }
   }]);
 
@@ -25954,7 +25966,7 @@ var SelectorEditor = function (_React$Component) {
 
 exports.default = SelectorEditor;
 
-},{"../../actions/contentActions":179,"react":163}],198:[function(require,module,exports){
+},{"../../actions/contentActions":179,"../../actions/editorActions":180,"react":163}],198:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26180,7 +26192,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _contentEditorActions = require('../../actions/contentEditorActions');
+var _editorActions = require('../../actions/editorActions');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26211,7 +26223,7 @@ var AddMore = function (_React$Component) {
   }, {
     key: 'onClick',
     value: function onClick() {
-      this.props.store.dispatch((0, _contentEditorActions.showContentEditor)("SelectorEditor", this.props.index));
+      this.props.store.dispatch((0, _editorActions.showEditor)("SelectorEditor", this.props.index));
     }
   }]);
 
@@ -26220,7 +26232,7 @@ var AddMore = function (_React$Component) {
 
 exports.default = AddMore;
 
-},{"../../actions/contentEditorActions":180,"react":163}],203:[function(require,module,exports){
+},{"../../actions/editorActions":180,"react":163}],203:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26369,23 +26381,23 @@ exports.default = editorReducer;
 
 var _immutable = require("immutable");
 
-var _contentEditorActions = require("../actions/contentEditorActions");
+var _editorActions = require("../actions/editorActions");
 
 function editorReducer() {
   var state = arguments.length <= 0 || arguments[0] === undefined ? (0, _immutable.Map)() : arguments[0];
   var action = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
 
   switch (action.type) {
-    case _contentEditorActions.SHOW_CONTENT_EDITOR:
+    case _editorActions.SHOW_EDITOR:
       return (0, _immutable.Map)({ actionType: action.type, editorType: action.editorType, data: action.data });
-    case _contentEditorActions.CLOSE_CONTENT_EDITOR:
+    case _editorActions.CLOSE_EDITOR:
       return state.set("actionType", action.type);
     default:
       return state;
   }
 }
 
-},{"../actions/contentEditorActions":180,"immutable":28}],208:[function(require,module,exports){
+},{"../actions/editorActions":180,"immutable":28}],208:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
