@@ -25992,9 +25992,13 @@ var LandingContainer = function (_React$Component) {
   _createClass(LandingContainer, [{
     key: 'render',
     value: function render() {
+      var i = 0;
       return _react2.default.createElement(
         'main',
         null,
+        this.props.contents.map(function (x) {
+          return _react2.default.createElement(_ContentFactory2.default, { key: i++ });
+        }),
         _react2.default.createElement(_AddMore2.default, { store: this.props.store })
       );
     }
@@ -26127,6 +26131,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var store = (0, _redux.createStore)(_rootReducer2.default);
 
+store.subscribe(function () {
+  _reactDom2.default.render(_react2.default.createElement(_App2.default, { store: store }), document.getElementById("app"));
+});
 _reactDom2.default.render(_react2.default.createElement(_App2.default, { store: store }), document.getElementById("app"));
 
 },{"../components/App.js":182,"../reducers/rootReducer":209,"react":163,"react-dom":34,"redux":175}],202:[function(require,module,exports){
