@@ -6,7 +6,11 @@ export default class SelectorEditor extends React.Component {
   render() {
     return (
       <div>
+        <div></div>
         <ul>
+          <li onClick={this.onClick.bind(this)}>FeatureList</li>
+          <li onClick={this.onClick.bind(this)}>HowToUse</li>
+          <li onClick={this.onClick.bind(this)}>Social</li>
           <li onClick={this.onClick.bind(this)}>FeatureList</li>
           <li onClick={this.onClick.bind(this)}>Workflow</li>
           <li onClick={this.onClick.bind(this)}>Social</li>
