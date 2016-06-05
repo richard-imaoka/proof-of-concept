@@ -25242,7 +25242,8 @@ exports.default = Blank;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = Content;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -25260,6 +25261,10 @@ var _FeatureList = require('./FeatureList');
 
 var _FeatureList2 = _interopRequireDefault(_FeatureList);
 
+var _Feature = require('./Feature');
+
+var _Feature2 = _interopRequireDefault(_Feature);
+
 var _Social = require('./Social');
 
 var _Social2 = _interopRequireDefault(_Social);
@@ -25274,31 +25279,55 @@ var _Workflow2 = _interopRequireDefault(_Workflow);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function Content(props) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  switch (props.contentType) {
-    case _Blank2.default.name:
-      return _react2.default.createElement(_Blank2.default, props);
-    case _Deploy2.default.name:
-      return _react2.default.createElement(_Deploy2.default, props);
-    case _FeatureList2.default.name:
-      return _react2.default.createElement(_FeatureList2.default, props);
-    case _Social2.default.name:
-      return _react2.default.createElement(_Social2.default, props);
-    case _Title2.default.name:
-      return _react2.default.createElement(_Title2.default, props);
-    case _Workflow2.default.name:
-      return _react2.default.createElement(_Workflow2.default, props);
-    default:
-      return _react2.default.createElement(
-        'div',
-        null,
-        "No Such Content = " + props.contentType
-      );
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Content = function (_React$Component) {
+  _inherits(Content, _React$Component);
+
+  function Content() {
+    _classCallCheck(this, Content);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Content).apply(this, arguments));
   }
-}
 
-},{"./Blank":183,"./Deploy":185,"./FeatureList":187,"./Social":189,"./Title":191,"./Workflow":192,"react":163}],185:[function(require,module,exports){
+  _createClass(Content, [{
+    key: 'render',
+    value: function render() {
+      switch (this.props.contentType) {
+        case _Blank2.default.name:
+          return _react2.default.createElement(_Blank2.default, this.props);
+        case _Deploy2.default.name:
+          return _react2.default.createElement(_Deploy2.default, this.props);
+        case _FeatureList2.default.name:
+          return _react2.default.createElement(_FeatureList2.default, this.props);
+        case _Feature2.default.name:
+          return _react2.default.createElement(_Feature2.default, this.props);
+        case _Social2.default.name:
+          return _react2.default.createElement(_Social2.default, this.props);
+        case _Title2.default.name:
+          return _react2.default.createElement(_Title2.default, this.props);
+        case _Workflow2.default.name:
+          return _react2.default.createElement(_Workflow2.default, this.props);
+        default:
+          return _react2.default.createElement(
+            'div',
+            null,
+            "No Such Component = " + this.props.contentType
+          );
+      }
+    }
+  }]);
+
+  return Content;
+}(_react2.default.Component);
+
+exports.default = Content;
+
+},{"./Blank":183,"./Deploy":185,"./Feature":186,"./FeatureList":187,"./Social":189,"./Title":191,"./Workflow":192,"react":163}],185:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25345,7 +25374,7 @@ var Deploy = function (_React$Component) {
 exports.default = Deploy;
 
 },{"react":163}],186:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -25353,7 +25382,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -25375,13 +25404,18 @@ var Feature = function (_React$Component) {
   }
 
   _createClass(Feature, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
-        'Feature'
+        "Feature"
       );
+    }
+  }, {
+    key: "onClick",
+    value: function onClick() {
+      this.props.store.dispatch(showEditor("Feature", this.props.index));
     }
   }]);
 
@@ -25701,7 +25735,8 @@ exports.default = Workflow;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = Editor;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -25727,32 +25762,55 @@ var _editorActions = require('../../actions/editorActions');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function Editor(props) {
-  switch (props.editorType) {
-    case undefined:
-      return _react2.default.createElement(
-        'div',
-        null,
-        'Closed'
-      );
-    case _FeatureListEditor2.default.name:
-      return _react2.default.createElement(_FeatureListEditor2.default, props);
-    case _FeatureListEditor2.default.name:
-      return _react2.default.createElement(_FeatureListEditor2.default, props);
-    case _SocialEditor2.default.name:
-      return _react2.default.createElement(_SocialEditor2.default, props);
-    case _TitleEditor2.default.name:
-      return _react2.default.createElement(_TitleEditor2.default, props);
-    case _SelectorEditor2.default.name:
-      return _react2.default.createElement(_SelectorEditor2.default, props);
-    default:
-      return _react2.default.createElement(
-        'div',
-        null,
-        "No Such Editor = " + props.editorType
-      );
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Editor = function (_React$Component) {
+  _inherits(Editor, _React$Component);
+
+  function Editor() {
+    _classCallCheck(this, Editor);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Editor).apply(this, arguments));
   }
-}
+
+  _createClass(Editor, [{
+    key: 'render',
+    value: function render() {
+      switch (this.props.editorType) {
+        case undefined:
+          return _react2.default.createElement(
+            'div',
+            null,
+            'Closed'
+          );
+        case _FeatureListEditor2.default.name:
+          return _react2.default.createElement(_FeatureListEditor2.default, this.props);
+        case _FeatureListEditor2.default.name:
+          return _react2.default.createElement(_FeatureListEditor2.default, this.props);
+        case _SocialEditor2.default.name:
+          return _react2.default.createElement(_SocialEditor2.default, this.props);
+        case _TitleEditor2.default.name:
+          return _react2.default.createElement(_TitleEditor2.default, this.props);
+        case _SelectorEditor2.default.name:
+          return _react2.default.createElement(_SelectorEditor2.default, this.props);
+        default:
+          return _react2.default.createElement(
+            'div',
+            null,
+            "No Such Editor = " + this.props.editorType
+          );
+      }
+    }
+  }]);
+
+  return Editor;
+}(_react2.default.Component);
+
+exports.default = Editor;
 
 },{"../../actions/editorActions":180,"./FeatureListEditor":196,"./SelectorEditor":197,"./SocialEditor":198,"./TitleEditor":199,"react":163}],194:[function(require,module,exports){
 'use strict';
