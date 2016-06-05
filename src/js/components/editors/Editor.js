@@ -2,6 +2,7 @@ import React from 'react'
 import FeatureEditor      from './FeatureEditor'
 import FeatureListEditor  from './FeatureListEditor'
 import HowToUseEditor     from './HowToUseEditor'
+import PictureEditor      from './PictureEditor'
 import SocialEditor       from './SocialEditor'
 import StepEditor         from './StepEditor'
 import TitleEditor        from './TitleEditor'
@@ -19,6 +20,8 @@ export default class Editor extends React.Component {
         return React.createElement(FeatureListEditor, this.props);
       case HowToUseEditor.name :
         return React.createElement(HowToUseEditor, this.props);
+      case PictureEditor.name :
+        return React.createElement(PictureEditor, this.props);
       case SocialEditor.name :
         return React.createElement(SocialEditor, this.props);
       case StepEditor.name :

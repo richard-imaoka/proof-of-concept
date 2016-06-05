@@ -3,6 +3,7 @@ import Deploy       from './Deploy'
 import Feature      from './Feature'
 import FeatureList  from './FeatureList'
 import HowToUse     from './HowToUse'
+import Picture      from './Picture'
 import Social       from './Social'
 import Step         from './Step'
 import Title        from './Title'
@@ -19,6 +20,8 @@ export default class Content extends React.Component{
         return React.createElement(FeatureList, this.props);
       case HowToUse.name :
         return React.createElement(HowToUse, this.props);
+      case Picture.name :
+        return React.createElement(Picture, this.props);
       case Social.name :
         return React.createElement(Social, this.props);
       case Step.name :
