@@ -3,7 +3,7 @@ import {showEditor} from '../../actions/editorActions'
 
 export default class Title extends React.Component {
   render() {
-    return <div onClick={this.onClick.bind(this)}>Title</div>;
+    return <div onClick={this.onClick.bind(this)}>{this.props.data.get("title")}</div>;
   }
   
   onClick() {

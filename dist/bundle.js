@@ -25661,7 +25661,7 @@ var Title = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { onClick: this.onClick.bind(this) },
-        'Title'
+        this.props.data.get("title")
       );
     }
   }, {
@@ -26299,9 +26299,9 @@ var FrontContainer = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_ProjectEntry2.default, null),
-        _react2.default.createElement(_Workflow2.default, null),
-        _react2.default.createElement(_HowToUse2.default, null)
+        _react2.default.createElement(_ProjectEntry2.default, { store: this.props.store }),
+        _react2.default.createElement(_Workflow2.default, { store: this.props.store }),
+        _react2.default.createElement(_HowToUse2.default, { store: this.props.store })
       );
     }
   }]);
@@ -26324,6 +26324,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _modeActions = require('../../actions/modeActions');
+
+var _contentActions = require('../../actions/contentActions');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26342,6 +26346,11 @@ var ProjectEntry = function (_React$Component) {
   }
 
   _createClass(ProjectEntry, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.setState({ title: "" });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -26352,10 +26361,10 @@ var ProjectEntry = function (_React$Component) {
           null,
           'Enter your project name'
         ),
-        _react2.default.createElement('input', null),
+        _react2.default.createElement('input', { value: this.state.title, onChange: this.handleChange.bind(this) }),
         _react2.default.createElement(
           'button',
-          null,
+          { onClick: this.onClick.bind(this) },
           'Create Landing Page'
         ),
         _react2.default.createElement(
@@ -26365,6 +26374,17 @@ var ProjectEntry = function (_React$Component) {
         )
       );
     }
+  }, {
+    key: 'handleChange',
+    value: function handleChange(event) {
+      this.setState({ title: event.target.value });
+    }
+  }, {
+    key: 'onClick',
+    value: function onClick() {
+      this.props.store.dispatch((0, _modeActions.gotoLandingPageMode)());
+      this.props.store.dispatch((0, _contentActions.appendContent)("Title", { title: this.state.title }));
+    }
   }]);
 
   return ProjectEntry;
@@ -26372,7 +26392,7 @@ var ProjectEntry = function (_React$Component) {
 
 exports.default = ProjectEntry;
 
-},{"react":159}],203:[function(require,module,exports){
+},{"../../actions/contentActions":179,"../../actions/modeActions":181,"react":159}],203:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26522,7 +26542,7 @@ store.subscribe(function () {
 });
 _reactDom2.default.render(_react2.default.createElement(_App2.default, { store: store }), document.getElementById("app"));
 
-},{"../components/App.js":182,"../reducers/rootReducer":214,"react":159,"react-dom":3,"redux":171}],206:[function(require,module,exports){
+},{"../components/App.js":182,"../reducers/rootReducer":212,"react":159,"react-dom":3,"redux":171}],206:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26596,26 +26616,6 @@ function editorReducer() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = feature;
-
-var _immutable = require('immutable');
-
-function feature() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? (0, _immutable.Map)() : arguments[0];
-  var action = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
-
-  switch (action.type) {
-    default:
-      return state;
-  }
-}
-
-},{"immutable":2}],210:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 exports.default = front;
 
 var _immutable = require('immutable');
@@ -26630,27 +26630,7 @@ function front() {
   }
 }
 
-},{"immutable":2}],211:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = gitHub;
-
-var _immutable = require('immutable');
-
-function gitHub() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? (0, _immutable.Map)() : arguments[0];
-  var action = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
-
-  switch (action.type) {
-    default:
-      return state;
-  }
-}
-
-},{"immutable":2}],212:[function(require,module,exports){
+},{"immutable":2}],210:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26674,7 +26654,7 @@ exports.default = (0, _reduxImmutable.combineReducers)({
   editor: _editorReducer2.default
 });
 
-},{"./contentsReducer":207,"./editorReducer":208,"redux-immutable":161}],213:[function(require,module,exports){
+},{"./contentsReducer":207,"./editorReducer":208,"redux-immutable":161}],211:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26685,7 +26665,7 @@ exports.default = editorReducer;
 var _modeActions = require("../actions/modeActions");
 
 function editorReducer() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? _modeActions.LANDING_PAGE_MODE : arguments[0];
+  var state = arguments.length <= 0 || arguments[0] === undefined ? _modeActions.TOP_PAGE_MODE : arguments[0];
   var action = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
 
   switch (action.type) {
@@ -26697,7 +26677,7 @@ function editorReducer() {
   }
 }
 
-},{"../actions/modeActions":181}],214:[function(require,module,exports){
+},{"../actions/modeActions":181}],212:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26740,27 +26720,7 @@ function log() {
   return state;
 }
 
-},{"../print/prettyString":206,"./frontReducer":210,"./landingReducer":212,"./modeReducers":213,"redux-immutable":161}],215:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = title;
-
-var _immutable = require('immutable');
-
-function title() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? (0, _immutable.Map)() : arguments[0];
-  var action = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
-
-  switch (action.type) {
-    default:
-      return state;
-  }
-}
-
-},{"immutable":2}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215])
+},{"../print/prettyString":206,"./frontReducer":209,"./landingReducer":210,"./modeReducers":211,"redux-immutable":161}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212])
 
 
 //# sourceMappingURL=bundle.js.map
