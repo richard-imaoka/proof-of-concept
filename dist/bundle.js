@@ -25552,7 +25552,7 @@ var Picture = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { onClick: this.onClick.bind(this) },
-        'Twitter'
+        'Picture'
       );
     }
   }, {
@@ -26043,7 +26043,7 @@ var HowToUseEditor = function (_React$Component) {
 exports.default = HowToUseEditor;
 
 },{"react":163}],197:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -26051,7 +26051,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -26073,13 +26073,29 @@ var PictureEditor = function (_React$Component) {
   }
 
   _createClass(PictureEditor, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
-        'PictureEditor'
+        "PictureEditor",
+        _react2.default.createElement("input", { ref: "input", type: "file" }),
+        _react2.default.createElement(
+          "button",
+          { onClick: this.onClick.bind(this) },
+          "show file name"
+        )
       );
+    }
+  }, {
+    key: "onClick",
+    value: function onClick() {
+      window.alert(this.refs.input.value);
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(props) {
+      console.log(this.refs.input.value);
     }
   }]);
 
@@ -26836,7 +26852,7 @@ function log() {
   return state;
 }
 
-},{"../print/prettyString":208,"./frontReducer":211,"./landingReducer":212,"./modeReducers":213,"redux-immutable":165}]},{},[179,180,181,182,183,184,185,186,187,189,190,191,192,193,194,195,196,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214])
+},{"../print/prettyString":208,"./frontReducer":211,"./landingReducer":212,"./modeReducers":213,"redux-immutable":165}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214])
 
 
 //# sourceMappingURL=bundle.js.map
