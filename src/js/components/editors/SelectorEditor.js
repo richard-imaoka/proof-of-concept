@@ -26,27 +26,27 @@ export default class SelectorEditor extends React.Component {
   }
 
   onClickFeatureList(event) {
-    this.props.store.dispatch(appendContent("FeatureList"), featureListData());
+    this.props.store.dispatch(appendContent("FeatureList", featureListData()));
     this.props.store.dispatch(closeEditor());
   }
   onClickHowToUse(event) {
-    this.props.store.dispatch(appendContent("HowToUse"), howToUseData());
+    this.props.store.dispatch(appendContent("HowToUse", howToUseData()));
     this.props.store.dispatch(closeEditor());
   }
   onClickPicture(event) {
-    this.props.store.dispatch(appendContent("Picture"), pictureData());
+    this.props.store.dispatch(appendContent("Picture", pictureData()));
     this.props.store.dispatch(closeEditor());
   }
   onClickSocial(event) {
-    this.props.store.dispatch(appendContent("Social"), socialData());
+    this.props.store.dispatch(appendContent("Social", socialData()));
     this.props.store.dispatch(closeEditor());
   }
   onClickTitle(event) {
-    this.props.store.dispatch(appendContent("Title"), titleData());
+    this.props.store.dispatch(appendContent("Title", titleData()));
     this.props.store.dispatch(closeEditor());
   }
   onClickWorkflow(event) {
-    this.props.store.dispatch(appendContent("Workflow"), workflowData());
+    this.props.store.dispatch(appendContent("Workflow", workflowData()));
     this.props.store.dispatch(closeEditor());
   }
 }

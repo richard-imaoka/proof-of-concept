@@ -26290,37 +26290,37 @@ var SelectorEditor = function (_React$Component) {
   }, {
     key: 'onClickFeatureList',
     value: function onClickFeatureList(event) {
-      this.props.store.dispatch((0, _contentActions.appendContent)("FeatureList"), (0, _featureListData2.default)());
+      this.props.store.dispatch((0, _contentActions.appendContent)("FeatureList", (0, _featureListData2.default)()));
       this.props.store.dispatch((0, _editorActions.closeEditor)());
     }
   }, {
     key: 'onClickHowToUse',
     value: function onClickHowToUse(event) {
-      this.props.store.dispatch((0, _contentActions.appendContent)("HowToUse"), (0, _howToUseData2.default)());
+      this.props.store.dispatch((0, _contentActions.appendContent)("HowToUse", (0, _howToUseData2.default)()));
       this.props.store.dispatch((0, _editorActions.closeEditor)());
     }
   }, {
     key: 'onClickPicture',
     value: function onClickPicture(event) {
-      this.props.store.dispatch((0, _contentActions.appendContent)("Picture"), (0, _pictureData2.default)());
+      this.props.store.dispatch((0, _contentActions.appendContent)("Picture", (0, _pictureData2.default)()));
       this.props.store.dispatch((0, _editorActions.closeEditor)());
     }
   }, {
     key: 'onClickSocial',
     value: function onClickSocial(event) {
-      this.props.store.dispatch((0, _contentActions.appendContent)("Social"), (0, _socialData2.default)());
+      this.props.store.dispatch((0, _contentActions.appendContent)("Social", (0, _socialData2.default)()));
       this.props.store.dispatch((0, _editorActions.closeEditor)());
     }
   }, {
     key: 'onClickTitle',
     value: function onClickTitle(event) {
-      this.props.store.dispatch((0, _contentActions.appendContent)("Title"), (0, _titleData2.default)());
+      this.props.store.dispatch((0, _contentActions.appendContent)("Title", (0, _titleData2.default)()));
       this.props.store.dispatch((0, _editorActions.closeEditor)());
     }
   }, {
     key: 'onClickWorkflow',
     value: function onClickWorkflow(event) {
-      this.props.store.dispatch((0, _contentActions.appendContent)("Workflow"), (0, _workflowData2.default)());
+      this.props.store.dispatch((0, _contentActions.appendContent)("Workflow", (0, _workflowData2.default)()));
       this.props.store.dispatch((0, _editorActions.closeEditor)());
     }
   }]);
