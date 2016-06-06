@@ -1,6 +1,7 @@
 import React from 'react'
 import {appendContent}  from '../../actions/contentActions'
 import {closeEditor}    from '../../actions/editorActions'
+import titleData        from '../../data/titleData'
 
 export default class SelectorEditor extends React.Component {
   render() {
@@ -15,13 +16,15 @@ export default class SelectorEditor extends React.Component {
           <li onClick={this.onClick.bind(this)}>FeatureList</li>
           <li onClick={this.onClick.bind(this)}>Workflow</li>
           <li onClick={this.onClick.bind(this)}>Social</li>
+          <li onClick={this.onClick.bind(this)}>Title</li>
         </ul>
       </div>
     );
   }
 
   onClick(event) {
-    this.props.store.dispatch(appendContent(event.target.innerText, this.props.index));
+    this.props.store.dispatch(appendContent(event.target.innerText, titleData()));
     this.props.store.dispatch(closeEditor());
   }
+  
 }
