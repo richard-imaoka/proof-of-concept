@@ -25617,7 +25617,7 @@ var Social = function (_React$Component) {
   }, {
     key: 'onClick',
     value: function onClick() {
-      this.props.store.dispatch((0, _editorActions.showEditor)("SocialEditor", this.props.index));
+      this.props.store.dispatch((0, _editorActions.showEditor)(this.props.index, "SocialEditor"));
     }
   }]);
 
@@ -26854,14 +26854,22 @@ var LandingContainer = function (_React$Component) {
       var i = 0;
       return _react2.default.createElement(
         'main',
-        null,
+        { ref: 'main' },
         contents.map(function (c) {
           return _react2.default.createElement(_Content2.default, { key: i, index: i++, contentType: c.get("contentType"), store: _this2.props.store, data: c.get("data") });
         }),
         _react2.default.createElement(_AddMore2.default, { store: this.props.store, index: contents.size }),
-        _react2.default.createElement(_Editor2.default, { store: this.props.store, index: editor.get("index"), editorType: editor.get("editorType"), data: editor.get("data") })
+        _react2.default.createElement(_Editor2.default, { store: this.props.store, index: editor.get("index"), editorType: editor.get("editorType"), data: editor.get("data") }),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.renderToString.bind(this) },
+          'render'
+        )
       );
     }
+  }, {
+    key: 'renderToString',
+    value: function renderToString() {}
   }]);
 
   return LandingContainer;
@@ -27007,9 +27015,12 @@ var _App2 = _interopRequireDefault(_App);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var store = (0, _redux.createStore)(_rootReducer2.default);
+//import ReactDOMServer  from 'react-dom/server'
+
 
 store.subscribe(function () {
   _reactDom2.default.render(_react2.default.createElement(_App2.default, { store: store }), document.getElementById("app"));
+  //console.log( ReactDOMServer.renderToStaticMarkup( <App store={store}/> ) );
 });
 _reactDom2.default.render(_react2.default.createElement(_App2.default, { store: store }), document.getElementById("app"));
 
