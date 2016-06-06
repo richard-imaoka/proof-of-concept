@@ -14,7 +14,7 @@ export default class TitleEditor extends React.Component {
   }
 
   onClick() {
-    this.props.store.dispatch(updateContent(this.props.index, "Title", titleData("newTtitle")));
+    this.props.store.dispatch(updateContent(this.props.index, "Title", titleData()));
     this.props.store.dispatch(closeEditor());
   }
 }
