@@ -7,6 +7,6 @@ export default class Picture extends React.Component {
   }
   
   onClick() {
-    this.props.store.dispatch(showEditor("PictureEditor", this.props.index));
+    this.props.store.dispatch(showEditor(this.props.index, "PictureEditor"));
   }
 }

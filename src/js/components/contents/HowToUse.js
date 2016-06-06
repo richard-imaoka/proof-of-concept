@@ -14,6 +14,6 @@ export default class HowToUse extends React.Component {
   }
 
   onClick() {
-    this.props.store.dispatch(showEditor("HowToUseEditor", this.props.index));
+    this.props.store.dispatch(showEditor(this.props.index, "HowToUseEditor"));
   }
 }

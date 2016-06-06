@@ -14,6 +14,6 @@ export default class FeatureList extends React.Component {
   }
 
   onClick() {
-    this.props.store.dispatch(showEditor("FeatureListEditor", this.props.index));
+    this.props.store.dispatch(showEditor(this.props.index, "FeatureListEditor"));
   }
 }

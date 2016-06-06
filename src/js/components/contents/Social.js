@@ -8,6 +8,6 @@ export default class Social extends React.Component {
 
 
   onClick() {
-    this.props.store.dispatch(showEditor("SocialEditor", this.props.index));
+    this.props.store.dispatch(showEditor(this.props.index, "SocialEditor"));
   }
 }

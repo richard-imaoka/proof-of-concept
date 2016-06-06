@@ -25106,8 +25106,8 @@ exports.closeEditor = closeEditor;
 var SHOW_EDITOR = exports.SHOW_EDITOR = 'SHOW_EDITOR';
 var CLOSE_EDITOR = exports.CLOSE_EDITOR = 'CLOSE_EDITOR';
 
-function showEditor(editorType, data) {
-  return { type: SHOW_EDITOR, editorType: editorType, data: data };
+function showEditor(index, editorType, data) {
+  return { type: SHOW_EDITOR, index: index, editorType: editorType, data: data };
 }
 
 function closeEditor() {
@@ -25452,7 +25452,7 @@ var FeatureList = function (_React$Component) {
   }, {
     key: 'onClick',
     value: function onClick() {
-      this.props.store.dispatch((0, _editorActions.showEditor)("FeatureListEditor", this.props.index));
+      this.props.store.dispatch((0, _editorActions.showEditor)(this.props.index, "FeatureListEditor"));
     }
   }]);
 
@@ -25511,7 +25511,7 @@ var HowToUse = function (_React$Component) {
   }, {
     key: 'onClick',
     value: function onClick() {
-      this.props.store.dispatch((0, _editorActions.showEditor)("HowToUseEditor", this.props.index));
+      this.props.store.dispatch((0, _editorActions.showEditor)(this.props.index, "HowToUseEditor"));
     }
   }]);
 
@@ -25564,7 +25564,7 @@ var Picture = function (_React$Component) {
   }, {
     key: 'onClick',
     value: function onClick() {
-      this.props.store.dispatch((0, _editorActions.showEditor)("PictureEditor", this.props.index));
+      this.props.store.dispatch((0, _editorActions.showEditor)(this.props.index, "PictureEditor"));
     }
   }]);
 
@@ -25703,6 +25703,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _editorActions = require('../../actions/editorActions');
 
+var _titleData = require('../../data/titleData');
+
+var _titleData2 = _interopRequireDefault(_titleData);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25726,13 +25730,14 @@ var Title = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { onClick: this.onClick.bind(this) },
+        'Title: ',
         this.props.data.get("title")
       );
     }
   }, {
     key: 'onClick',
     value: function onClick() {
-      this.props.store.dispatch((0, _editorActions.showEditor)("TitleEditor", this.props.index));
+      this.props.store.dispatch((0, _editorActions.showEditor)(this.props.index, "TitleEditor", (0, _titleData2.default)(this.props.data.get("title"))));
     }
   }]);
 
@@ -25741,7 +25746,7 @@ var Title = function (_React$Component) {
 
 exports.default = Title;
 
-},{"../../actions/editorActions":180,"react":163}],192:[function(require,module,exports){
+},{"../../actions/editorActions":180,"../../data/titleData":213,"react":163}],192:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25791,7 +25796,7 @@ var Workflow = function (_React$Component) {
   }, {
     key: 'onClick',
     value: function onClick() {
-      this.props.store.dispatch((0, _editorActions.showEditor)("WorkflowEditor", this.props.index));
+      this.props.store.dispatch((0, _editorActions.showEditor)(this.props.index, "WorkflowEditor"));
     }
   }]);
 
@@ -26492,10 +26497,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var TitleEditor = function (_React$Component) {
   _inherits(TitleEditor, _React$Component);
 
-  function TitleEditor() {
+  function TitleEditor(props) {
     _classCallCheck(this, TitleEditor);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(TitleEditor).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TitleEditor).call(this, props));
+
+    _this.state = { title: _this.props.data.get("title") };
+    return _this;
   }
 
   _createClass(TitleEditor, [{
@@ -26505,6 +26513,7 @@ var TitleEditor = function (_React$Component) {
         'div',
         null,
         'TitleEditor',
+        _react2.default.createElement('input', { type: 'text', ref: 'input', value: this.state.title, onChange: this.onChange.bind(this) }),
         _react2.default.createElement(
           'button',
           { onClick: this.onClick.bind(this) },
@@ -26513,9 +26522,14 @@ var TitleEditor = function (_React$Component) {
       );
     }
   }, {
+    key: 'onChange',
+    value: function onChange(event) {
+      this.setState({ title: event.target.value });
+    }
+  }, {
     key: 'onClick',
     value: function onClick() {
-      this.props.store.dispatch((0, _contentActions.updateContent)(this.props.index, "Title", (0, _titleData2.default)()));
+      this.props.store.dispatch((0, _contentActions.updateContent)(this.props.index, "Title", (0, _titleData2.default)(this.refs.input.value)));
       this.props.store.dispatch((0, _editorActions.closeEditor)());
     }
   }]);
@@ -26779,7 +26793,7 @@ var AddMore = function (_React$Component) {
   }, {
     key: 'onClick',
     value: function onClick() {
-      this.props.store.dispatch((0, _editorActions.showEditor)("SelectorEditor", this.props.index));
+      this.props.store.dispatch((0, _editorActions.showEditor)(this.props.index, "SelectorEditor"));
     }
   }]);
 
@@ -26842,7 +26856,7 @@ var LandingContainer = function (_React$Component) {
         'main',
         null,
         contents.map(function (c) {
-          return _react2.default.createElement(_Content2.default, { key: i++, contentType: c.get("contentType"), store: _this2.props.store, data: c.get("data") });
+          return _react2.default.createElement(_Content2.default, { key: i, index: i++, contentType: c.get("contentType"), store: _this2.props.store, data: c.get("data") });
         }),
         _react2.default.createElement(_AddMore2.default, { store: this.props.store, index: contents.size }),
         _react2.default.createElement(_Editor2.default, { store: this.props.store, index: editor.get("index"), editorType: editor.get("editorType"), data: editor.get("data") })
@@ -27034,6 +27048,8 @@ function contents() {
       return state.push((0, _immutable.Map)({ contentType: action.contentType, data: action.data }));
     case _contentActions.INSERT_CONTENT:
       return state.insert(action.index, (0, _immutable.Map)({ contentType: action.contentType, data: action.data }));
+    case _contentActions.UPDATE_CONTENT:
+      return state.set(action.index, (0, _immutable.Map)({ contentType: action.contentType, data: action.data }));
     case _contentActions.REMOVE_CONTENT:
       return state.remove(action.index);
     default:
@@ -27059,7 +27075,7 @@ function editorReducer() {
 
   switch (action.type) {
     case _editorActions.SHOW_EDITOR:
-      return (0, _immutable.Map)({ actionType: action.type, editorType: action.editorType, data: (0, _immutable.fromJS)(action.data) });
+      return (0, _immutable.Map)({ actionType: action.type, index: action.index, editorType: action.editorType, data: action.data });
     case _editorActions.CLOSE_EDITOR:
       return state.set("actionType", action.type);
     default:

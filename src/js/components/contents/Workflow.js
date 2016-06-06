@@ -14,6 +14,6 @@ export default class Workflow extends React.Component {
   }
 
   onClick() {
-    this.props.store.dispatch(showEditor("WorkflowEditor", this.props.index));
+    this.props.store.dispatch(showEditor(this.props.index, "WorkflowEditor"));
   }
 }

@@ -12,7 +12,7 @@ export default class LandingContainer extends React.Component {
       <main>
         {
           contents.map(
-            c => <Content key={i++} contentType={c.get("contentType")} store={this.props.store} data={c.get("data")} />
+            c => <Content key={i} index={i++} contentType={c.get("contentType")} store={this.props.store} data={c.get("data")} />
           )
         }
         <AddMore store={this.props.store} index={contents.size}/>
