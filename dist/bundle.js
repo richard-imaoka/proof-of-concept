@@ -25474,9 +25474,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Feature = require('./Feature');
+var _Step = require('./Step');
 
-var _Feature2 = _interopRequireDefault(_Feature);
+var _Step2 = _interopRequireDefault(_Step);
 
 var _editorActions = require('../../actions/editorActions');
 
@@ -25503,9 +25503,9 @@ var HowToUse = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { onClick: this.onClick.bind(this) },
-        _react2.default.createElement(_Feature2.default, { store: this.props.store, data: this.props.data }),
-        _react2.default.createElement(_Feature2.default, { store: this.props.store, data: this.props.data }),
-        _react2.default.createElement(_Feature2.default, { store: this.props.store, data: this.props.data })
+        _react2.default.createElement(_Step2.default, { store: this.props.store, data: this.props.data }),
+        _react2.default.createElement(_Step2.default, { store: this.props.store, data: this.props.data }),
+        _react2.default.createElement(_Step2.default, { store: this.props.store, data: this.props.data })
       );
     }
   }, {
@@ -25520,7 +25520,7 @@ var HowToUse = function (_React$Component) {
 
 exports.default = HowToUse;
 
-},{"../../actions/editorActions":180,"./Feature":185,"react":163}],188:[function(require,module,exports){
+},{"../../actions/editorActions":180,"./Step":190,"react":163}],188:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26128,9 +26128,29 @@ var _contentActions = require('../../actions/contentActions');
 
 var _editorActions = require('../../actions/editorActions');
 
+var _featureListData = require('../../data/featureListData');
+
+var _featureListData2 = _interopRequireDefault(_featureListData);
+
+var _howToUseData = require('../../data/howToUseData');
+
+var _howToUseData2 = _interopRequireDefault(_howToUseData);
+
+var _pictureData = require('../../data/pictureData');
+
+var _pictureData2 = _interopRequireDefault(_pictureData);
+
+var _socialData = require('../../data/socialData');
+
+var _socialData2 = _interopRequireDefault(_socialData);
+
 var _titleData = require('../../data/titleData');
 
 var _titleData2 = _interopRequireDefault(_titleData);
+
+var _workflowData = require('../../data/workflowData');
+
+var _workflowData2 = _interopRequireDefault(_workflowData);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26161,51 +26181,71 @@ var SelectorEditor = function (_React$Component) {
           null,
           _react2.default.createElement(
             'li',
-            { onClick: this.onClick.bind(this) },
+            { onClick: this.onClickFeatureList.bind(this) },
             'FeatureList'
           ),
           _react2.default.createElement(
             'li',
-            { onClick: this.onClick.bind(this) },
+            { onClick: this.onClickHowToUse.bind(this) },
             'HowToUse'
           ),
           _react2.default.createElement(
             'li',
-            { onClick: this.onClick.bind(this) },
+            { onClick: this.onClickPicture.bind(this) },
             'Picture'
           ),
           _react2.default.createElement(
             'li',
-            { onClick: this.onClick.bind(this) },
+            { onClick: this.onClickSocial.bind(this) },
             'Social'
           ),
           _react2.default.createElement(
             'li',
-            { onClick: this.onClick.bind(this) },
-            'FeatureList'
-          ),
-          _react2.default.createElement(
-            'li',
-            { onClick: this.onClick.bind(this) },
-            'Workflow'
-          ),
-          _react2.default.createElement(
-            'li',
-            { onClick: this.onClick.bind(this) },
-            'Social'
-          ),
-          _react2.default.createElement(
-            'li',
-            { onClick: this.onClick.bind(this) },
+            { onClick: this.onClickTitle.bind(this) },
             'Title'
+          ),
+          _react2.default.createElement(
+            'li',
+            { onClick: this.onClickWorkflow.bind(this) },
+            'Workflow'
           )
         )
       );
     }
   }, {
-    key: 'onClick',
-    value: function onClick(event) {
-      this.props.store.dispatch((0, _contentActions.appendContent)(event.target.innerText, (0, _titleData2.default)()));
+    key: 'onClickFeatureList',
+    value: function onClickFeatureList(event) {
+      this.props.store.dispatch((0, _contentActions.appendContent)("FeatureList"), (0, _featureListData2.default)());
+      this.props.store.dispatch((0, _editorActions.closeEditor)());
+    }
+  }, {
+    key: 'onClickHowToUse',
+    value: function onClickHowToUse(event) {
+      this.props.store.dispatch((0, _contentActions.appendContent)("HowToUse"), (0, _howToUseData2.default)());
+      this.props.store.dispatch((0, _editorActions.closeEditor)());
+    }
+  }, {
+    key: 'onClickPicture',
+    value: function onClickPicture(event) {
+      this.props.store.dispatch((0, _contentActions.appendContent)("Picture"), (0, _pictureData2.default)());
+      this.props.store.dispatch((0, _editorActions.closeEditor)());
+    }
+  }, {
+    key: 'onClickSocial',
+    value: function onClickSocial(event) {
+      this.props.store.dispatch((0, _contentActions.appendContent)("Social"), (0, _socialData2.default)());
+      this.props.store.dispatch((0, _editorActions.closeEditor)());
+    }
+  }, {
+    key: 'onClickTitle',
+    value: function onClickTitle(event) {
+      this.props.store.dispatch((0, _contentActions.appendContent)("Title"), (0, _titleData2.default)());
+      this.props.store.dispatch((0, _editorActions.closeEditor)());
+    }
+  }, {
+    key: 'onClickWorkflow',
+    value: function onClickWorkflow(event) {
+      this.props.store.dispatch((0, _contentActions.appendContent)("Workflow"), (0, _workflowData2.default)());
       this.props.store.dispatch((0, _editorActions.closeEditor)());
     }
   }]);
@@ -26215,7 +26255,7 @@ var SelectorEditor = function (_React$Component) {
 
 exports.default = SelectorEditor;
 
-},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/titleData":207,"react":163}],199:[function(require,module,exports){
+},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/featureListData":207,"../../data/howToUseData":208,"../../data/pictureData":209,"../../data/socialData":210,"../../data/titleData":211,"../../data/workflowData":212,"react":163}],199:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26372,7 +26412,7 @@ var TitleEditor = function (_React$Component) {
 
 exports.default = TitleEditor;
 
-},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/titleData":207,"react":163}],202:[function(require,module,exports){
+},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/titleData":211,"react":163}],202:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26563,7 +26603,7 @@ var ProjectEntry = function (_React$Component) {
 
 exports.default = ProjectEntry;
 
-},{"../../actions/contentActions":179,"../../actions/modeActions":181,"../../data/titleData":207,"react":163}],205:[function(require,module,exports){
+},{"../../actions/contentActions":179,"../../actions/modeActions":181,"../../data/titleData":211,"react":163}],205:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26684,6 +26724,62 @@ var LandingContainer = function (_React$Component) {
 exports.default = LandingContainer;
 
 },{"../contents/Content":183,"../editors/Editor":193,"./AddMore":205,"react":163}],207:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = featureListData;
+
+var _immutable = require('immutable');
+
+function featureListData() {
+  return (0, _immutable.Map)();
+}
+
+},{"immutable":28}],208:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = howToUseData;
+
+var _immutable = require('immutable');
+
+function howToUseData() {
+  return (0, _immutable.Map)();
+}
+
+},{"immutable":28}],209:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = pictureData;
+
+var _immutable = require('immutable');
+
+function pictureData() {
+  return (0, _immutable.Map)();
+}
+
+},{"immutable":28}],210:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = socialData;
+
+var _immutable = require('immutable');
+
+function socialData() {
+  return (0, _immutable.Map)();
+}
+
+},{"immutable":28}],211:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26699,7 +26795,21 @@ function titleData() {
   return (0, _immutable.Map)({ title: title });
 }
 
-},{"immutable":28}],208:[function(require,module,exports){
+},{"immutable":28}],212:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = workflowData;
+
+var _immutable = require('immutable');
+
+function workflowData() {
+  return (0, _immutable.Map)();
+}
+
+},{"immutable":28}],213:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -26729,7 +26839,7 @@ store.subscribe(function () {
 });
 _reactDom2.default.render(_react2.default.createElement(_App2.default, { store: store }), document.getElementById("app"));
 
-},{"../components/App.js":182,"../reducers/rootReducer":215,"react":163,"react-dom":34,"redux":175}],209:[function(require,module,exports){
+},{"../components/App.js":182,"../reducers/rootReducer":220,"react":163,"react-dom":34,"redux":175}],214:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26743,7 +26853,7 @@ function prettyString(jsonObj) {
   if (_immutable.Map.isMap(jsonObj)) return JSON.stringify(jsonObj.toJS(), null, " ");else return JSON.stringify(jsonObj, null, " ");
 }
 
-},{"immutable":28}],210:[function(require,module,exports){
+},{"immutable":28}],215:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26771,7 +26881,7 @@ function contents() {
   }
 }
 
-},{"../actions/contentActions":179,"immutable":28}],211:[function(require,module,exports){
+},{"../actions/contentActions":179,"immutable":28}],216:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26797,7 +26907,7 @@ function editorReducer() {
   }
 }
 
-},{"../actions/editorActions":180,"immutable":28}],212:[function(require,module,exports){
+},{"../actions/editorActions":180,"immutable":28}],217:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26817,7 +26927,7 @@ function front() {
   }
 }
 
-},{"immutable":28}],213:[function(require,module,exports){
+},{"immutable":28}],218:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26841,7 +26951,7 @@ exports.default = (0, _reduxImmutable.combineReducers)({
   editor: _editorReducer2.default
 });
 
-},{"./contentsReducer":210,"./editorReducer":211,"redux-immutable":165}],214:[function(require,module,exports){
+},{"./contentsReducer":215,"./editorReducer":216,"redux-immutable":165}],219:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26864,7 +26974,7 @@ function editorReducer() {
   }
 }
 
-},{"../actions/modeActions":181}],215:[function(require,module,exports){
+},{"../actions/modeActions":181}],220:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26907,7 +27017,7 @@ function log() {
   return state;
 }
 
-},{"../print/prettyString":209,"./frontReducer":212,"./landingReducer":213,"./modeReducers":214,"redux-immutable":165}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,208,209,210,211,212,213,214,215])
+},{"../print/prettyString":214,"./frontReducer":217,"./landingReducer":218,"./modeReducers":219,"redux-immutable":165}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220])
 
 
 //# sourceMappingURL=bundle.js.map
