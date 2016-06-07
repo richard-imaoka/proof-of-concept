@@ -7,11 +7,31 @@ export default class PictureEditor extends React.Component {
   render() {
     return (
       <div>PictureEditor
-        <input ref="input" type="file" />
+        <input ref="input" type="file" onChange={this.onChangeImage.bind(this)} />
         <button onClick={this.onClickPick.bind(this)}>show file name</button>
         <button onClick={this.onClick.bind(this)}>done</button>
       </div>
     );
+  }
+
+  onChangeImage(domEvent) {
+    //store.dispatch(LOAD_IMAGE)
+
+    let files = domEvent.target.files;
+    let file  = files[0];
+    let reader = new FileReader();
+
+    reader.onload = fileEvent => {
+      console.log('wheefee');
+      this.props.store.dispatch(
+        updateContent(
+          this.props.index,
+          "Picture",
+          pictureData( fileEvent.target.result, file.name ) //src
+        )
+      );
+    }
+    reader.readAsDataURL(file);
   }
 
   onClickPick(){

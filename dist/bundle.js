@@ -25558,7 +25558,12 @@ var Picture = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { onClick: this.onClick.bind(this) },
-        'Picture'
+        _react2.default.createElement(
+          'div',
+          null,
+          'Picture'
+        ),
+        _react2.default.createElement('img', { src: this.props.data.get("src") })
       );
     }
   }, {
@@ -26165,7 +26170,7 @@ var PictureEditor = function (_React$Component) {
         'div',
         null,
         'PictureEditor',
-        _react2.default.createElement('input', { ref: 'input', type: 'file' }),
+        _react2.default.createElement('input', { ref: 'input', type: 'file', onChange: this.onChangeImage.bind(this) }),
         _react2.default.createElement(
           'button',
           { onClick: this.onClickPick.bind(this) },
@@ -26177,6 +26182,24 @@ var PictureEditor = function (_React$Component) {
           'done'
         )
       );
+    }
+  }, {
+    key: 'onChangeImage',
+    value: function onChangeImage(domEvent) {
+      var _this2 = this;
+
+      //store.dispatch(LOAD_IMAGE)
+
+      var files = domEvent.target.files;
+      var file = files[0];
+      var reader = new FileReader();
+
+      reader.onload = function (fileEvent) {
+        console.log('wheefee');
+        _this2.props.store.dispatch((0, _contentActions.updateContent)(_this2.props.index, "Picture", (0, _pictureData2.default)(fileEvent.target.result) //src
+        ));
+      };
+      reader.readAsDataURL(file);
     }
   }, {
     key: 'onClickPick',
@@ -26956,8 +26979,11 @@ exports.default = pictureData;
 
 var _immutable = require('immutable');
 
-function pictureData() {
-  return (0, _immutable.Map)();
+function pictureData(src, fileName) {
+  return (0, _immutable.Map)({
+    src: src,
+    fileName: fileName
+  });
 }
 
 },{"immutable":28}],211:[function(require,module,exports){
