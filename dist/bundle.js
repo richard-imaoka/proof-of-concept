@@ -27045,13 +27045,16 @@ var _App2 = _interopRequireDefault(_App);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//import js_beautify     from 'js-beautify'
+
+
 var store = (0, _redux.createStore)(_rootReducer2.default);
 //import ReactDOMServer  from 'react-dom/server'
 
 
 store.subscribe(function () {
   _reactDom2.default.render(_react2.default.createElement(_App2.default, { store: store }), document.getElementById("app"));
-  //console.log( ReactDOMServer.renderToStaticMarkup( <App store={store}/> ) );
+  //console.log( js_beautify.html( ReactDOMServer.renderToStaticMarkup( <App store={store}/> ) ) );
 });
 _reactDom2.default.render(_react2.default.createElement(_App2.default, { store: store }), document.getElementById("app"));
 
