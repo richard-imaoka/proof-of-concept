@@ -25728,16 +25728,26 @@ var Title = function (_React$Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'div',
+        'section',
         { onClick: this.onClick.bind(this) },
-        'Title: ',
-        this.props.data.get("title")
+        _react2.default.createElement(
+          'div',
+          null,
+          'Title: ',
+          this.props.data.get("title")
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          'Description: ',
+          this.props.data.get("description")
+        )
       );
     }
   }, {
     key: 'onClick',
     value: function onClick() {
-      this.props.store.dispatch((0, _editorActions.showEditor)(this.props.index, "TitleEditor", (0, _titleData2.default)(this.props.data.get("title"))));
+      this.props.store.dispatch((0, _editorActions.showEditor)(this.props.index, "TitleEditor", (0, _titleData2.default)(this.props.data.get("title"), this.props.data.get("description"))));
     }
   }]);
 
@@ -26502,7 +26512,10 @@ var TitleEditor = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TitleEditor).call(this, props));
 
-    _this.state = { title: _this.props.data.get("title") };
+    _this.state = {
+      title: _this.props.data.get("title"),
+      description: _this.props.data.get("description")
+    };
     return _this;
   }
 
@@ -26513,7 +26526,8 @@ var TitleEditor = function (_React$Component) {
         'div',
         null,
         'TitleEditor',
-        _react2.default.createElement('input', { type: 'text', ref: 'input', value: this.state.title, onChange: this.onChange.bind(this) }),
+        _react2.default.createElement('input', { type: 'text', value: this.state.title, onChange: this.onChangeTitle.bind(this) }),
+        _react2.default.createElement('input', { type: 'text', value: this.state.description, onChange: this.onChangeDescription.bind(this) }),
         _react2.default.createElement(
           'button',
           { onClick: this.onClick.bind(this) },
@@ -26522,14 +26536,19 @@ var TitleEditor = function (_React$Component) {
       );
     }
   }, {
-    key: 'onChange',
-    value: function onChange(event) {
+    key: 'onChangeTitle',
+    value: function onChangeTitle(event) {
       this.setState({ title: event.target.value });
+    }
+  }, {
+    key: 'onChangeDescription',
+    value: function onChangeDescription(event) {
+      this.setState({ description: event.target.value });
     }
   }, {
     key: 'onClick',
     value: function onClick() {
-      this.props.store.dispatch((0, _contentActions.updateContent)(this.props.index, "Title", (0, _titleData2.default)(this.refs.input.value)));
+      this.props.store.dispatch((0, _contentActions.updateContent)(this.props.index, "Title", (0, _titleData2.default)(this.state.title, this.state.description)));
       this.props.store.dispatch((0, _editorActions.closeEditor)());
     }
   }]);
@@ -26854,22 +26873,14 @@ var LandingContainer = function (_React$Component) {
       var i = 0;
       return _react2.default.createElement(
         'main',
-        { ref: 'main' },
+        null,
         contents.map(function (c) {
           return _react2.default.createElement(_Content2.default, { key: i, index: i++, contentType: c.get("contentType"), store: _this2.props.store, data: c.get("data") });
         }),
         _react2.default.createElement(_AddMore2.default, { store: this.props.store, index: contents.size }),
-        _react2.default.createElement(_Editor2.default, { store: this.props.store, index: editor.get("index"), editorType: editor.get("editorType"), data: editor.get("data") }),
-        _react2.default.createElement(
-          'button',
-          { onClick: this.renderToString.bind(this) },
-          'render'
-        )
+        _react2.default.createElement(_Editor2.default, { store: this.props.store, index: editor.get("index"), editorType: editor.get("editorType"), data: editor.get("data") })
       );
     }
-  }, {
-    key: 'renderToString',
-    value: function renderToString() {}
   }]);
 
   return LandingContainer;
@@ -26878,17 +26889,25 @@ var LandingContainer = function (_React$Component) {
 exports.default = LandingContainer;
 
 },{"../contents/Content":183,"../editors/Editor":193,"./AddMore":205,"react":163}],207:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = featureData;
 
-var _immutable = require('immutable');
+var _immutable = require("immutable");
 
 function featureData() {
-  return (0, _immutable.Map)();
+  var feature = arguments.length <= 0 || arguments[0] === undefined ? "" : arguments[0];
+  var description = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+  var icon = arguments.length <= 2 || arguments[2] === undefined ? "" : arguments[2];
+
+  return (0, _immutable.Map)({
+    feature: feature,
+    description: description,
+    icon: icon
+  });
 }
 
 },{"immutable":28}],208:[function(require,module,exports){
@@ -26901,11 +26920,19 @@ exports.default = featureListData;
 
 var _immutable = require('immutable');
 
+var _featureData = require('./featureData');
+
+var _featureData2 = _interopRequireDefault(_featureData);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function featureListData() {
-  return (0, _immutable.Map)();
+  var numFeatures = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+
+  return (0, _immutable.List)(Array(numFeatures).fill((0, _featureData2.default)()));
 }
 
-},{"immutable":28}],209:[function(require,module,exports){
+},{"./featureData":207,"immutable":28}],209:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26972,9 +26999,13 @@ exports.default = titleData;
 var _immutable = require("immutable");
 
 function titleData() {
-  var title = arguments.length <= 0 || arguments[0] === undefined ? "defaulttitle" : arguments[0];
+  var title = arguments.length <= 0 || arguments[0] === undefined ? "" : arguments[0];
+  var description = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
 
-  return (0, _immutable.Map)({ title: title });
+  return (0, _immutable.Map)({
+    title: title,
+    description: description
+  });
 }
 
 },{"immutable":28}],214:[function(require,module,exports){
