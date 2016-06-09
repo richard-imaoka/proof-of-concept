@@ -15,3 +15,7 @@ export default function contents(state = List(), action = undefined){
       return state;
   }
 }
+
+export function getPictures(state) {
+  return state.filter( x => x.get("data").get("type") === "Picture" )
+}

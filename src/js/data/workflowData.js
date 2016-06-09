@@ -1,5 +1,7 @@
 import {Map} from 'immutable'
 
 export default function workflowData(){
-  return Map();
+  return Map({
+    type: "Workflow"
+  });
 }

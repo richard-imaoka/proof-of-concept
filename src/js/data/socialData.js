@@ -1,5 +1,7 @@
 import {Map} from 'immutable'
 
 export default function socialData(){
-  return Map();
+  return Map({
+    type: "Social"
+  });
 }

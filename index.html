@@ -19,5 +19,12 @@
     storageBucket: "proof-of-concept-bd21d.appspot.com",
   };
   firebase.initializeApp(config);
+
+  let auth = firebase.auth();
+  auth.signInAnonymously().then(function(user) {
+    console.log('Anonymous Sign In Success', user);
+  }).catch(function(error) {
+    console.error('Anonymous Sign In Error', error);
+  });
 </script>
 </html>

@@ -1,5 +1,6 @@
 import React from 'react'
 import AddMore from './AddMore'
+import Upload  from './Upload'
 import Editor  from '../editors/Editor'
 import Content from '../contents/Content'
 
@@ -16,6 +17,7 @@ export default class LandingContainer extends React.Component {
           )
         }
         <AddMore store={this.props.store} index={contents.size}/>
+        <Upload  store={this.props.store} />
         <Editor  store={this.props.store} index={editor.get("index")} editorType={editor.get("editorType")} data={editor.get("data")}/>
       </main>
     );

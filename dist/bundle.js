@@ -25761,7 +25761,7 @@ var Title = function (_React$Component) {
 
 exports.default = Title;
 
-},{"../../actions/editorActions":180,"../../data/titleData":213,"react":163}],192:[function(require,module,exports){
+},{"../../actions/editorActions":180,"../../data/titleData":214,"react":163}],192:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25994,7 +25994,7 @@ var FeatureEditor = function (_React$Component) {
 
 exports.default = FeatureEditor;
 
-},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/featureData":207,"react":163}],195:[function(require,module,exports){
+},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/featureData":208,"react":163}],195:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26060,7 +26060,7 @@ var FeatureListEditor = function (_React$Component) {
 
 exports.default = FeatureListEditor;
 
-},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/featureListData":208,"react":163}],196:[function(require,module,exports){
+},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/featureListData":209,"react":163}],196:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26125,7 +26125,7 @@ var HowToUseEditor = function (_React$Component) {
 
 exports.default = HowToUseEditor;
 
-},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/howToUseData":209,"react":163}],197:[function(require,module,exports){
+},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/howToUseData":210,"react":163}],197:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26190,16 +26190,16 @@ var PictureEditor = function (_React$Component) {
 
       //store.dispatch(LOAD_IMAGE)
 
-      var files = domEvent.target.files;
-      var file = files[0];
+      var fileObj = domEvent.target.files[0];
       var reader = new FileReader();
 
       reader.onload = function (fileEvent) {
         console.log('wheefee');
-        _this2.props.store.dispatch((0, _contentActions.updateContent)(_this2.props.index, "Picture", (0, _pictureData2.default)(fileEvent.target.result) //src
+        var src = fileEvent.target.result;
+        _this2.props.store.dispatch((0, _contentActions.updateContent)(_this2.props.index, "Picture", (0, _pictureData2.default)(src, fileObj) //src
         ));
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(fileObj);
     }
   }, {
     key: 'onClickPick',
@@ -26224,7 +26224,7 @@ var PictureEditor = function (_React$Component) {
 
 exports.default = PictureEditor;
 
-},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/pictureData":210,"react":163}],198:[function(require,module,exports){
+},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/pictureData":211,"react":163}],198:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26368,7 +26368,7 @@ var SelectorEditor = function (_React$Component) {
 
 exports.default = SelectorEditor;
 
-},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/featureListData":208,"../../data/howToUseData":209,"../../data/pictureData":210,"../../data/socialData":211,"../../data/titleData":213,"../../data/workflowData":214,"react":163}],199:[function(require,module,exports){
+},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/featureListData":209,"../../data/howToUseData":210,"../../data/pictureData":211,"../../data/socialData":212,"../../data/titleData":214,"../../data/workflowData":215,"react":163}],199:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26433,7 +26433,7 @@ var SocialEditor = function (_React$Component) {
 
 exports.default = SocialEditor;
 
-},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/socialData":211,"react":163}],200:[function(require,module,exports){
+},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/socialData":212,"react":163}],200:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26498,7 +26498,7 @@ var StepEditor = function (_React$Component) {
 
 exports.default = StepEditor;
 
-},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/stepData":212,"react":163}],201:[function(require,module,exports){
+},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/stepData":213,"react":163}],201:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26581,7 +26581,7 @@ var TitleEditor = function (_React$Component) {
 
 exports.default = TitleEditor;
 
-},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/titleData":213,"react":163}],202:[function(require,module,exports){
+},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/titleData":214,"react":163}],202:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26646,7 +26646,7 @@ var WorkflowEditor = function (_React$Component) {
 
 exports.default = WorkflowEditor;
 
-},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/workflowData":214,"react":163}],203:[function(require,module,exports){
+},{"../../actions/contentActions":179,"../../actions/editorActions":180,"../../data/workflowData":215,"react":163}],203:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26791,7 +26791,7 @@ var ProjectEntry = function (_React$Component) {
 
 exports.default = ProjectEntry;
 
-},{"../../actions/contentActions":179,"../../actions/modeActions":181,"../../data/titleData":213,"react":163}],205:[function(require,module,exports){
+},{"../../actions/contentActions":179,"../../actions/modeActions":181,"../../data/titleData":214,"react":163}],205:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26861,6 +26861,10 @@ var _AddMore = require('./AddMore');
 
 var _AddMore2 = _interopRequireDefault(_AddMore);
 
+var _Upload = require('./Upload');
+
+var _Upload2 = _interopRequireDefault(_Upload);
+
 var _Editor = require('../editors/Editor');
 
 var _Editor2 = _interopRequireDefault(_Editor);
@@ -26901,6 +26905,7 @@ var LandingContainer = function (_React$Component) {
           return _react2.default.createElement(_Content2.default, { key: i, index: i++, contentType: c.get("contentType"), store: _this2.props.store, data: c.get("data") });
         }),
         _react2.default.createElement(_AddMore2.default, { store: this.props.store, index: contents.size }),
+        _react2.default.createElement(_Upload2.default, { store: this.props.store }),
         _react2.default.createElement(_Editor2.default, { store: this.props.store, index: editor.get("index"), editorType: editor.get("editorType"), data: editor.get("data") })
       );
     }
@@ -26911,7 +26916,77 @@ var LandingContainer = function (_React$Component) {
 
 exports.default = LandingContainer;
 
-},{"../contents/Content":183,"../editors/Editor":193,"./AddMore":205,"react":163}],207:[function(require,module,exports){
+},{"../contents/Content":183,"../editors/Editor":193,"./AddMore":205,"./Upload":207,"react":163}],207:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _rootReducer = require('../../reducers/rootReducer');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Uplaod = function (_React$Component) {
+  _inherits(Uplaod, _React$Component);
+
+  function Uplaod() {
+    _classCallCheck(this, Uplaod);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Uplaod).apply(this, arguments));
+  }
+
+  _createClass(Uplaod, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'button',
+        { onClick: this.onClick.bind(this) },
+        'upload'
+      );
+    }
+  }, {
+    key: 'onClick',
+    value: function onClick() {
+
+      var pictures = (0, _rootReducer.getPictures)(this.props.store.getState());
+
+      pictures.map(function (pictureContent) {
+        var fileObj = pictureContent.get("data").get("fileObj");
+
+        var storageRef = firebase.storage().ref();
+        var uploadTask = storageRef.child(fileObj.name).put(fileObj, { contentType: fileObj.type });
+
+        uploadTask.on('state_changed', function (snapshot) {}, //1. 'state_changed' observer, called any time the state changes
+        function (error) {
+          console.error(error);
+        }, //2. Error observer, called on failure
+        function () {
+          //3. Completion observer, called on successful completion
+          console.log("successfully uploaded " + fileObj.name);
+        });
+      });
+    }
+  }]);
+
+  return Uplaod;
+}(_react2.default.Component);
+
+exports.default = Uplaod;
+
+},{"../../reducers/rootReducer":223,"react":163}],208:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26927,13 +27002,14 @@ function featureData() {
   var icon = arguments.length <= 2 || arguments[2] === undefined ? "" : arguments[2];
 
   return (0, _immutable.Map)({
+    type: "Feature",
     feature: feature,
     description: description,
     icon: icon
   });
 }
 
-},{"immutable":28}],208:[function(require,module,exports){
+},{"immutable":28}],209:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26955,7 +27031,7 @@ function featureListData() {
   return (0, _immutable.List)(Array(numFeatures).fill((0, _featureData2.default)()));
 }
 
-},{"./featureData":207,"immutable":28}],209:[function(require,module,exports){
+},{"./featureData":208,"immutable":28}],210:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26969,52 +27045,60 @@ function howToUseData() {
   return (0, _immutable.Map)();
 }
 
-},{"immutable":28}],210:[function(require,module,exports){
-'use strict';
+},{"immutable":28}],211:[function(require,module,exports){
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = pictureData;
 
-var _immutable = require('immutable');
+var _immutable = require("immutable");
 
-function pictureData(src, fileName) {
+function pictureData() {
+  var src = arguments.length <= 0 || arguments[0] === undefined ? "" : arguments[0];
+  var fileObj = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
+
   return (0, _immutable.Map)({
+    type: "Picture",
     src: src,
-    fileName: fileName
+    fileObj: fileObj
   });
 }
 
-},{"immutable":28}],211:[function(require,module,exports){
-'use strict';
+},{"immutable":28}],212:[function(require,module,exports){
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = socialData;
 
-var _immutable = require('immutable');
+var _immutable = require("immutable");
 
 function socialData() {
-  return (0, _immutable.Map)();
+  return (0, _immutable.Map)({
+    type: "Social"
+  });
 }
 
-},{"immutable":28}],212:[function(require,module,exports){
-'use strict';
+},{"immutable":28}],213:[function(require,module,exports){
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = stepData;
 
-var _immutable = require('immutable');
+var _immutable = require("immutable");
 
 function stepData() {
-  return (0, _immutable.Map)();
+  return (0, _immutable.Map)({
+    type: "Step"
+  });
 }
 
-},{"immutable":28}],213:[function(require,module,exports){
+},{"immutable":28}],214:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27029,26 +27113,29 @@ function titleData() {
   var description = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
 
   return (0, _immutable.Map)({
+    type: "Title",
     title: title,
     description: description
   });
 }
 
-},{"immutable":28}],214:[function(require,module,exports){
-'use strict';
+},{"immutable":28}],215:[function(require,module,exports){
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = workflowData;
 
-var _immutable = require('immutable');
+var _immutable = require("immutable");
 
 function workflowData() {
-  return (0, _immutable.Map)();
+  return (0, _immutable.Map)({
+    type: "Workflow"
+  });
 }
 
-},{"immutable":28}],215:[function(require,module,exports){
+},{"immutable":28}],216:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -27084,7 +27171,7 @@ store.subscribe(function () {
 });
 _reactDom2.default.render(_react2.default.createElement(_App2.default, { store: store }), document.getElementById("app"));
 
-},{"../components/App.js":182,"../reducers/rootReducer":222,"react":163,"react-dom":34,"redux":175}],216:[function(require,module,exports){
+},{"../components/App.js":182,"../reducers/rootReducer":223,"react":163,"react-dom":34,"redux":175}],217:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27098,13 +27185,14 @@ function prettyString(jsonObj) {
   if (_immutable.Map.isMap(jsonObj)) return JSON.stringify(jsonObj.toJS(), null, " ");else return JSON.stringify(jsonObj, null, " ");
 }
 
-},{"immutable":28}],217:[function(require,module,exports){
+},{"immutable":28}],218:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = contents;
+exports.getPictures = getPictures;
 
 var _immutable = require("immutable");
 
@@ -27128,7 +27216,13 @@ function contents() {
   }
 }
 
-},{"../actions/contentActions":179,"immutable":28}],218:[function(require,module,exports){
+function getPictures(state) {
+  return state.filter(function (x) {
+    return x.get("data").get("type") === "Picture";
+  });
+}
+
+},{"../actions/contentActions":179,"immutable":28}],219:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27154,7 +27248,7 @@ function editorReducer() {
   }
 }
 
-},{"../actions/editorActions":180,"immutable":28}],219:[function(require,module,exports){
+},{"../actions/editorActions":180,"immutable":28}],220:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27174,18 +27268,19 @@ function front() {
   }
 }
 
-},{"immutable":28}],220:[function(require,module,exports){
+},{"immutable":28}],221:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.getPictures = getPictures;
 
 var _reduxImmutable = require('redux-immutable');
 
 var _contentsReducer = require('./contentsReducer');
 
-var _contentsReducer2 = _interopRequireDefault(_contentsReducer);
+var fromContents = _interopRequireWildcard(_contentsReducer);
 
 var _editorReducer = require('./editorReducer');
 
@@ -27193,12 +27288,17 @@ var _editorReducer2 = _interopRequireDefault(_editorReducer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 exports.default = (0, _reduxImmutable.combineReducers)({
-  contents: _contentsReducer2.default,
+  contents: fromContents.default,
   editor: _editorReducer2.default
 });
+function getPictures(state) {
+  return fromContents.getPictures(state.get("contents"));
+}
 
-},{"./contentsReducer":217,"./editorReducer":218,"redux-immutable":165}],221:[function(require,module,exports){
+},{"./contentsReducer":218,"./editorReducer":219,"redux-immutable":165}],222:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27221,12 +27321,13 @@ function editorReducer() {
   }
 }
 
-},{"../actions/modeActions":181}],222:[function(require,module,exports){
+},{"../actions/modeActions":181}],223:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.getPictures = getPictures;
 
 var _reduxImmutable = require('redux-immutable');
 
@@ -27240,11 +27341,13 @@ var _frontReducer2 = _interopRequireDefault(_frontReducer);
 
 var _landingReducer = require('./landingReducer');
 
-var _landingReducer2 = _interopRequireDefault(_landingReducer);
+var fromLanding = _interopRequireWildcard(_landingReducer);
 
 var _prettyString = require('../print/prettyString');
 
 var _prettyString2 = _interopRequireDefault(_prettyString);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27252,19 +27355,21 @@ exports.default = (0, _reduxImmutable.combineReducers)({
   log: log,
   mode: _modeReducers2.default,
   front: _frontReducer2.default,
-  landing: _landingReducer2.default
+  landing: fromLanding.default
 });
-
+function getPictures(state) {
+  return fromLanding.getPictures(state.get("landing"));
+}
 
 function log() {
   var state = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
   var action = arguments.length <= 1 || arguments[1] === undefined ? undefined : arguments[1];
 
-  console.log("action received", (0, _prettyString2.default)(action));
+  //console.log( "action received", prettyString(action));
   return state;
 }
 
-},{"../print/prettyString":216,"./frontReducer":219,"./landingReducer":220,"./modeReducers":221,"redux-immutable":165}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222])
+},{"../print/prettyString":217,"./frontReducer":220,"./landingReducer":221,"./modeReducers":222,"redux-immutable":165}]},{},[179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223])
 
 
 //# sourceMappingURL=bundle.js.map

@@ -17,21 +17,21 @@ export default class PictureEditor extends React.Component {
   onChangeImage(domEvent) {
     //store.dispatch(LOAD_IMAGE)
 
-    let files = domEvent.target.files;
-    let file  = files[0];
+    let fileObj  = domEvent.target.files[0];
     let reader = new FileReader();
 
     reader.onload = fileEvent => {
       console.log('wheefee');
+      let src = fileEvent.target.result;
       this.props.store.dispatch(
         updateContent(
           this.props.index,
           "Picture",
-          pictureData( fileEvent.target.result, file.name ) //src
+          pictureData( src, fileObj ) //src
         )
       );
     }
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(fileObj);
   }
 
   onClickPick(){
