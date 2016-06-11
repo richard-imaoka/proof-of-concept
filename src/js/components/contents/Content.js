@@ -6,7 +6,7 @@ import HowToUse     from './HowToUse'
 import Picture      from './Picture'
 import Social       from './Social'
 import Step         from './Step'
-import Title        from './Title'
+import ImageBackgroundContent from './ImageBackgroundContent'
 import Workflow     from './Workflow'
 
 export default class Content extends React.Component{
@@ -26,8 +26,8 @@ export default class Content extends React.Component{
         return React.createElement(Social, this.props);
       case Step.name :
         return React.createElement(Step, this.props);
-      case Title.name :
-        return React.createElement(Title, this.props);
+      case ImageBackgroundContent.name :
+        return React.createElement(ImageBackgroundContent, this.props);
       case Workflow.name :
         return React.createElement(Workflow, this.props);
       default:

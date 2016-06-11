@@ -5,7 +5,7 @@ import HowToUseEditor     from './HowToUseEditor'
 import PictureEditor      from './PictureEditor'
 import SocialEditor       from './SocialEditor'
 import StepEditor         from './StepEditor'
-import TitleEditor        from './TitleEditor'
+import TitleEditor        from './ImageBackgroundContentEditor'
 import WorkflowEditor     from './WorkflowEditor'
 import SelectorEditor     from './SelectorEditor'
 
