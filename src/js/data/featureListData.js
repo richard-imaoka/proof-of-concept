@@ -1,7 +1,7 @@
 import {Map,List}      from 'immutable'
 import featureData from './featureData'
 
-export default function featureListData(numFeatures=0){
+export default function featureListData(numIconContents=0){
   return Map({
     type    : "FeatureList",
     features: List([

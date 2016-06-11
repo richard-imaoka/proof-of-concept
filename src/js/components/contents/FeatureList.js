@@ -1,5 +1,5 @@
 import React   from 'react'
-import Feature from './Feature'
+import IconContent from './IconContent'
 import {showEditor} from '../../actions/editorActions'
 import featureListData from '../../data/featureListData'
 
@@ -11,7 +11,7 @@ export default class FeatureList extends React.Component {
       <section onClick={this.onClick.bind(this)}>
         <div className="container feature-content">
           <div className="row">
-            { a.map( x => <Feature key={i} store={this.props.store} data={this.props.data.get("features").get(i++)}/> ) }
+            { a.map( x => <IconContent key={i} store={this.props.store} data={this.props.data.get("features").get(i++)}/> ) }
           </div>
         </div>
       </section>

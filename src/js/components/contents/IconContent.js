@@ -2,7 +2,7 @@ import React from 'react'
 import {showEditor} from '../../actions/editorActions'
 import featureData from '../../data/featureData'
 
-export default class Feature extends React.Component {
+export default class IconContent extends React.Component {
   render() {
     return (
         <div className="col-xs-12 col-sm-4" onClick={this.onClick.bind(this)}>
@@ -20,6 +20,6 @@ export default class Feature extends React.Component {
   }
 
   onClick() {
-    //this.props.store.dispatch(showEditor("FeatureEditor", this.props.index));
+    //this.props.store.dispatch(showEditor("IconContentEditor", this.props.index));
   }
 }

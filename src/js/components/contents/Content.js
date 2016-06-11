@@ -1,6 +1,6 @@
 import React from 'react'
 import Deploy       from './Deploy'
-import Feature      from './Feature'
+import IconContent      from './IconContent'
 import FeatureList  from './FeatureList'
 import HowToUse     from './HowToUse'
 import Picture      from './Picture'
@@ -14,8 +14,8 @@ export default class Content extends React.Component{
     switch(this.props.contentType) {
       case Deploy.name :
         return React.createElement(Deploy, this.props);
-      case Feature.name :
-        return React.createElement(Feature, this.props);
+      case IconContent.name :
+        return React.createElement(IconContent, this.props);
       case FeatureList.name :
         return React.createElement(FeatureList, this.props);
       case HowToUse.name :

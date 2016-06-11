@@ -5,7 +5,7 @@ export default function featureData(
   description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   icon="camera-retro") {
   return Map({
-    type:        "Feature",
+    type:        "IconContent",
     feature:     feature,
     description: description,
     icon:        icon

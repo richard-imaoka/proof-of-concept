@@ -1,5 +1,5 @@
 import React from 'react'
-import FeatureEditor      from './FeatureEditor'
+import IconContentEditor      from './IconContentEditor'
 import FeatureListEditor  from './FeatureListEditor'
 import HowToUseEditor     from './HowToUseEditor'
 import PictureEditor      from './PictureEditor'
@@ -14,8 +14,8 @@ export default class Editor extends React.Component {
     switch(this.props.editorType) {
       case undefined :
         return <div>Closed</div>
-      case "Feature" :
-        return React.createElement(FeatureEditor, this.props);
+      case "IconContent" :
+        return React.createElement(IconContentEditor, this.props);
       case "FeatureList" :
         return React.createElement(FeatureListEditor, this.props);
       case "HowToUse" :
