@@ -1,6 +1,7 @@
 import React from 'react'
 import Step from './Step'
 import {showEditor} from '../../actions/editorActions'
+import workflowData from '../../data/workflowData'
 
 export default class Workflow extends React.Component {
   render() {
@@ -14,6 +15,6 @@ export default class Workflow extends React.Component {
   }
 
   onClick() {
-    this.props.store.dispatch(showEditor(this.props.index, "WorkflowEditor"));
+    this.props.store.dispatch(showEditor(this.props.index, workflowData()));
   }
 }

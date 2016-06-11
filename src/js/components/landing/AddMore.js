@@ -1,5 +1,6 @@
 import React from 'react'
 import { showEditor } from '../../actions/editorActions'
+import selectorData   from '../../data/selectorData'
 
 export default class AddMore extends React.Component {
   render() {
@@ -7,6 +8,6 @@ export default class AddMore extends React.Component {
   }
 
   onClick() {
-    this.props.store.dispatch(showEditor(this.props.index, "SelectorEditor"));
+    this.props.store.dispatch(showEditor(this.props.index, selectorData()));
   }
 }

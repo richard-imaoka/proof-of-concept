@@ -1,5 +1,6 @@
 import React from 'react'
 import {showEditor} from '../../actions/editorActions'
+import featureData from '../../data/featureData'
 
 export default class Feature extends React.Component {
   render() {

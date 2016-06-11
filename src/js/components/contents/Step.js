@@ -1,5 +1,6 @@
 import React from 'react'
 import {showEditor} from '../../actions/editorActions'
+import stepData from '../../data/stepData'
 
 export default class Step extends React.Component {
   render() {

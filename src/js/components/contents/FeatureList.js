@@ -1,6 +1,7 @@
 import React   from 'react'
 import Feature from './Feature'
 import {showEditor} from '../../actions/editorActions'
+import featureListData from '../../data/featureListData'
 
 export default class FeatureList extends React.Component {
   render() {
@@ -18,6 +19,6 @@ export default class FeatureList extends React.Component {
   }
 
   onClick() {
-    this.props.store.dispatch(showEditor(this.props.index, "FeatureListEditor"));
+    this.props.store.dispatch(showEditor(this.props.index, featureListData()));
   }
 }

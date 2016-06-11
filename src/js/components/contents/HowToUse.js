@@ -1,6 +1,7 @@
 import React from 'react'
 import Step from './Step'
 import {showEditor} from '../../actions/editorActions'
+import howToUseData from '../../data/howToUseData'
 
 export default class HowToUse extends React.Component {
   render() {
@@ -14,6 +15,6 @@ export default class HowToUse extends React.Component {
   }
 
   onClick() {
-    this.props.store.dispatch(showEditor(this.props.index, "HowToUseEditor"));
+    this.props.store.dispatch(showEditor(this.props.index, howToUseData()));
   }
 }

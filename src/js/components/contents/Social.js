@@ -1,5 +1,6 @@
 import React from 'react'
 import {showEditor} from '../../actions/editorActions'
+import socialData from '../../data/socialData'
 
 export default class Social extends React.Component {
   render() {
@@ -8,6 +9,11 @@ export default class Social extends React.Component {
 
 
   onClick() {
-    this.props.store.dispatch(showEditor(this.props.index, "SocialEditor"));
+    this.props.store.dispatch(
+      showEditor(
+        this.props.index, 
+        socialData()
+      )
+    );
   }
 }

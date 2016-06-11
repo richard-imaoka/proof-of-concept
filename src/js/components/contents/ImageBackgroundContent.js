@@ -15,6 +15,11 @@ export default class ImageBackgroundContent extends React.Component {
   }
   
   onClick() {
-    this.props.store.dispatch(showEditor(this.props.index, "ImageBackgroundContentEditor", imageBackgroundContentData(this.props.data.get("title"), this.props.data.get("description"))));
+    this.props.store.dispatch(
+      showEditor(
+        this.props.index,
+        imageBackgroundContentData(this.props.data.get("title"), this.props.data.get("description"))
+      )
+    );
   }
 }

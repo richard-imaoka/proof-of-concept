@@ -1,5 +1,6 @@
 import React from 'react'
 import {showEditor} from '../../actions/editorActions'
+import pictureData from '../../data/pictureData'
 
 export default class Picture extends React.Component {
   render() {
@@ -12,6 +13,11 @@ export default class Picture extends React.Component {
   }
 
   onClick() {
-    this.props.store.dispatch(showEditor(this.props.index, "PictureEditor"));
+    this.props.store.dispatch(
+      showEditor(
+        this.props.index,
+        pictureData()
+      )
+    );
   }
 }
