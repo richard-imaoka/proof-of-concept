@@ -25734,30 +25734,26 @@ var Title = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'section',
-        { conClick: this.onClick.bind(this) },
+        { className: 'title-background', conClick: this.onClick.bind(this) },
         _react2.default.createElement(
           'div',
-          { className: 'container' },
+          { className: 'container title-container' },
           _react2.default.createElement(
             'div',
             { className: 'row' },
             _react2.default.createElement(
-              'div',
+              'h2',
               null,
-              _react2.default.createElement(
-                'h2',
-                null,
-                this.props.data.get("title")
-              )
-            ),
+              this.props.data.get("title")
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
             _react2.default.createElement(
-              'div',
+              'h4',
               null,
-              _react2.default.createElement(
-                'h4',
-                null,
-                this.props.data.get("description")
-              )
+              this.props.data.get("description")
             )
           )
         )
@@ -26761,7 +26757,7 @@ var ProjectEntry = function (_React$Component) {
   _createClass(ProjectEntry, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      this.setState({ title: "sexy title" });
+      this.setState({ title: "The Greatest Project Ever" });
     }
   }, {
     key: 'render',
@@ -27139,8 +27135,8 @@ exports.default = titleData;
 var _immutable = require("immutable");
 
 function titleData() {
-  var title = arguments.length <= 0 || arguments[0] === undefined ? "sexy title" : arguments[0];
-  var description = arguments.length <= 1 || arguments[1] === undefined ? "ahhhaah" : arguments[1];
+  var title = arguments.length <= 0 || arguments[0] === undefined ? "The greatest project ever" : arguments[0];
+  var description = arguments.length <= 1 || arguments[1] === undefined ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." : arguments[1];
 
   return (0, _immutable.Map)({
     type: "Title",

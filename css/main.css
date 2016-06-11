@@ -7,13 +7,28 @@
   color: yellow;
 }
 
-.title {
+.title-background {
   background-image: url(../img/lion-wild-africa-african.jpg);
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: center;
-  height: 400px;
-  color: yellow;
+}
+
+.title-container {
+  height : 400px;
+  padding: 20px;
+}
+
+.title-container h2 {
+  font-size: 60px;
+  color    : white;
+  margin   : 40px 0px;
+}
+
+.title-container h4 {
+  font-size: 24px;
+  color    : white;
+  opacity  : 0.5;
 }
 
 .btn-primary {

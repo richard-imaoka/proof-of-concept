@@ -5,7 +5,7 @@ import titleData               from '../../data/titleData'
 
 export default class ProjectEntry extends React.Component {
   componentWillMount(){
-    this.setState({title: "sexy title"});
+    this.setState({title: "The Greatest Project Ever"});
   }
 
   render() {
