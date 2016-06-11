@@ -7,8 +7,8 @@ export default class Title extends React.Component {
     return (
       <section className="title-background" conClick={this.onClick.bind(this)}>
         <div className="container title-container">
-            <div className="row"><h2>{this.props.data.get("title")}</h2></div>
-            <div className="row"><h4>{this.props.data.get("description")}</h4></div>
+          <div className="row"><h2>{this.props.data.get("title")}</h2></div>
+          <div className="row"><h4>{this.props.data.get("description")}</h4></div>
         </div>
       </section>
     );
