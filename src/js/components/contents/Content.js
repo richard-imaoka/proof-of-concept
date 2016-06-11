@@ -9,6 +9,7 @@ import Step         from './Step'
 import ImageBackgroundContent from './ImageBackgroundContent'
 import ImageContent from './ImageContent'
 import Workflow     from './Workflow'
+import {showEditor} from '../../actions/editorActions'
 
 export default class Content extends React.Component{
   render() {
@@ -28,7 +29,7 @@ export default class Content extends React.Component{
       case Step.name :
         return React.createElement(Step, this.props);
       case ImageBackgroundContent.name :
-        return React.createElement(ImageBackgroundContent, this.props);
+        return React.createElement(ImageBackgroundContent, Object.assign({},this.props, {onClick: this.onClick}));
       case ImageContent.name :
         return React.createElement(ImageContent, this.props);
       case Workflow.name :
@@ -38,4 +39,7 @@ export default class Content extends React.Component{
     }
   }
 
+  onClick() {
+    this.props.store.dispatch( showEditor( this.props.index, this.contentData() ) );
+  }
 }
