@@ -1,17 +1,9 @@
-.lion {
-  background-image: url(../img/lion-wild-africa-african.jpg);
-  background-size: auto 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 400px;
-  color: yellow;
-}
-
 .title-background {
   background-image: url(../img/lion-wild-africa-african.jpg);
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: center;
+  background-color: #0c0c0c;
 }
 
 .title-container {
@@ -29,6 +21,19 @@
   font-size: 24px;
   color    : white;
   opacity  : 0.5;
+}
+
+.feature-content h2 {
+  font-size: 24px;
+}
+
+.feature-content h4 {
+  font-size: 18px;
+}
+
+.feature-content .fa {
+  display: inline-block;
+  width: 100%;
 }
 
 .btn-primary {

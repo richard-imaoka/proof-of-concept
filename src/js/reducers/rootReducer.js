@@ -17,6 +17,6 @@ export function getPictures(state) {
 }
 
 function log(state = null, action = undefined)  {
-  //console.log( "action received", prettyString(action));
+  console.log( "action received", prettyString(action));
   return state;
 }

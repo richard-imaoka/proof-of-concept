@@ -7,9 +7,13 @@ export default class FeatureList extends React.Component {
     const a = [1, 2, 3];
     let   i = 0;
     return (
-      <div onClick={this.onClick.bind(this)}>
-        { a.map( x => <Feature key={i++} store={this.props.store} data={this.props.data}/>) }
-      </div>
+      <section onClick={this.onClick.bind(this)}>
+        <div className="container feature-content">
+          <div className="row">
+            { a.map( x => <Feature key={i} store={this.props.store} data={this.props.data.get("features").get(i++)}/> ) }
+          </div>
+        </div>
+      </section>
     );
   }
 
