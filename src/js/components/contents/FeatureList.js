@@ -9,7 +9,7 @@ export default class FeatureList extends React.Component {
     let   i = 0;
     return (
       <section onClick={this.onClick.bind(this)}>
-        <div className="container feature-content">
+        <div className="container icon-content">
           <div className="row">
             { a.map( x => <IconContent key={i} store={this.props.store} data={this.props.data.get("features").get(i++)}/> ) }
           </div>

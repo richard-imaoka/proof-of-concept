@@ -43,15 +43,16 @@
   margin   : 40px 20px;
 }
 
-.feature-content h2 {
+
+.icon-content h2 {
   font-size: 24px;
 }
 
-.feature-content h4 {
+.icon-content h4 {
   font-size: 18px;
 }
 
-.feature-content .fa {
+.icon-content .fa {
   display: inline-block;
   width: 100%;
 }
