@@ -9,9 +9,10 @@ import ImageBackgroundContentEditor from './ImageBackgroundContentEditor'
 import ImageContentEditor from './ImageContentEditor'
 import WorkflowEditor     from './WorkflowEditor'
 import SelectorEditor     from './SelectorEditor'
+import {closeEditor, CLOSE_EDITOR, SHOW_EDITOR} from '../../actions/editorActions'
 
 export default class Editor extends React.Component {
-  render() {
+  contentEditor() {
     switch(this.props.editorType) {
       case undefined :
         return <div>Closed</div>
@@ -39,4 +40,34 @@ export default class Editor extends React.Component {
         return <div>{"No Such Editor = " + this.props.editorType}</div>
     }
   }
+
+  render() {
+    console.log("amoas ", this.animation());
+    return (
+      <div className={"editor" + this.animation()} >
+        { this.contentEditor() }
+        <button onClick={this.handleCancel.bind(this)}>Cancel</button>
+        <button onClick={this.handleDone.bind(this)}>Done</button>
+      </div>
+    )
+  }
+
+  animation(){
+    if(this.props.actionType===SHOW_EDITOR)
+      return " animated animated-fastest slideInUp";
+    else if(this.props.actionType==CLOSE_EDITOR)
+      return " animated animated-fastest slideOutDown";
+    else
+      return " none"
+  }
+  
+  handleCancel() {
+    this.props.store.dispatch(closeEditor());
+  }
+
+  handleDone() {
+    this.props.store.dispatch(updateContent(this.props.index, featureListData()));
+    this.props.store.dispatch(closeEditor());
+  }
+
 }

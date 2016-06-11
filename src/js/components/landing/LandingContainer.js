@@ -18,7 +18,12 @@ export default class LandingContainer extends React.Component {
         }
         <AddMore store={this.props.store} index={contents.size}/>
         <Upload  store={this.props.store} />
-        <Editor  store={this.props.store} index={editor.get("index")} editorType={editor.get("data").get("type")} data={editor.get("data")}/>
+        <Editor
+          store={this.props.store}
+          index={editor.get("index")}
+          actionType={editor.get("actionType")}
+          editorType={editor.get("data").get("type")}
+          data={editor.get("data")} />
       </main>
     );
   }
