@@ -1,12 +1,13 @@
 import React from 'react'
 import Deploy       from './Deploy'
-import IconContent      from './IconContent'
+import IconContent  from './IconContent'
 import FeatureList  from './FeatureList'
 import HowToUse     from './HowToUse'
 import Picture      from './Picture'
 import Social       from './Social'
 import Step         from './Step'
 import ImageBackgroundContent from './ImageBackgroundContent'
+import ImageContent from './ImageContent'
 import Workflow     from './Workflow'
 
 export default class Content extends React.Component{
@@ -28,6 +29,8 @@ export default class Content extends React.Component{
         return React.createElement(Step, this.props);
       case ImageBackgroundContent.name :
         return React.createElement(ImageBackgroundContent, this.props);
+      case ImageContent.name :
+        return React.createElement(ImageContent, this.props);
       case Workflow.name :
         return React.createElement(Workflow, this.props);
       default:

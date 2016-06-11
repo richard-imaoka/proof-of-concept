@@ -6,6 +6,7 @@ import howToUseData     from '../../data/howToUseData'
 import pictureData      from '../../data/pictureData'
 import socialData       from '../../data/socialData'
 import imageBackgroundContentData from '../../data/imageBackgroundContentData'
+import imageContentData from '../../data/imageContentData'
 import workflowData     from '../../data/workflowData'
 
 export default class SelectorEditor extends React.Component {
@@ -19,6 +20,7 @@ export default class SelectorEditor extends React.Component {
           <li onClick={this.onClickPicture.bind(this)}>Picture</li>
           <li onClick={this.onClickSocial.bind(this)}>Social</li>
           <li onClick={this.onClickImageBackgroundContent.bind(this)}>ImageBackgroundContent</li>
+          <li onClick={this.onClickImageContent.bind(this)}>ImageContent</li>
           <li onClick={this.onClickWorkflow.bind(this)}>Workflow</li>
         </ul>
       </div>
@@ -43,6 +45,10 @@ export default class SelectorEditor extends React.Component {
   }
   onClickImageBackgroundContent(event) {
     this.props.store.dispatch(appendContent("ImageBackgroundContent", imageBackgroundContentData()));
+    this.props.store.dispatch(closeEditor());
+  }
+  onClickImageContent(event) {
+    this.props.store.dispatch(appendContent("ImageContent", imageContentData()));
     this.props.store.dispatch(closeEditor());
   }
   onClickWorkflow(event) {

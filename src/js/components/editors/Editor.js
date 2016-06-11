@@ -1,11 +1,12 @@
 import React from 'react'
-import IconContentEditor      from './IconContentEditor'
+import IconContentEditor  from './IconContentEditor'
 import FeatureListEditor  from './FeatureListEditor'
 import HowToUseEditor     from './HowToUseEditor'
-import PictureEditor      from './PictureEditor'
+import PictureEditor      from './ImageContentEditor'
 import SocialEditor       from './SocialEditor'
 import StepEditor         from './StepEditor'
 import ImageBackgroundContentEditor from './ImageBackgroundContentEditor'
+import ImageContentEditor from './ImageContentEditor'
 import WorkflowEditor     from './WorkflowEditor'
 import SelectorEditor     from './SelectorEditor'
 
@@ -20,14 +21,16 @@ export default class Editor extends React.Component {
         return React.createElement(FeatureListEditor, this.props);
       case "HowToUse" :
         return React.createElement(HowToUseEditor, this.props);
+      case "ImageBackgroundContent" :
+        return React.createElement(ImageBackgroundContentEditor, this.props);
+      case "ImageContent" :
+        return React.createElement(ImageContentEditor, this.props);
       case "Picture" :
         return React.createElement(PictureEditor, this.props);
       case "Social" :
         return React.createElement(SocialEditor, this.props);
       case "Step" :
         return React.createElement(StepEditor, this.props);
-      case "ImageBackgroundContent" :
-        return React.createElement(ImageBackgroundContentEditor, this.props);
       case "Workflow" :
         return React.createElement(WorkflowEditor, this.props);
       case "Selector" :

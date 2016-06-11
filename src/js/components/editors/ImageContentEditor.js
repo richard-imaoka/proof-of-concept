@@ -3,7 +3,7 @@ import {updateContent} from '../../actions/contentActions'
 import {closeEditor}   from '../../actions/editorActions'
 import pictureData     from '../../data/pictureData'
 
-export default class PictureEditor extends React.Component {
+export default class ImageEditor extends React.Component {
   render() {
     return (
       <div>PictureEditor

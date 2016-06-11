@@ -23,6 +23,26 @@
   opacity  : 0.5;
 }
 
+.image-content {
+  margin: 25px 0px;
+}
+
+.image-content img {
+  width: 100%;
+  font-size: 24px;
+  color    : white;
+}
+
+.image-content h2 {
+  font-size: 24px;
+  margin   : 40px 20px;
+}
+
+.image-content p {
+  font-size: 16px;
+  margin   : 40px 20px;
+}
+
 .feature-content h2 {
   font-size: 24px;
 }
