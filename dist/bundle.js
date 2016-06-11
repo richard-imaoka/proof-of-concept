@@ -25734,18 +25734,32 @@ var Title = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'section',
-        { onClick: this.onClick.bind(this) },
+        { conClick: this.onClick.bind(this) },
         _react2.default.createElement(
           'div',
-          null,
-          'Title: ',
-          this.props.data.get("title")
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          'Description: ',
-          this.props.data.get("description")
+          { className: 'container' },
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'h2',
+                null,
+                this.props.data.get("title")
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'h4',
+                null,
+                this.props.data.get("description")
+              )
+            )
+          )
         )
       );
     }
@@ -26747,29 +26761,45 @@ var ProjectEntry = function (_React$Component) {
   _createClass(ProjectEntry, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      this.setState({ title: "" });
+      this.setState({ title: "sexy title" });
     }
   }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'div',
+        'section',
         null,
         _react2.default.createElement(
           'div',
-          null,
-          'Enter your project name'
-        ),
-        _react2.default.createElement('input', { value: this.state.title, onChange: this.handleChange.bind(this) }),
-        _react2.default.createElement(
-          'button',
-          { onClick: this.onClick.bind(this) },
-          'Create Landing Page'
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          'Speak out your brilliant concept on a landing page!'
+          { className: 'container' },
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'h1',
+                null,
+                'Enter your project name'
+              )
+            ),
+            _react2.default.createElement('input', { className: 'project-input', value: this.state.title, onChange: this.handleChange.bind(this) }),
+            _react2.default.createElement(
+              'button',
+              { className: 'btn btn-primary', onClick: this.onClick.bind(this) },
+              'Create Landing Page'
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'h4',
+                null,
+                'Speak out your brilliant concept on a landing page!'
+              )
+            )
+          )
         )
       );
     }
@@ -27109,8 +27139,8 @@ exports.default = titleData;
 var _immutable = require("immutable");
 
 function titleData() {
-  var title = arguments.length <= 0 || arguments[0] === undefined ? "" : arguments[0];
-  var description = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+  var title = arguments.length <= 0 || arguments[0] === undefined ? "sexy title" : arguments[0];
+  var description = arguments.length <= 1 || arguments[1] === undefined ? "ahhhaah" : arguments[1];
 
   return (0, _immutable.Map)({
     type: "Title",

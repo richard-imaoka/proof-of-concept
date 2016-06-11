@@ -5,17 +5,21 @@ import titleData               from '../../data/titleData'
 
 export default class ProjectEntry extends React.Component {
   componentWillMount(){
-    this.setState({title: ""});
+    this.setState({title: "sexy title"});
   }
 
   render() {
     return (
-      <div>
-        <div>Enter your project name</div>
-        <input  value={this.state.title} onChange={this.handleChange.bind(this)}/>
-        <button onClick={this.onClick.bind(this)}>Create Landing Page</button>
-        <div>Speak out your brilliant concept on a landing page!</div>
-      </div>
+      <section>
+        <div className="container">
+          <div className="row">
+            <div><h1>Enter your project name</h1></div>
+            <input  className="project-input" value={this.state.title} onChange={this.handleChange.bind(this)}/>
+            <button className="btn btn-primary" onClick={this.onClick.bind(this)}>Create Landing Page</button>
+            <div><h4>Speak out your brilliant concept on a landing page!</h4></div>
+          </div>
+        </div>
+      </section>
     );
   }
 

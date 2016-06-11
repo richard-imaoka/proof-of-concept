@@ -40,7 +40,7 @@ function bundle() {
 }
 
 gulp.task('watch', function () {
-  gulp.watch("src/css/*.css",       browserSync.reload);
+  gulp.watch("css/*.css",       browserSync.reload);
   gulp.watch("dist/*.js",           browserSync.reload);
   gulp.watch("img/*.{png,jpg,svg}", browserSync.reload);
   gulp.watch("*.html",              browserSync.reload);

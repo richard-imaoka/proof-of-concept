@@ -4,3 +4,4 @@ debug.html
 npm-debug.log
 ignore
 dist/bundle.js.map
+sample*
