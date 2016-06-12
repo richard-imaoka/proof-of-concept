@@ -1,27 +1,16 @@
 import React from 'react'
-import IconContentEditor  from './IconContentEditor'
-import FeatureListEditor  from './FeatureListEditor'
-import HowToUseEditor     from './HowToUseEditor'
-import PictureEditor      from './ImageContentEditor'
-import SocialEditor       from './SocialEditor'
-import StepEditor         from './StepEditor'
-import ImageBackgroundContentEditor from './ImageBackgroundContentEditor'
-import ImageContentEditor from './ImageContentEditor'
-import WorkflowEditor     from './WorkflowEditor'
-import SelectorEditor     from './SelectorEditor'
 import {closeEditor, CLOSE_EDITOR, SHOW_EDITOR} from '../../actions/editorActions'
+import {updateContent} from '../../actions/contentActions'
+import NoneEditor from './NoneEditor'
 
 export default class Editor extends React.Component {
-  contentEditor() {
-    const editor = this.props.data.get("editor");
-    return React.createElement(editor, this.props);
-  }
-
   render() {
-    console.log("amoas ", this.animation());
+    const editor        = this.props.data.get("editor");
+    const ContentEditor = editor === undefined ? NoneEditor : editor;
+
     return (
       <div className={"editor" + this.animation()} >
-        { this.contentEditor() }
+        <ContentEditor ref="contentEditor" store={this.props.store} index={this.props.index} actionType={this.props.actionType} data={this.props.data} />
         <button onClick={this.handleCancel.bind(this)}>Cancel</button>
         <button onClick={this.handleDone.bind(this)}>Done</button>
       </div>
@@ -42,8 +31,16 @@ export default class Editor extends React.Component {
   }
 
   handleDone() {
-    this.props.store.dispatch(updateContent(this.props.index, featureListData()));
-    this.props.store.dispatch(closeEditor());
+    const contentEditor = this.refs.contentEditor;
+
+    if(contentEditor.contentData === undefined){
+      window.alert( "ERROR! " + contentEditor.name + " does not implement contentData() method. Please do!" );
+      return;
+    }
+    else{
+      this.props.store.dispatch(updateContent(this.props.index, contentEditor.contentData()));
+      this.props.store.dispatch(closeEditor());
+    }
   }
 
 }
