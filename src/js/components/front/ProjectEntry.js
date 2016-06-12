@@ -29,6 +29,6 @@ export default class ProjectEntry extends React.Component {
 
   onClick() {
     this.props.store.dispatch(gotoLandingPageMode());
-    this.props.store.dispatch(appendContent("ImageBackgroundContent", imageBackgroundContentData(this.state.title)));
+    this.props.store.dispatch(appendContent(imageBackgroundContentData(this.state.title)));
   }
 }

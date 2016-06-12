@@ -13,7 +13,8 @@ import {showEditor} from '../../actions/editorActions'
 
 export default class Content extends React.Component{
   render() {
-    switch(this.props.contentType) {
+    const type = this.props.data.get("type");
+    switch(type) {
       case Deploy.name :
         return React.createElement(Deploy, this.props);
       case IconContent.name :

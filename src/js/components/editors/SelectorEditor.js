@@ -28,31 +28,31 @@ export default class SelectorEditor extends React.Component {
   }
 
   onClickFeatureList(event) {
-    this.props.store.dispatch(appendContent("FeatureList", featureListData()));
+    this.props.store.dispatch(appendContent(featureListData()));
     this.props.store.dispatch(closeEditor());
   }
   onClickHowToUse(event) {
-    this.props.store.dispatch(appendContent("HowToUse", howToUseData()));
+    this.props.store.dispatch(appendContent(howToUseData()));
     this.props.store.dispatch(closeEditor());
   }
   onClickPicture(event) {
-    this.props.store.dispatch(appendContent("Picture", pictureData()));
+    this.props.store.dispatch(appendContent(pictureData()));
     this.props.store.dispatch(closeEditor());
   }
   onClickSocial(event) {
-    this.props.store.dispatch(appendContent("Social", socialData()));
+    this.props.store.dispatch(appendContent(socialData()));
     this.props.store.dispatch(closeEditor());
   }
   onClickImageBackgroundContent(event) {
-    this.props.store.dispatch(appendContent("ImageBackgroundContent", imageBackgroundContentData()));
+    this.props.store.dispatch(appendContent(imageBackgroundContentData()));
     this.props.store.dispatch(closeEditor());
   }
   onClickImageContent(event) {
-    this.props.store.dispatch(appendContent("ImageContent", imageContentData()));
+    this.props.store.dispatch(appendContent(imageContentData()));
     this.props.store.dispatch(closeEditor());
   }
   onClickWorkflow(event) {
-    this.props.store.dispatch(appendContent("Workflow", workflowData()));
+    this.props.store.dispatch(appendContent(workflowData()));
     this.props.store.dispatch(closeEditor());
   }
 }

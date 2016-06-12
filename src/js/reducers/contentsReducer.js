@@ -4,11 +4,11 @@ import { APPEND_CONTENT, INSERT_CONTENT, REMOVE_CONTENT, UPDATE_CONTENT } from "
 export default function contents(state = List(), action = undefined){
   switch(action.type) {
     case APPEND_CONTENT:
-      return state.push(Map({contentType: action.contentType, data: action.data}));
+      return state.push(action.data);
     case INSERT_CONTENT:
-      return state.insert(action.index, Map({contentType: action.contentType, data: action.data}) );
+      return state.insert(action.index, action.data);
     case UPDATE_CONTENT:
-      return state.set(   action.index, Map({contentType: action.contentType, data: action.data}) );
+      return state.set(action.index, action.data);
     case REMOVE_CONTENT:
       return state.remove(action.index);
     default:
