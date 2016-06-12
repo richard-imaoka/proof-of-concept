@@ -22,7 +22,6 @@ export default class LandingContainer extends React.Component {
           store={this.props.store}
           index={editor.get("index")}
           actionType={editor.get("actionType")}
-          editorType={editor.get("data").get("type")}
           data={editor.get("data")} />
       </main>
     );
