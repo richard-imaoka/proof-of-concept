@@ -5,12 +5,6 @@ import Workflow     from '../contents/Workflow.js'
 
 export default class FrontContainer extends React.Component {
   render() {
-    return (
-      <div>
-        <ProjectEntry store={this.props.store}/>
-        <Workflow     store={this.props.store}/>
-        <HowToUse     store={this.props.store}/>
-      </div>
-    );
+    return <ProjectEntry store={this.props.store}/>
   }
 }
