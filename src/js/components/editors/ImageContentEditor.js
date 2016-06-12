@@ -1,51 +1,40 @@
 import React from 'react'
-import {updateContent} from '../../actions/contentActions'
-import {closeEditor}   from '../../actions/editorActions'
-import pictureData     from '../../data/pictureData'
+import imageContentData from '../../data/imageContentData'
 
-export default class ImageEditor extends React.Component {
+export default class ImageContentEditor extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      title:       this.props.data.get("title"),
+      description: this.props.data.get("description"),
+      src:         this.props.data.get("src")
+    };
+  }
+
   render() {
     return (
-      <div>PictureEditor
-        <input ref="input" type="file" onChange={this.onChangeImage.bind(this)} />
-        <button onClick={this.onClickPick.bind(this)}>show file name</button>
-        <button onClick={this.onClick.bind(this)}>done</button>
+      <div>
+        ImageContentEditor
+        <input type="text" value={this.state.title}       onChange={this.onChangeTitle.bind(this)} />
+        <input type="text" value={this.state.description} onChange={this.onChangeDescription.bind(this)} />
+        <input type="text" value={this.state.src}         onChange={this.onChangeSource.bind(this)} />
       </div>
     );
   }
 
-  onChangeImage(domEvent) {
-    //store.dispatch(LOAD_IMAGE)
-
-    let fileObj  = domEvent.target.files[0];
-    let reader = new FileReader();
-
-    reader.onload = fileEvent => {
-      console.log('wheefee');
-      let src = fileEvent.target.result;
-      this.props.store.dispatch(
-        updateContent(
-          this.props.index,
-          "Picture",
-          pictureData( src, fileObj ) //src
-        )
-      );
-    }
-    reader.readAsDataURL(fileObj);
+  contentData() {
+    return imageContentData(this.state.title, this.state.description, this.state.src);
   }
 
-  onClickPick(){
-    window.alert(this.refs.input.value);
+  onChangeTitle(event) {
+    this.setState({title: event.target.value})
   }
 
-  componentWillReceiveProps(props){
-    console.log(this.refs.input.value);
+  onChangeDescription(event) {
+    this.setState({description: event.target.value});
   }
 
-
-  onClick() {
-    this.props.store.dispatch(updateContent(this.props.index, "Picture", pictureData()));
-    this.props.store.dispatch(closeEditor());
+  onChangeSource(event) {
+    this.setState({src: event.target.value});
   }
-
 }

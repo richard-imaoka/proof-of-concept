@@ -5,11 +5,11 @@ import imageContentData from '../../data/imageContentData'
 export default class ImageContent extends React.Component {
   render() {
     return (
-      <section className="image-content-background" onClick={this.onClick.bind(this)}>
+      <section className="image-content-background" onClick={this.props.onClick}>
         <div className="container image-content">
           <div className="row">
             <div className="col-xs-12 col-md-6">
-              <img className="img-circle" src="img/chess-game-strategy-intelligence-52993.jpeg" alt="chess" />
+              <img className="img-circle" src={this.props.data.get("src")} alt={this.props.data.get("title")} />
             </div>
             <div className="col-xs-12 col-md-6">
               <div><h2>{this.props.data.get("title")}</h2></div>
@@ -20,13 +20,8 @@ export default class ImageContent extends React.Component {
       </section>
     );
   }
-  
-  onClick() {
-    this.props.store.dispatch(
-      showEditor(
-        this.props.index,
-        imageContentData(this.props.data.get("title"), this.props.data.get("description"))
-      )
-    );
+
+  contentData() {
+    return imageContentData(this.props.data.get("title"), this.props.data.get("description"), this.props.data.get("src") );
   }
 }
