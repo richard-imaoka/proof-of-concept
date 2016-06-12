@@ -1,13 +1,13 @@
 import {Map,List}      from 'immutable'
-import featureData from './featureData'
+import iconData from './iconData'
 
 export default function featureListData(numIconContents=0){
   return Map({
     type    : "FeatureList",
     features: List([
-      featureData("Great Feature",        "Lorem ipsum dolor sit amet, consectetur adipiscing.", "bullhorn"),
-      featureData("Ever Greater Feature", "Lorem ipsum dolor sit amet, consectetur adipiscing.", "bank"),
-      featureData("Nothing seconds me",   "Lorem ipsum dolor sit amet, consectetur adipiscing.", "bolt")
+      iconData("Great Feature",        "Lorem ipsum dolor sit amet, consectetur adipiscing.", "bullhorn"),
+      iconData("Ever Greater Feature", "Lorem ipsum dolor sit amet, consectetur adipiscing.", "bank"),
+      iconData("Nothing seconds me",   "Lorem ipsum dolor sit amet, consectetur adipiscing.", "bolt")
     ])
   });
 }

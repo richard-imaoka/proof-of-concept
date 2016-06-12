@@ -1,6 +1,6 @@
 import React from 'react'
 import {showEditor} from '../../actions/editorActions'
-import featureData from '../../data/featureData'
+import iconData from '../../data/iconData'
 
 export default class IconContent extends React.Component {
   render() {

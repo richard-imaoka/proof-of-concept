@@ -1,7 +1,7 @@
 import React from 'react'
 import {updateContent} from '../../actions/contentActions'
 import {closeEditor}   from '../../actions/editorActions'
-import featureData     from '../../data/featureData'
+import iconData        from '../../data/iconData'
 
 export default class IconContentEditor extends React.Component {
   render() {
@@ -14,7 +14,7 @@ export default class IconContentEditor extends React.Component {
   }
 
   onClick() {
-    this.props.store.dispatch(updateContent(this.props.index, "IconContent", featureData()));
+    this.props.store.dispatch(updateContent(this.props.index, "IconContent", iconData()));
     this.props.store.dispatch(closeEditor());
   }
 }

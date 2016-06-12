@@ -1,6 +1,6 @@
 import {Map} from 'immutable'
 
-export default function featureData(
+export default function iconData(
   feature="",
   description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   icon="camera-retro") {
