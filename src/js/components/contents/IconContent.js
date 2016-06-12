@@ -19,7 +19,11 @@ export default class IconContent extends React.Component {
       )
   }
 
+  contentData() {
+    return iconData( this.props.data.get("feature"), this.props.data.get("description"), this.props.data.get("icon"), this.props.subIndex );
+  }
+
   onClick() {
-    //this.props.store.dispatch(showEditor("IconContentEditor", this.props.index));
+    this.props.store.dispatch( showEditor( this.props.index, this.contentData() ) );
   }
 }

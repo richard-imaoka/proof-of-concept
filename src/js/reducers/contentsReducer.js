@@ -6,9 +6,9 @@ export default function contents(state = List(), action = undefined){
     case APPEND_CONTENT:
       return state.push(action.data);
     case INSERT_CONTENT:
-      return state.insert(action.index, action.data);
+      return state.insert(action.index.get(0), action.data);
     case UPDATE_CONTENT:
-      return state.set(action.index, action.data);
+      return state.setIn(action.index, action.data);
     case REMOVE_CONTENT:
       return state.remove(action.index);
     default:

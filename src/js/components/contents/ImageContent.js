@@ -5,7 +5,7 @@ import imageContentData from '../../data/imageContentData'
 export default class ImageContent extends React.Component {
   render() {
     return (
-      <section className="image-content-background" onClick={this.props.onClick}>
+      <section className="image-content-background" onClick={this.onClick.bind(this)}>
         <div className="container image-content">
           <div className="row">
             <div className="col-xs-12 col-md-6">
@@ -23,5 +23,9 @@ export default class ImageContent extends React.Component {
 
   contentData() {
     return imageContentData(this.props.data.get("title"), this.props.data.get("description"), this.props.data.get("src") );
+  }
+
+  onClick() {
+    this.props.store.dispatch( showEditor( this.props.index, this.contentData() ) );
   }
 }
