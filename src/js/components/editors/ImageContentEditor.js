@@ -14,7 +14,7 @@ export default class ImageContentEditor extends React.Component {
   render() {
     return (
       <div>
-        ImageContentEditor
+        <h1>ImageContentEditor</h1>
         <input type="text" value={this.state.title}       onChange={this.onChangeTitle.bind(this)} />
         <input type="text" value={this.state.description} onChange={this.onChangeDescription.bind(this)} />
         <input type="text" value={this.state.src}         onChange={this.onChangeSource.bind(this)} />

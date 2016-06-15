@@ -1,7 +1,8 @@
 import React from 'react'
 import {closeEditor, CLOSE_EDITOR, SHOW_EDITOR} from '../../actions/editorActions'
 import {updateContent} from '../../actions/contentActions'
-import NoneEditor from './NoneEditor'
+import NoneEditor     from './NoneEditor'
+import EditorCloseBar from './EditorCloseBar'
 
 export default class Editor extends React.Component {
   render() {
@@ -10,8 +11,8 @@ export default class Editor extends React.Component {
 
     return (
       <div className={"editor" + this.animation()} >
+        <EditorCloseBar />
         <ContentEditor ref="contentEditor" store={this.props.store} index={this.props.index} actionType={this.props.actionType} data={this.props.data} />
-        <button onClick={this.handleCancel.bind(this)}>Cancel</button>
         <button onClick={this.handleDone.bind(this)}>Done</button>
       </div>
     )
@@ -24,10 +25,6 @@ export default class Editor extends React.Component {
       return " animated animated-fastest slideOutDown";
     else
       return " none"
-  }
-  
-  handleCancel() {
-    this.props.store.dispatch(closeEditor());
   }
 
   handleDone() {

@@ -93,6 +93,13 @@
   background-color: rgba(255, 0, 0, 0.8);
 }
 
+.editor-close-bar {
+  text-align      : center;
+  height          : 36px;
+  border-bottom   : double;
+  font-size       : 24px;
+}
+
 .none {
   display: none;
 }
