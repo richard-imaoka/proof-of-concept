@@ -12,10 +12,12 @@ export default class Editor extends React.Component {
     return (
       <div className={"editor" + this.animation()} >
         <div className="container-float">
-          <EditorCloseBar />
-          <ContentEditor ref="contentEditor" store={this.props.store} index={this.props.index} actionType={this.props.actionType} data={this.props.data} />
-          <div className="row">
-            <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.handleDone.bind(this)}>Done</button>
+          <EditorCloseBar store={this.props.store} />
+          <div className="editor-opaque">
+            <ContentEditor ref="contentEditor" store={this.props.store} index={this.props.index} actionType={this.props.actionType} data={this.props.data} />
+            <div className="row">
+              <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.handleDone.bind(this)}>Done</button>
+            </div>
           </div>
         </div>
       </div>

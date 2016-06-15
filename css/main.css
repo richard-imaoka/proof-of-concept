@@ -86,7 +86,7 @@
 .editor {
   position: fixed;
   width:      100%;
-  min-height: 50%;
+  height:     100%;
   bottom:     0px;
   left:         0;
   z-index:     10;
@@ -100,8 +100,16 @@
   font-size       : 24px;
 }
 
+.editor-name {
+  text-align      : center;
+}
+
 .none {
   display: none;
+}
+
+.editor-opaque {
+  background-color: red;
 }
 
 .btn-primary {

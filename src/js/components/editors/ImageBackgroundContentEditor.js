@@ -13,9 +13,17 @@ export default class ImageBackgroundContentEditor extends React.Component {
   render() {
     return (
       <div>
-        ImageBackgroundContentEditor
-        <input type="text" value={this.state.title}       onChange={this.onChangeTitle.bind(this)} />
-        <input type="text" value={this.state.description} onChange={this.onChangeDescription.bind(this)} />
+        <h3 className="editor-name">Image in Background</h3>
+        <form>
+          <div className="form-group">
+            <label htmlFor="editor-input-title">title</label>
+            <input id="editor-input-title" type="text" className="form-control" value={this.state.title}  onChange={this.onChangeTitle.bind(this)} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="editor-input-description">description</label>
+            <input id="editor-input-description" type="text" className="form-control" value={this.state.description}  onChange={this.onChangeDescription.bind(this)} />
+          </div>
+        </form>
       </div>
     );
   }
