@@ -119,6 +119,11 @@
   font-size: 22px;
 }
 
+.addmore-background {
+  border-style: dashed;
+  margin     :  2px 0px;
+}
+
 .btn {
   display: inline-block;
   text-align: center;
