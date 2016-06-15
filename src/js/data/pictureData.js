@@ -1,6 +1,6 @@
 import {Map} from 'immutable'
 import Picture from '../components/contents/Picture'
-import PictureEditor from '../components/editors/PictureEditor'
+import PictureEditor from '../components/editors/PictureContentEditor'
 
 export default function pictureData(src="", fileObj=undefined){
   return Map({

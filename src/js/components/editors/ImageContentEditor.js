@@ -1,5 +1,5 @@
 import React from 'react'
-import imageContentData from '../../data/imageContentData'
+import imageData from '../../data/imageData'
 
 export default class ImageContentEditor extends React.Component {
   constructor(props){
@@ -23,7 +23,7 @@ export default class ImageContentEditor extends React.Component {
   }
 
   contentData() {
-    return imageContentData(this.state.title, this.state.description, this.state.src);
+    return imageData(this.state.title, this.state.description, this.state.src);
   }
 
   onChangeTitle(event) {

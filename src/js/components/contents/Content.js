@@ -1,5 +1,4 @@
 import React from 'react'
-import {showEditor} from '../../actions/editorActions'
 import NoneContent  from './NoneContent'
 
 export default class Content extends React.Component{

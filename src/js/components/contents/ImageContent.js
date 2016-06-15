@@ -1,6 +1,6 @@
 import React from 'react'
 import {showEditor} from '../../actions/editorActions'
-import imageContentData from '../../data/imageContentData'
+import imageData from '../../data/imageData'
 
 export default class ImageContent extends React.Component {
   render() {
@@ -22,7 +22,7 @@ export default class ImageContent extends React.Component {
   }
 
   contentData() {
-    return imageContentData(this.props.data.get("title"), this.props.data.get("description"), this.props.data.get("src") );
+    return imageData(this.props.data.get("title"), this.props.data.get("description"), this.props.data.get("src") );
   }
 
   onClick() {

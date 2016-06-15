@@ -3,7 +3,7 @@ import IconContent       from '../components/contents/IconContent'
 import IconContentEditor from '../components/editors/IconContentEditor'
 
 export default function iconData(
-  feature="",
+  feature="The greatest feature",
   description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   icon="camera-retro")
 {

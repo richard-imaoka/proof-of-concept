@@ -1,5 +1,5 @@
 import React from 'react'
-import imageBackgroundContentData from '../../data/imageBackgroundContentData'
+import imageBackgroundData from '../../data/imageBackgrounData'
 
 export default class ImageBackgroundContentEditor extends React.Component {
   constructor(props){
@@ -21,7 +21,7 @@ export default class ImageBackgroundContentEditor extends React.Component {
   }
 
   contentData() {
-    return imageBackgroundContentData(this.state.title, this.state.description);
+    return imageBackgroundData(this.state.title, this.state.description);
   }
 
   onChangeTitle(event) {

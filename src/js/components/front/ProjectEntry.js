@@ -1,7 +1,7 @@
 import React from 'react'
 import { gotoLandingPageMode } from '../../actions/modeActions'
 import { appendContent }       from '../../actions/contentActions'
-import imageBackgroundContentData from '../../data/imageBackgroundContentData'
+import imageBackgroundData from '../../data/imageBackgrounData'
 
 export default class ProjectEntry extends React.Component {
   componentWillMount(){
@@ -29,6 +29,6 @@ export default class ProjectEntry extends React.Component {
 
   onClick() {
     this.props.store.dispatch(gotoLandingPageMode());
-    this.props.store.dispatch(appendContent(imageBackgroundContentData(this.state.title)));
+    this.props.store.dispatch(appendContent(imageBackgroundData(this.state.title)));
   }
 }

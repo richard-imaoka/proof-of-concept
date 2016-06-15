@@ -1,6 +1,6 @@
 import React from 'react'
 import {showEditor} from '../../actions/editorActions'
-import imageBackgroundContentData from '../../data/imageBackgroundContentData'
+import imageBackgroundData from '../../data/imageBackgrounData'
 
 export default class ImageBackgroundContent extends React.Component {
   render() {
@@ -15,7 +15,7 @@ export default class ImageBackgroundContent extends React.Component {
   }
 
   contentData() {
-    return imageBackgroundContentData(this.props.data.get("title"), this.props.data.get("description"));
+    return imageBackgroundData(this.props.data.get("title"), this.props.data.get("description"));
   }
 
   onClick() {
