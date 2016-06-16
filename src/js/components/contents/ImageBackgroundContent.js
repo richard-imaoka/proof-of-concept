@@ -5,7 +5,11 @@ import imageBackgroundData from '../../data/imageBackgrounData'
 export default class ImageBackgroundContent extends React.Component {
   render() {
     return (
-      <section className="image-background-content-background" onClick={this.onClick.bind(this)}>
+    <section
+      className="image-background-content-background"
+      style={{ backgroundImage : "url(" + this.props.data.get("src") + ")" }}
+      onClick={this.onClick.bind(this)}
+    >
         <div className="container image-background-content">
           <div className="row"><h2>{this.props.data.get("title")}</h2></div>
           <div className="row"><h4>{this.props.data.get("description")}</h4></div>

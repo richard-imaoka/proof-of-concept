@@ -17,6 +17,13 @@ export function getPictures(state) {
 }
 
 function log(state = null, action = undefined)  {
-  console.log( "action received", prettyString(action));
+  let saturatedAction = Object.assign({},action);
+  if( action.data !== undefined ){
+    let src = action.data.get("src");
+    if(src !== undefined && src.length > 20 )
+      saturatedAction.data = saturatedAction.data.set("src", src.substring(0, 20) + "..." );
+  }
+
+  console.log( "action received", prettyString(saturatedAction));
   return state;
 }

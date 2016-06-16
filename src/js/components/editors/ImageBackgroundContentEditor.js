@@ -6,7 +6,9 @@ export default class ImageBackgroundContentEditor extends React.Component {
     super(props);
     this.state = {
       title:       this.props.data.get("title"),
-      description: this.props.data.get("description")
+      description: this.props.data.get("description"),
+      src:         this.props.data.get("src"),
+      fileName:    this.props.data.get("fileName")
     };
   }
 
@@ -23,13 +25,17 @@ export default class ImageBackgroundContentEditor extends React.Component {
             <label htmlFor="editor-input-description">description</label>
             <input id="editor-input-description" type="text" className="form-control" value={this.state.description}  onChange={this.onChangeDescription.bind(this)} />
           </div>
+          <div className="form-group">
+            <label htmlFor="editor-input-description">select image</label>
+            <input type="file" accept="image/*"  onChange={this.onChangeImage.bind(this)} />
+          </div>
         </form>
       </div>
     );
   }
 
   contentData() {
-    return imageBackgroundData(this.state.title, this.state.description);
+    return imageBackgroundData(this.state.title, this.state.description, this.state.src, this.state.fileName );
   }
 
   onChangeTitle(event) {
@@ -38,5 +44,16 @@ export default class ImageBackgroundContentEditor extends React.Component {
 
   onChangeDescription(event) {
     this.setState({description: event.target.value});
+  }
+
+  onChangeImage(domEvent) {
+    //store.dispatch(LOAD_IMAGE)
+    let fileObj  = domEvent.target.files[0];
+    let reader = new FileReader();
+    reader.onload = fileEvent => {
+      let src = fileEvent.target.result;
+      this.setState({src: src, fileName: fileObj.name});
+    }
+    reader.readAsDataURL(fileObj);
   }
 }

@@ -1,5 +1,4 @@
 .image-background-content-background {
-  background-image: url(../img/lion-wild-africa-african.jpg);
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -7,7 +6,6 @@
 }
 
 .selector .image-background-content-background {
-  background-image: url(../img/lion-wild-africa-african.jpg);
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -158,7 +156,7 @@
 
 .animated-fast {
   -webkit-animation-duration: 0.3s;
-  animation-duration: 0.3s;
+  animation-duration: 0.s;
 }
 
 @keyframes swipe-delete {

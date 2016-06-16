@@ -4,12 +4,16 @@ import ImageBackgroundContentEditor from '../components/editors/ImageBackgroundC
 
 export default function imageBackgroundData(
   title="The greatest project ever",
-  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
+  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  src="img/lion-wild-africa-african.jpg",
+  fileName="lion-wild-africa-african.jpg"
 ){
   return Map( {
     type :       ImageBackgroundContent,
     editor:      ImageBackgroundContentEditor,
     title:       title,
-    description: description
+    description: description,
+    src  :       src,
+    fileName:    fileName
   } );
 }
