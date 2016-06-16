@@ -155,3 +155,23 @@
   -webkit-animation-duration: 0.15s;
   animation-duration: 0.15s;
 }
+
+.animated-fast {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+}
+
+@keyframes swipe-delete {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-deletion {
+  -webkit-animation-duration: 0.15s;
+  animation-duration: 0.15s;
+}
