@@ -6,7 +6,7 @@ export default function imageBackgroundData(
   title="The greatest project ever",
   description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   src="img/lion-wild-africa-african.jpg",
-  fileName="lion-wild-africa-african.jpg"
+  fileObj = undefined
 ){
   return Map( {
     type :       ImageBackgroundContent,
@@ -14,6 +14,6 @@ export default function imageBackgroundData(
     title:       title,
     description: description,
     src  :       src,
-    fileName:    fileName
+    fileObj:     fileObj
   } );
 }

@@ -8,7 +8,7 @@ export default class ImageContentEditor extends React.Component {
       title:       this.props.data.get("title"),
       description: this.props.data.get("description"),
       src:         this.props.data.get("src"),
-      fileName:    this.props.data.get("fileName")
+      fileObj:     this.props.data.get("fileObj")
     };
   }
 
@@ -35,7 +35,7 @@ export default class ImageContentEditor extends React.Component {
   }
 
   contentData() {
-    return imageData(this.state.title, this.state.description, this.state.src, this.state.fileName );
+    return imageData(this.state.title, this.state.description, this.state.src, this.state.fileObj );
   }
 
   onChangeTitle(event) {
@@ -56,7 +56,7 @@ export default class ImageContentEditor extends React.Component {
     let reader = new FileReader();
     reader.onload = fileEvent => {
       let src = fileEvent.target.result;
-      this.setState({src: src, fileName: fileObj.name});
+      this.setState({src: src, fileObj: fileObj});
     }
     reader.readAsDataURL(fileObj);
   }

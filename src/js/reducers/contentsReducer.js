@@ -1,5 +1,7 @@
 import { List, Map } from 'immutable'
 import { APPEND_CONTENT, INSERT_CONTENT, REMOVE_CONTENT, UPDATE_CONTENT } from "../actions/contentActions"
+import ImageContent           from '../components/contents/ImageContent'
+import ImageBackgroundContent from '../components/contents/ImageBackgroundContent'
 
 export default function contents(state = List(), action = undefined){
   switch(action.type) {
@@ -17,5 +19,5 @@ export default function contents(state = List(), action = undefined){
 }
 
 export function getPictures(state) {
-  return state.filter( x => x.get("data").get("type") === "Picture" )
+  return state.filter( x => x.get("type") === ImageContent || x.get("type") === ImageBackgroundContent )
 }
