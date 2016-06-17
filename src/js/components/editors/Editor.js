@@ -3,6 +3,8 @@ import {closeEditor, CLOSE_EDITOR, SHOW_EDITOR} from '../../actions/editorAction
 import {updateContent} from '../../actions/contentActions'
 import NoneEditor     from './NoneEditor'
 import EditorCloseBar from './EditorCloseBar'
+import UpdateButton   from './UpdateButton'
+import SelectEditor   from './SelectorEditor'
 
 export default class Editor extends React.Component {
   render() {
@@ -15,9 +17,7 @@ export default class Editor extends React.Component {
           <EditorCloseBar store={this.props.store} />
           <div className="editor-opaque">
             <ContentEditor ref="contentEditor" store={this.props.store} index={this.props.index} actionType={this.props.actionType} data={this.props.data} />
-            <div className="row">
-              <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.handleDone.bind(this)}>Done</button>
-            </div>
+            <UpdateButton show={this.showDoneButton()} onClick={this.handleUpdate.bind(this)} />
           </div>
         </div>
       </div>
@@ -33,7 +33,16 @@ export default class Editor extends React.Component {
       return " none"
   }
 
-  handleDone() {
+  showDoneButton(){
+    const contentEditor = this.props.data.get("editor");
+    if( contentEditor !== undefined )
+      return contentEditor.name !== SelectEditor.name
+    else
+      return false; 
+  }
+
+
+  handleUpdate() {
     const contentEditor = this.refs.contentEditor;
 
     if(contentEditor.contentData === undefined){
