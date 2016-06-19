@@ -1,5 +1,8 @@
 import React from 'react'
+import ReactDOMServer  from 'react-dom/server'
+import js_beautify     from 'js-beautify'
 import {getPictures} from '../../reducers/rootReducer'
+import LandingPage from './LandingPage'
 
 export default class Uplaod extends React.Component {
   render() {
@@ -7,14 +10,17 @@ export default class Uplaod extends React.Component {
   }
 
   onClick() {
+    this.uploadPicture();
+    console.log( js_beautify.html( ReactDOMServer.renderToStaticMarkup( <LandingPage store={this.props.store} landing={this.props.landing} /> ) ) );
+  }
 
+  uploadPicture(){
     let pictures = getPictures(this.props.store.getState());
 
     pictures.map( pictureContent => {
       let fileObj = pictureContent.get("fileObj");
 
       if(fileObj === undefined){
-        console.log( "not uploading " );
         return;
       }
 
@@ -24,11 +30,13 @@ export default class Uplaod extends React.Component {
 
       uploadTask.on('state_changed',
         snapshot => {},                      //1. 'state_changed' observer, called any time the state changes
-        error    => {console.error(error);}, //2. Error observer, called on failure
+        error    => {window.alert(error);},  //2. Error observer, called on failure
         ()       => {                        //3. Completion observer, called on successful completion
-          console.log("successfully uploaded " + fileObj.name );
+          window.alert("successfully uploaded " + fileObj.name );
         }
       )
     })
   }
+
+
 }
