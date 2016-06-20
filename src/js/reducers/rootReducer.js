@@ -16,6 +16,17 @@ export function getPictures(state) {
   return fromLanding.getPictures( state.get("landing") );
 }
 
+export function getAvailableFileName(state, fileNameCandidate) {
+  const pictureContents = getPictures(state);
+  const conflicts = pictureContents.filter(
+      x => x.get("fileObj") !== undefined && x.get("fileObj").name === fileNameCandidate );
+
+  if(conflicts.size > 0)
+    return fileNameCandidate.replace(".", "_" + ( conflicts.size  + 1 ).toString() + "." );
+  else
+    return fileNameCandidate;
+}
+
 function log(state = null, action = undefined)  {
   let saturatedAction = Object.assign({},action);
   if( action.data !== undefined ){

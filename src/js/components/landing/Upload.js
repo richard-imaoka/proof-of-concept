@@ -18,7 +18,8 @@ export default class Uplaod extends React.Component {
     let pictures = getPictures(this.props.store.getState());
 
     pictures.map( pictureContent => {
-      let fileObj = pictureContent.get("fileObj");
+      let fileObj  = pictureContent.get("fileObj");
+      let fileName = pictureContent.get("fileName");
 
       if(fileObj === undefined){
         return;
@@ -26,13 +27,13 @@ export default class Uplaod extends React.Component {
 
       let user       = firebase.auth().currentUser;
       let storageRef = firebase.storage().ref();
-      let uploadTask = storageRef.child(user.uid + "/" + fileObj.name).put(fileObj, { contentType: fileObj.type });
+      let uploadTask = storageRef.child(user.uid + "/" + fileName).put(fileObj, { contentType: fileObj.type });
 
       uploadTask.on('state_changed',
         snapshot => {},                      //1. 'state_changed' observer, called any time the state changes
         error    => {window.alert(error);},  //2. Error observer, called on failure
         ()       => {                        //3. Completion observer, called on successful completion
-          window.alert("successfully uploaded " + fileObj.name );
+          window.alert("successfully uploaded " + fileName);
         }
       )
     })

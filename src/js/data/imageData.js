@@ -6,7 +6,8 @@ export default function imageData(
   title="The greatest project ever",
   description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   src="img/chess-game-strategy-intelligence-52993.jpeg",
-  fileObj = undefined
+  fileObj = undefined,
+  fileName = ""
 ){
   return Map( {
     type :       ImageContent,
@@ -14,6 +15,7 @@ export default function imageData(
     title:       title,
     description: description,
     src  :       src,
-    fileObj:     fileObj
+    fileObj:     fileObj,
+    fileName:    fileName
   } );
 }
