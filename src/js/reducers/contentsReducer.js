@@ -21,3 +21,8 @@ export default function contents(state = List(), action = undefined){
 export function getPictures(state) {
   return state.filter( x => x.get("type") === ImageContent || x.get("type") === ImageBackgroundContent )
 }
+
+
+export function pickImage(content) {
+  return content => content.get("type") === ImageContent || content.get("type") === ImageBackgroundContent
+}

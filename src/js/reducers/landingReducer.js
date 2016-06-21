@@ -10,3 +10,7 @@ export default combineReducers({
 export function getPictures(state) {
   return fromContents.getPictures( state.get("contents") );
 }
+
+export function getContents(state){
+  return state.get("contents");
+}

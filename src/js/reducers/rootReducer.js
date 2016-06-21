@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux-immutable'
-import mode     from './modeReducers'
 import front    from './frontReducer'
 import landing,  * as fromLanding from './landingReducer'
+import mode      from './modeReducers'
 import prettyString from "../print/prettyString"
 
 export default combineReducers({
@@ -10,7 +10,6 @@ export default combineReducers({
   front,
   landing
 });
-
 
 export function getPictures(state) {
   return fromLanding.getPictures( state.get("landing") );
@@ -25,6 +24,11 @@ export function getAvailableFileName(state, fileNameCandidate) {
     return fileNameCandidate.replace(".", "_" + ( conflicts.size  + 1 ).toString() + "." );
   else
     return fileNameCandidate;
+}
+
+
+export function getLandingContents(state) {
+  return fromLanding.getContents( state.get("landing") );
 }
 
 function log(state = null, action = undefined)  {
