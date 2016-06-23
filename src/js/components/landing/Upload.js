@@ -7,6 +7,7 @@ import {updateContent}      from '../../actions/contentActions'
 import LandingHtml          from './LandingHtml'
 import ajaxPromise          from  '../../main/ajaxPromise'
 import firebaseUpload       from  '../../main/firebasePromise'
+import {setCss}             from  '../../actions/cssActions'
 
 export default class Uplaod extends React.Component {
   render() {
@@ -14,23 +15,24 @@ export default class Uplaod extends React.Component {
   }
 
   onClick() {
-    Promise.all( this.uploadCSS() ).then( value => {
-      //console.log( js_beautify.html( ReactDOMServer.renderToStaticMarkup( <LandingHtml store={this.props.store} /> ) ) );
-    });
+    this.uploadCSS()
+      .then( () => { return Promise.all( this.uploadPictures() ); })
+      .then( () => { return this.uploadHTML(); } )
+      .then( () => window.alert("upload to Firebase finished!"));
   }
 
   uploadSinglePicture(pictureContent){
     const index    = pictureContent.get("index");
     const fileName = pictureContent.get("fileName");
-    const fileObj  = pictureContent.get("fileObj")
+    const fileObj  = pictureContent.get("fileObj");
 
     firebaseUpload(fileObj, fileName)
       .then( uploadFileURL => {
         this.props.store.dispatch(updateContent(index, pictureContent.set("src", uploadFileURL)));
       })
-      .catch( error =>
-        console.log("failed to upload file to firebase", error )
-      );
+      .catch( error => {
+        console.log("failed to upload file to firebase", error);
+      });
   }
 
   uploadPictures(){
@@ -43,11 +45,14 @@ export default class Uplaod extends React.Component {
   uploadCSS(){
     return ajaxPromise("css/main.css")
       .then(cssString => new Blob([cssString], {type: "text/css"}) )
-      .then(blob => firebaseUpload(blob, "main.css"));
+      .then(blob => firebaseUpload(blob, "main.css"))
+      .then(url => this.props.store.dispatch(setCss(url)));
   }
 
-  allUploads(){
-    this.uploadCSS().concat(this.uploadPictures());
+  uploadHTML(){
+    const htmlString =
+      "<DOCTYPE! html>\n" +
+      js_beautify.html( ReactDOMServer.renderToStaticMarkup( <LandingHtml store={this.props.store} /> ) );
+    return firebaseUpload(new Blob([htmlString], {type: "text/html"}), "index.html");
   }
-
 }
