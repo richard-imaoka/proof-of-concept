@@ -8,6 +8,8 @@ import LandingHtml          from './LandingHtml'
 import ajaxPromise          from  '../../main/ajaxPromise'
 import firebaseUpload       from  '../../main/firebasePromise'
 import {setCss}             from  '../../actions/cssActions'
+import {setProgress, startUpload} from  '../../actions/uploadProgressActions'
+
 
 export default class Uplaod extends React.Component {
   render() {
@@ -26,7 +28,14 @@ export default class Uplaod extends React.Component {
     const fileName = pictureContent.get("fileName");
     const fileObj  = pictureContent.get("fileObj");
 
-    firebaseUpload(fileObj, fileName)
+    this.props.store.dispatch(startUpload(fileName));
+
+    const onFirebaseStateChange = (snapshot) => {
+      const progressPercentage = Math.round(100 * snapshot.bytesTransferred / snapshot.totalBytes);
+      this.props.store.dispatch(setProgress(fileName, progressPercentage));
+    };
+
+    firebaseUpload(fileObj, fileName, onFirebaseStateChange.bind(this))
       .then( uploadFileURL => {
         this.props.store.dispatch(updateContent(index, pictureContent.set("src", uploadFileURL)));
       })
@@ -34,6 +43,7 @@ export default class Uplaod extends React.Component {
         console.log("failed to upload file to firebase", error);
       });
   }
+
 
   uploadPictures(){
     //assigning index needs to be here, otherwise, the actual index of the list and index field inside element gets out of sync quickly
@@ -43,9 +53,16 @@ export default class Uplaod extends React.Component {
   }
 
   uploadCSS(){
+    this.props.store.dispatch(startUpload("main.css"));
+
+    const onFirebaseStateChange = (snapshot) => {
+      const progressPercentage = Math.round(100 * snapshot.bytesTransferred / snapshot.totalBytes);
+      this.props.store.dispatch(setProgress("main.css", progressPercentage));
+    };
+
     return ajaxPromise("css/main.css")
       .then(cssString => new Blob([cssString], {type: "text/css"}) )
-      .then(blob => firebaseUpload(blob, "main.css"))
+      .then(blob => firebaseUpload(blob, "main.css", onFirebaseStateChange.bind(this)))
       .then(url => this.props.store.dispatch(setCss(url)));
   }
 
@@ -53,6 +70,14 @@ export default class Uplaod extends React.Component {
     const htmlString =
       "<DOCTYPE! html>\n" +
       js_beautify.html( ReactDOMServer.renderToStaticMarkup( <LandingHtml store={this.props.store} /> ) );
-    return firebaseUpload(new Blob([htmlString], {type: "text/html"}), "index.html");
+
+    this.props.store.dispatch(startUpload("index.html"));
+
+    const onFirebaseStateChange = (snapshot) => {
+      const progressPercentage = Math.round(100 * snapshot.bytesTransferred / snapshot.totalBytes);
+      this.props.store.dispatch(setProgress("index.html", progressPercentage));
+    };
+
+    return firebaseUpload(new Blob([htmlString], {type: "text/html"}), "index.html", onFirebaseStateChange.bind(this));
   }
 }

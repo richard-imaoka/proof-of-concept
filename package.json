@@ -6,6 +6,7 @@
   "dependencies": {
     "immutable": "^3.7.6",
     "js-beautify": "^1.6.3",
+    "rc-progress": "^1.0.4",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
     "react-hammerjs": "^0.4.6",

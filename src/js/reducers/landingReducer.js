@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux-immutable'
 import contents, * as fromContents from "./contentsReducer"
 import editor   from './editorReducer'
+import uploadProgress from './uploadProgressReducer'
 
 export default combineReducers({
   contents,
-  editor
+  editor,
+  uploadProgress
 });
 
 export function getPictures(state) {

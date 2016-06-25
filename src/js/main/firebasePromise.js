@@ -1,4 +1,4 @@
-export default function firebaseUpload(fileObj, fileName) {
+export default function firebaseUpload(fileObj, fileName, onStateChange = ()=>{}) {
   let user       = firebase.auth().currentUser;
   let storageRef = firebase.storage().ref();
 
@@ -8,6 +8,8 @@ export default function firebaseUpload(fileObj, fileName) {
     uploadTask.on('state_changed',
       //1. 'state_changed' observer, called any time the state changes
       snapshot => {
+        console.log(snapshot);
+        onStateChange(snapshot);
       },
       //2. Error observer, called on failure
       error => {
