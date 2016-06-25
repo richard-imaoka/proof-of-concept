@@ -25,4 +25,29 @@ export default class ImageBackgroundContent extends React.Component {
   onClick() {
     this.props.store.dispatch( showEditor( this.props.index, this.contentData() ) );
   }
+
+  rotateBackground(){
+    //EXIF orientation value
+    //http://stackoverflow.com/questions/20600800/js-client-side-exif-orientation-rotate-and-mirror-jpeg-images
+    switch(this.props.data.get("orientation")){
+      case 1:
+        return "rotate(0deg)";
+      case 2:
+        return "rotate(0deg) rotateY(180deg)";
+      case 3:
+        return "rotate(180deg)";
+      case 4:
+        return "rotate(180deg) rotateY(180deg)";
+      case 5:
+        return "rotate(90deg) rotateY(180deg)";
+      case 6:
+        return "rotate(90deg)";
+      case 7:
+        return "rotate(-90deg) rotateY(180deg)";
+      case 8:
+        return "rotate(-90deg)";
+      default:
+        return "rotate(0deg)";
+    }
+  }
 }

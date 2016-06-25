@@ -7,7 +7,8 @@ export default function imageBackgroundData(
   description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   src="img/lion-wild-africa-african.jpg",
   fileObj = undefined,
-  fileName = ""
+  fileName = "",
+  orientation=undefined //from exif
 ){
   return Map( {
     type :       ImageBackgroundContent,
@@ -16,6 +17,7 @@ export default function imageBackgroundData(
     description: description,
     src  :       src,
     fileObj:     fileObj,
-    fileName:    fileName
+    fileName:    fileName,
+    orientation: orientation
   } );
 }

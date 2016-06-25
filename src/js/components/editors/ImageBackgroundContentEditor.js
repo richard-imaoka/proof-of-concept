@@ -10,7 +10,8 @@ export default class ImageBackgroundContentEditor extends React.Component {
       description: this.props.data.get("description"),
       src:         this.props.data.get("src"),
       fileObj:     this.props.data.get("fileObj"),
-      fileName:    this.props.data.get("fileName")
+      fileName:    this.props.data.get("fileName"),
+      orientation: this.props.data.get("orientation")
     };
   }
 
@@ -37,7 +38,7 @@ export default class ImageBackgroundContentEditor extends React.Component {
   }
 
   contentData() {
-    return imageBackgroundData(this.state.title, this.state.description, this.state.src, this.state.fileObj, this.state.fileName );
+    return imageBackgroundData(this.state.title, this.state.description, this.state.src, this.state.fileObj, this.state.fileName, this.state.orientation );
   }
 
   onChangeTitle(event) {
@@ -49,8 +50,16 @@ export default class ImageBackgroundContentEditor extends React.Component {
   }
 
   onChangeImage(domEvent) {
-    //store.dispatch(LOAD_IMAGE)
-    let fileObj  = domEvent.target.files[0];
+    let fileObj = domEvent.target.files[0];
+
+    loadImage.parseMetaData( fileObj, data => {
+        if (!data.imageHead) {
+          return;
+        }
+        this.setState({orientation: data.exif.get('Orientation')});
+      }
+    );
+
     let reader = new FileReader();
     reader.onload = fileEvent => {
       const src = fileEvent.target.result;
