@@ -6,19 +6,16 @@ export default class AddMore extends React.Component {
   render() {
     return (
       <div className="addmore-background">
-        <div className="container" onClick={this.handleAdd.bind(this)}>
-          <div className="text-xs-center text-sm-center">
-            <i className="fa fa-plus fa-5x" aria-hidden="true"></i>
-          </div>
-          <div className="text-xs-center text-sm-center">
-            Add a Content
-          </div>
+        <div className="container addmore-container" onClick={this.onClick.bind(this)}>
+            <div className="text-xs-center text-sm-center">
+              <h2>Add Content</h2>
+            </div>
         </div>
       </div>
     );
   }
 
-  handleAdd() {
+  onClick() {
     this.props.store.dispatch(showEditor(this.props.index, selectorData()));
   }
 }

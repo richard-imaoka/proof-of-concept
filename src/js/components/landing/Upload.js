@@ -13,7 +13,15 @@ import {setProgress, startUpload} from  '../../actions/uploadProgressActions'
 
 export default class Uplaod extends React.Component {
   render() {
-    return <button onClick={this.onClick.bind(this)}>upload</button>;
+    return(
+      <div className="upload-background">
+        <div className="container upload-container" onClick={this.onClick.bind(this)}>
+          <div className="text-xs-center text-sm-center">
+            <h2>Upload and Save</h2>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   onClick() {
