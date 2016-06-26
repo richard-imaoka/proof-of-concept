@@ -2,6 +2,14 @@
   height: 100%;
 }
 
+.expand-width {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
 .image-background-content-background {
   background-size: auto 100%;
   background-repeat: no-repeat;
@@ -191,4 +199,27 @@
 .animate-deletion {
   -webkit-animation-duration: 0.15s;
   animation-duration: 0.15s;
+}
+
+.selector {
+  padding: 5px 0px;
+}
+
+.selector > button {
+  display      : block;
+  margin       : 5px 0px;
+  border-style : solid;
+  border-radius: 24px;
+  border-width : 4px;
+  border-color : white;
+  line-height  : 60px;
+  font-size    : 24px;
+  text-align   : center;
+  background-color: darkolivegreen;
+  color        : white;
+}
+
+.selector > button:active {
+  background-color: darkcyan;
+  color           : yellow;
 }

@@ -10,14 +10,10 @@ import iconData         from  '../../data/iconData'
 export default class SelectorEditor extends React.Component {
   render() {
     return (
-      <div>
-        <div></div>
-        <ul>
-          <li onClick={this.onIconContent.bind(this)}>IconContent</li>
-          <li onClick={this.onClickImageBackgroundContent.bind(this)}>ImageBackgroundContent</li>
-          <li onClick={this.onClickImageContent.bind(this)}>ImageContent</li>
-          <li onClick={this.onClickSocial.bind(this)}>Social</li>
-        </ul>
+      <div className="selector">
+        <h2 className="text-center">Add Content</h2>
+        <button className="expand-width" onClick={this.onClickImageBackgroundContent.bind(this)}>Background-Image Content</button>
+        <button className="expand-width" onClick={this.onClickImageContent.bind(this)}>Image Content</button>
       </div>
     );
   }
