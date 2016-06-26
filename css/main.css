@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+.display-block {
+  display: block;
+}
+
 .text-center {
   text-align: center;
 }
@@ -112,10 +116,6 @@
   font-size       : 24px;
 }
 
-.editor-name {
-  text-align      : center;
-}
-
 .none {
   display: none;
 }
@@ -205,7 +205,7 @@
   padding: 5px 0px;
 }
 
-.selector > button {
+.button {
   display      : block;
   margin       : 5px 0px;
   border-style : solid;
@@ -219,7 +219,31 @@
   color        : white;
 }
 
-.selector > button:active {
+.button:active {
   background-color: darkcyan;
   color           : yellow;
+}
+
+.image-preview {
+  display  : block;
+  margin   : 5px auto;
+  max-width: 50%;
+}
+
+.input-text {
+  display: block;
+  width  : 100%;
+  padding: 5px;
+  margin : 5px 0px;
+  border-radius: 5px;
+  border-width : 0px;
+}
+
+.input-textarea {
+  display: block;
+  width  : 100%;
+  padding: 5px;
+  margin : 5px 0px;
+  border-radius: 5px;
+  border-width : 0px;
 }

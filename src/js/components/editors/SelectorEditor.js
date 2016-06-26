@@ -12,8 +12,8 @@ export default class SelectorEditor extends React.Component {
     return (
       <div className="selector">
         <h2 className="text-center">Add Content</h2>
-        <button className="expand-width" onClick={this.onClickImageBackgroundContent.bind(this)}>Background-Image Content</button>
-        <button className="expand-width" onClick={this.onClickImageContent.bind(this)}>Image Content</button>
+        <button className="button expand-width" onClick={this.onClickImageBackgroundContent.bind(this)}>Background-Image Content</button>
+        <button className="button expand-width" onClick={this.onClickImageContent.bind(this)}>Image Content</button>
       </div>
     );
   }
