@@ -8,7 +8,9 @@ export default class UplaodProgress extends React.Component {
 
     if(this.props.data.size > 0)
       return (
-        <div>{uploads.map(this.renderProgressBar)}</div>
+        <div className="upload-progress">
+          {uploads.map(this.renderProgressBar)}
+        </div>
       );
     else
       return <div />;
@@ -16,7 +18,7 @@ export default class UplaodProgress extends React.Component {
 
   renderProgressBar(progressData){
     return (
-      <div key={progressData.get("fileName")}>
+      <div key={progressData.get("fileName")} className="child">
         <h6>{"Uploading " + progressData.get("fileName")} {progressData.get("progress")}&#37;</h6>
         <Line percent={progressData.get("progress")} strokeWidth="1.5"/>
       </div>

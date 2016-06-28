@@ -8,7 +8,7 @@ import LandingHtml          from './LandingHtml'
 import ajaxPromise          from  '../../main/ajaxPromise'
 import firebaseUpload       from  '../../main/firebasePromise'
 import {setCss}             from  '../../actions/cssActions'
-import {setProgress, startUpload} from  '../../actions/uploadProgressActions'
+import {setProgress, startUpload, clearProgress} from  '../../actions/uploadProgressActions'
 
 
 export default class Uplaod extends React.Component {
@@ -28,7 +28,7 @@ export default class Uplaod extends React.Component {
     this.uploadCSS()
       .then( () => { return Promise.all( this.uploadPictures() ); })
       .then( () => { return this.uploadHTML(); } )
-      .then( () => window.alert("upload to Firebase finished!"));
+      .then( () => { this.props.store.dispatch(clearProgress()); } );
   }
 
   uploadSinglePicture(pictureContent){
@@ -43,7 +43,7 @@ export default class Uplaod extends React.Component {
       this.props.store.dispatch(setProgress(fileName, progressPercentage));
     };
 
-    firebaseUpload(fileObj, fileName, onFirebaseStateChange.bind(this))
+    return firebaseUpload(fileObj, fileName, onFirebaseStateChange.bind(this))
       .then( uploadFileURL => {
         this.props.store.dispatch(updateContent(index, pictureContent.set("src", uploadFileURL)));
       })
@@ -57,7 +57,7 @@ export default class Uplaod extends React.Component {
     //assigning index needs to be here, otherwise, the actual index of the list and index field inside element gets out of sync quickly
     let index = 0;
     let pictures = getLandingContents(this.props.store.getState()).map( c => c.set("index", index++) ).filter( pickImage );
-    return pictures.map( pictureContent => this.uploadSinglePicture( pictureContent ) );
+    return pictures .map( pictureContent => this.uploadSinglePicture( pictureContent ) );
   }
 
   uploadCSS(){
