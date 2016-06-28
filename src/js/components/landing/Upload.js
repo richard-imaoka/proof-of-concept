@@ -7,7 +7,7 @@ import {updateContent}      from '../../actions/contentActions'
 import LandingHtml          from './LandingHtml'
 import ajaxPromise          from  '../../main/ajaxPromise'
 import firebaseUpload       from  '../../main/firebasePromise'
-import {setCss}             from  '../../actions/cssActions'
+import {setCss, setJs}      from  '../../actions/landingResourcesActions'
 import {setProgress, startUpload, clearProgress} from  '../../actions/uploadProgressActions'
 import {showURL} from  '../../actions/gotoFirebaseActions'
 
@@ -27,6 +27,7 @@ export default class Uplaod extends React.Component {
 
   onClick() {
     this.uploadCSS()
+      .then( () => { return this.uploadJS(); } )
       .then( () => { return Promise.all( this.uploadPictures() ); })
       .then( () => { return this.uploadHTML(); } )
       .then( url => {
@@ -78,10 +79,24 @@ export default class Uplaod extends React.Component {
       .then(url => this.props.store.dispatch(setCss(url)));
   }
 
+  uploadJS(){
+    this.props.store.dispatch(startUpload("canvas.js"));
+
+    const onFirebaseStateChange = (snapshot) => {
+      const progressPercentage = Math.round(100 * snapshot.bytesTransferred / snapshot.totalBytes);
+      this.props.store.dispatch(setProgress("canvas.js", progressPercentage));
+    };
+
+    return ajaxPromise("js/canvas.js")
+      .then(jsString => new Blob([jsString], {type: "text/javascript"}) )
+      .then(blob => firebaseUpload(blob, "canvas.js", onFirebaseStateChange.bind(this)))
+      .then(url => this.props.store.dispatch(setJs(url)));
+  }
+
   uploadHTML(){
     const htmlString =
       "<DOCTYPE! html>\n" +
-      js_beautify.html( ReactDOMServer.renderToStaticMarkup( <LandingHtml store={this.props.store} /> ) );
+      js_beautify.html( ReactDOMServer.renderToStaticMarkup( <LandingHtml landing={this.props.store.getState().get("landing")} /> ) );
 
     this.props.store.dispatch(startUpload("index.html"));
 

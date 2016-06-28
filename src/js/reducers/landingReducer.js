@@ -3,12 +3,14 @@ import contents, * as fromContents from "./contentsReducer"
 import editor   from './editorReducer'
 import uploadProgress from './uploadProgressReducer'
 import gotoFirebase from './gotoFireabaseReducer'
+import landingResources from './landingResourcesReducer'
 
 export default combineReducers({
   contents,
   editor,
   uploadProgress,
-  gotoFirebase
+  gotoFirebase,
+  landingResources
 });
 
 export function getPictures(state) {

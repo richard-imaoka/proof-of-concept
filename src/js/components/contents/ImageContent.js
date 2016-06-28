@@ -10,7 +10,12 @@ export default class ImageContent extends React.Component {
         <div className="container image-content">
           <div className="row">
             <div className="col-xs-12 col-md-6">
-              <div ref="parent" />
+              <div ref="parent"
+                   className="canvas-parent"
+                   data-canvas-comment="a canvas element will be inserted by JavaScript after page load"
+                   data-canvas-exif-orientation={this.props.data.get("orientation")}
+                   data-canvas-src={this.props.data.get("src")}
+              />
             </div>
             <div className="col-xs-12 col-md-6">
               <div><h2>{this.props.data.get("title")}</h2></div>
@@ -22,35 +27,19 @@ export default class ImageContent extends React.Component {
     );
   }
 
-  injectCanvas(parent){
-    const orientation = this.props.data.get("orientation");
-    loadImage(
-      this.props.data.get("src"),
-      function (canvas) {
-        canvas.className="img-circle expand-width";
-        parent.appendChild(canvas);
-      },
-      {
-        canvas: true,
-        orientation: orientation
-      }
-    );
-
-  }
-
   shouldComponentUpdate(nextProps){
     return this.props.data !== nextProps.data;
   }
 
   componentDidMount(){
     let parent = ReactDOM.findDOMNode(this.refs.parent);
-    this.injectCanvas(parent);
+    injectCanvas(parent);
   }
 
   componentDidUpdate(){
     let parent = ReactDOM.findDOMNode(this.refs.parent);
     parent.removeChild(parent.firstChild);
-    this.injectCanvas(parent);
+    injectCanvas(parent);
   }
 
   contentData() {

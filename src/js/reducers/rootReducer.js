@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux-immutable'
-import css      from './cssReducer'
 import front    from './frontReducer'
 import landing,  * as fromLanding from './landingReducer'
 import mode      from './modeReducers'
 import prettyString from "../print/prettyString"
 
 export default combineReducers({
-  css,
   log,
   mode,
   front,
