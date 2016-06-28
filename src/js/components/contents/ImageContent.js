@@ -15,6 +15,7 @@ export default class ImageContent extends React.Component {
                    data-canvas-comment="a canvas element will be inserted by JavaScript after page load"
                    data-canvas-exif-orientation={this.props.data.get("orientation")}
                    data-canvas-src={this.props.data.get("src")}
+                   data-cavnvas-classes="img-circle"
               />
             </div>
             <div className="col-xs-12 col-md-6">

@@ -1,10 +1,11 @@
-function injectCanvas(parent){
-  var orientation = parent.getAttribute("data-canvas-exif-orientation");
-  var src         = parent.getAttribute("data-canvas-src");
+function injectCanvas(parent, className){
+  var orientation  = parent.getAttribute("data-canvas-exif-orientation");
+  var src          = parent.getAttribute("data-canvas-src");
+  var extraClasses = parent.getAttribute("data-canvas-classes") === null ? "" : parent.getAttribute("data-canvas-classes");
   loadImage(
     src,
     function (canvas) {
-      canvas.className="img-circle expand-width";
+      canvas.className="expand-width" + extraClasses;
       parent.appendChild(canvas);
     },
     {
