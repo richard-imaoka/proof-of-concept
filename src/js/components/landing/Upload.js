@@ -7,7 +7,8 @@ import {updateContent}      from '../../actions/contentActions'
 import LandingHtml          from './LandingHtml'
 import ajaxPromise          from  '../../main/ajaxPromise'
 import firebaseUpload       from  '../../main/firebasePromise'
-import {setCss, setJs}      from  '../../actions/landingResourcesActions'
+import {addCss}             from  '../../actions/landingCssActions'
+import {addJs}              from  '../../actions/landingJsActions'
 import {setProgress, startUpload, clearProgress} from  '../../actions/uploadProgressActions'
 import {showURL} from  '../../actions/gotoFirebaseActions'
 
@@ -26,9 +27,7 @@ export default class Uplaod extends React.Component {
   }
 
   onClick() {
-    this.uploadCSS()
-      .then( () => { return this.uploadJS(); } )
-      .then( () => { return Promise.all( this.uploadPictures() ); })
+    Promise.all( [ this.uploadCSS(), this.uploadJS(),  this.uploadPictures() ] )
       .then( () => { return this.uploadHTML(); } )
       .then( url => {
         this.props.store.dispatch(clearProgress());
@@ -57,12 +56,11 @@ export default class Uplaod extends React.Component {
       });
   }
 
-
   uploadPictures(){
     //assigning index needs to be here, otherwise, the actual index of the list and index field inside element gets out of sync quickly
     let index = 0;
     let pictures = getLandingContents(this.props.store.getState()).map( c => c.set("index", index++) ).filter( pickImage );
-    return pictures .map( pictureContent => this.uploadSinglePicture( pictureContent ) );
+    return Promise.all( pictures.map( pictureContent => this.uploadSinglePicture( pictureContent ) ) );
   }
 
   uploadCSS(){
@@ -76,21 +74,25 @@ export default class Uplaod extends React.Component {
     return ajaxPromise("css/main.css")
       .then(cssString => new Blob([cssString], {type: "text/css"}) )
       .then(blob => firebaseUpload(blob, "main.css", onFirebaseStateChange.bind(this)))
-      .then(url => this.props.store.dispatch(setCss(url)));
+      .then(url => this.props.store.dispatch(addCss(url)));
   }
 
-  uploadJS(){
-    this.props.store.dispatch(startUpload("canvas.js"));
+  uploadSingleJsFile(fileName){
+    this.props.store.dispatch(startUpload(fileName));
 
     const onFirebaseStateChange = (snapshot) => {
       const progressPercentage = Math.round(100 * snapshot.bytesTransferred / snapshot.totalBytes);
-      this.props.store.dispatch(setProgress("canvas.js", progressPercentage));
+      this.props.store.dispatch(setProgress(fileName, progressPercentage));
     };
 
-    return ajaxPromise("js/canvas.js")
+    return ajaxPromise("js/" + fileName)
       .then(jsString => new Blob([jsString], {type: "text/javascript"}) )
-      .then(blob => firebaseUpload(blob, "canvas.js", onFirebaseStateChange.bind(this)))
-      .then(url => this.props.store.dispatch(setJs(url)));
+      .then(blob => firebaseUpload(blob, fileName, onFirebaseStateChange.bind(this)))
+      .then(url => this.props.store.dispatch(addJs(url)));
+  }
+
+  uploadJS(){
+    return Promise.all( ["load-image.all.min.js", "canvas.js" ].map( this.uploadSingleJsFile.bind(this)) );
   }
 
   uploadHTML(){

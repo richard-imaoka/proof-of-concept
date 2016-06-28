@@ -15,7 +15,7 @@ function injectCanvas(parent){
 };
 
 function injectCanvasAll(){
-  var canvasParents = document.getElementsByClass("canvas-parent");
+  var canvasParents = document.getElementsByClassName("canvas-parent");
   for(var i=0; i<canvasParents.length; i++)
     injectCanvas(canvasParents[i]);
 }
