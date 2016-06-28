@@ -7,7 +7,8 @@ export default function imageData(
   description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   src="img/chess-game-strategy-intelligence-52993.jpeg",
   fileObj = undefined,
-  fileName = ""
+  fileName = "",
+  orientation=undefined //from exif
 ){
   return Map( {
     type :       ImageContent,
@@ -16,6 +17,7 @@ export default function imageData(
     description: description,
     src  :       src,
     fileObj:     fileObj,
-    fileName:    fileName
+    fileName:    fileName,
+    orientation: orientation
   } );
 }

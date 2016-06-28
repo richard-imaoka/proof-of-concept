@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import {showEditor} from '../../actions/editorActions'
 import imageData from '../../data/imageData'
 
@@ -9,7 +10,7 @@ export default class ImageContent extends React.Component {
         <div className="container image-content">
           <div className="row">
             <div className="col-xs-12 col-md-6">
-              <img className="img-circle" src={this.props.data.get("src")} alt={this.props.data.get("title")} />
+              <div ref="parent" />
             </div>
             <div className="col-xs-12 col-md-6">
               <div><h2>{this.props.data.get("title")}</h2></div>
@@ -19,6 +20,37 @@ export default class ImageContent extends React.Component {
         </div>
       </section>
     );
+  }
+
+  injectCanvas(parent){
+    const orientation = this.props.data.get("orientation");
+    loadImage(
+      this.props.data.get("src"),
+      function (canvas) {
+        canvas.className="img-circle expand-width";
+        parent.appendChild(canvas);
+      },
+      {
+        canvas: true,
+        orientation: orientation
+      }
+    );
+
+  }
+
+  shouldComponentUpdate(nextProps){
+    return this.props.data !== nextProps.data;
+  }
+
+  componentDidMount(){
+    let parent = ReactDOM.findDOMNode(this.refs.parent);
+    this.injectCanvas(parent);
+  }
+
+  componentDidUpdate(){
+    let parent = ReactDOM.findDOMNode(this.refs.parent);
+    parent.removeChild(parent.firstChild);
+    this.injectCanvas(parent);
   }
 
   contentData() {
