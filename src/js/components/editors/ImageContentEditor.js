@@ -18,21 +18,17 @@ export default class ImageContentEditor extends React.Component {
   render() {
     return (
       <div>
-        <h3 className="editor-name">Image</h3>
+        <h3 className="text-center">Background-Image Content</h3>
         <form>
-          <div className="form-group">
-            <label htmlFor="editor-input-title">title</label>
-            <input id="editor-input-title" type="text" className="form-control" value={this.state.title}  onChange={this.onChangeTitle.bind(this)} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="editor-input-description">description</label>
-            <input id="editor-input-description" type="text" className="form-control" value={this.state.description}  onChange={this.onChangeDescription.bind(this)} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="editor-input-description">select image</label>
-            <input type="file" accept="image/*"  onChange={this.onChangeImage.bind(this)} />
-          </div>
+          <input type="text" value={this.state.title}       className="input-text"     onChange={this.onChangeTitle.bind(this)} />
+          <textarea          value={this.state.description} className="input-textarea" onChange={this.onChangeDescription.bind(this)} rows="8" />
+
+          <label htmlFor={"file-upload"+this.props.index} className="button expand-width">Select Image</label>
+          <input      id={"file-upload"+this.props.index} style={{display:"none"}} type="file" onChange={this.onChangeImage.bind(this)} />
         </form>
+        <div className="expand-width">
+          <img className="image-preview" src={this.state.src} />
+        </div>
       </div>
     );
   }
@@ -42,15 +38,11 @@ export default class ImageContentEditor extends React.Component {
   }
 
   onChangeTitle(event) {
-    this.setState({title: event.target.value})
+    this.setState({title: event.target.value});
   }
 
   onChangeDescription(event) {
     this.setState({description: event.target.value});
-  }
-
-  onChangeSource(event) {
-    this.setState({src: event.target.value});
   }
 
   onChangeImage(domEvent) {
