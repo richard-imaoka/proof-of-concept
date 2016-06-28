@@ -267,12 +267,14 @@
 
 .background-container {
   position: relative;
-  overflow-y: hidden;
 }
 
 .background {
+  z-index : -1;
+}
+
+.foreground {
   position: absolute;
   top     : 0px;
   left    : 0px;
-  z-index : -1;
 }
