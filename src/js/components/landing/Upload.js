@@ -9,6 +9,7 @@ import ajaxPromise          from  '../../main/ajaxPromise'
 import firebaseUpload       from  '../../main/firebasePromise'
 import {setCss}             from  '../../actions/cssActions'
 import {setProgress, startUpload, clearProgress} from  '../../actions/uploadProgressActions'
+import {showURL} from  '../../actions/gotoFirebaseActions'
 
 
 export default class Uplaod extends React.Component {
@@ -28,7 +29,10 @@ export default class Uplaod extends React.Component {
     this.uploadCSS()
       .then( () => { return Promise.all( this.uploadPictures() ); })
       .then( () => { return this.uploadHTML(); } )
-      .then( () => { this.props.store.dispatch(clearProgress()); } );
+      .then( url => {
+        this.props.store.dispatch(clearProgress());
+        this.props.store.dispatch(showURL(url));
+      });
   }
 
   uploadSinglePicture(pictureContent){

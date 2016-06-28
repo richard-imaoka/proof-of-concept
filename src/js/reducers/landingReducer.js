@@ -2,11 +2,13 @@ import { combineReducers } from 'redux-immutable'
 import contents, * as fromContents from "./contentsReducer"
 import editor   from './editorReducer'
 import uploadProgress from './uploadProgressReducer'
+import gotoFirebase from './gotoFireabaseReducer'
 
 export default combineReducers({
   contents,
   editor,
-  uploadProgress
+  uploadProgress,
+  gotoFirebase
 });
 
 export function getPictures(state) {

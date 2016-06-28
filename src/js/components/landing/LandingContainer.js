@@ -2,6 +2,7 @@ import React   from 'react'
 import AddMore from './AddMore'
 import Upload  from './Upload'
 import UploadProgress  from './UploadProgress'
+import GoToFirebase from './GoToFirebase'
 import Editor  from '../editors/Editor'
 import LandingPage from './LandingPage'
 
@@ -10,6 +11,7 @@ export default class LandingContainer extends React.Component {
     const contents = this.props.landing.get("contents");
     const editor   = this.props.landing.get("editor");
     const uploadProgress = this.props.landing.get("uploadProgress");
+    const gotoFirebase  = this.props.landing.get("gotoFirebase");
     return (
       <div>
         <LandingPage store={this.props.store} landing={this.props.landing} />
@@ -24,6 +26,10 @@ export default class LandingContainer extends React.Component {
         <UploadProgress
           store={this.props.store}
           data={uploadProgress}
+        />
+        <GoToFirebase
+          store={this.props.store}
+          data={gotoFirebase}
         />
       </div>
     );

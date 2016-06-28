@@ -248,15 +248,13 @@
   border-width : 0px;
 }
 
-.upload-progress {
+.popup {
   position: fixed;
   display : flex;
   flex-direction : column;
   justify-contnet: space-around;
-  top     : 25%;
   left    : 10%;
   width   : 80%;
-  height  : 50%;
   z-index : 1;
   background-color: rgba(252, 255, 88, 0.95);
   border-radius: 10px;
@@ -264,12 +262,23 @@
   overflow-y: auto;
 }
 
-.upload-progress > .child{
+.popup-large {
+  top     : 25%;
+  height  : 50%;
+}
+
+
+.popup-small {
+  top     : 40%;
+  height  : 20%;
+}
+
+.popup > .child{
   flex-grow: 1;
   margin   : 10px 0px;
 }
 
-.upload-progress h6{
+.popup h6{
   font-size  : 16px;
   line-height: 18px;
   height     : 18px;

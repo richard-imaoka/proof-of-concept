@@ -8,7 +8,7 @@ export default class UplaodProgress extends React.Component {
 
     if(this.props.data.size > 0)
       return (
-        <div className="upload-progress">
+        <div className="popup popup-large">
           {uploads.map(this.renderProgressBar)}
         </div>
       );
