@@ -6,10 +6,10 @@ export default class AddMore extends React.Component {
   render() {
     return (
       <div className="addmore-background">
-        <div className="container addmore-container" onClick={this.onClick.bind(this)}>
-            <div className="text-xs-center text-sm-center">
-              <h2>Add Content</h2>
-            </div>
+        <div className="container">
+          <div className="row">
+            <button className="button-gold expand-width" onClick={this.onClick.bind(this)}>Add Content</button>
+          </div>
         </div>
       </div>
     );

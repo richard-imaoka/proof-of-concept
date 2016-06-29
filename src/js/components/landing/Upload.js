@@ -17,9 +17,9 @@ export default class Uplaod extends React.Component {
   render() {
     return(
       <div className="upload-background">
-        <div className="container upload-container" onClick={this.onClick.bind(this)}>
-          <div className="text-xs-center text-sm-center">
-            <h2>Upload and Save</h2>
+        <div className="container" >
+          <div className="row">
+            <button className="button-blue expand-width" onClick={this.onClick.bind(this)}>Upload and Save</button>
           </div>
         </div>
       </div>

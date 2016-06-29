@@ -114,7 +114,7 @@
 
 .addmore-background {
   margin     :  0px;
-  padding    :  10px;
+  padding    :  5px;
   background-color: gold;
 }
 
@@ -126,9 +126,27 @@
   color        : white;
 }
 
+.button-gold {
+  display      : block;
+  margin       : 5px 0px;
+  border-style : solid;
+  border-radius: 48px;
+  border-width : 4px;
+  border-color : white;
+  line-height  : 48px;
+  font-size    : 24px;
+  text-align   : center;
+  background-color: gold;
+  color        : white;
+}
+
+.button-gold:active {
+  background-color: orange;
+}
+
 .upload-background {
   margin     :  0px;
-  padding    :  10px;
+  padding    :  5px;
   background-color: cornflowerblue;
 }
 
@@ -138,6 +156,24 @@
   border-color : white;
   border-radius: 50px;
   color        : white;
+}
+
+.button-blue {
+  display      : block;
+  margin       : 5px 0px;
+  border-style : solid;
+  border-radius: 48px;
+  border-width : 4px;
+  border-color : white;
+  line-height  : 48px;
+  font-size    : 24px;
+  text-align   : center;
+  background-color: cornflowerblue;
+  color        : white;
+}
+
+.button-blue:active {
+  background-color: blue;
 }
 
 .btn {
@@ -199,6 +235,7 @@
   background-color: darkolivegreen;
   color        : white;
 }
+
 
 .button:active {
   background-color: darkcyan;
