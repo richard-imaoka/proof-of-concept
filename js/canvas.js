@@ -1,4 +1,4 @@
-function injectCanvas(parent, className){
+function injectCanvas(parent){
   var orientation  = parent.getAttribute("data-canvas-exif-orientation");
   var src          = parent.getAttribute("data-canvas-src");
   var extraClasses = parent.getAttribute("data-canvas-classes") === null ? "" : " " + parent.getAttribute("data-canvas-classes");
@@ -6,6 +6,8 @@ function injectCanvas(parent, className){
     src,
     function (canvas) {
       canvas.className="expand-width" + extraClasses;
+      var a = parent.clientHeight;
+      var b = parent.offsetHeight;
       parent.appendChild(canvas);
     },
     {
