@@ -48,6 +48,12 @@ export default class ImageBackgroundContentEditor extends React.Component {
   onChangeImage(domEvent) {
     let fileObj = domEvent.target.files[0];
 
+    const fileName = getAvailableFileName( this.props.store.getState(), fileObj.name );
+    this.setState({fileName: fileName});
+
+    //EXIF data will be removed to protect personal information, however, currently we didn't implement a way
+    //to retain EXIF orientation only. So storing EXIF orientation in state here,
+    //which is embedded in canvas data-canvas-orientation attribute later
     loadImage.parseMetaData( fileObj, data => {
         if (!data.imageHead) {
           return;
@@ -58,10 +64,58 @@ export default class ImageBackgroundContentEditor extends React.Component {
 
     let reader = new FileReader();
     reader.onload = fileEvent => {
-      const src = fileEvent.target.result;
-      const fileName = getAvailableFileName( this.props.store.getState(), fileObj.name );
-      this.setState({src: src, fileObj: fileObj, fileName: fileName});
-    }
+      const dataURL = fileEvent.target.result;
+      this.setState({src: dataURL});
+    };
     reader.readAsDataURL(fileObj);
+
+    let reader2 = new FileReader();
+    reader2.onload = fileEvent => {
+      const arrayBuffer = fileEvent.target.result;
+      const blob = this.removeExif(arrayBuffer);
+      if(blob === undefined) //! JPEG
+        this.setState({fileObj: fileObj});
+      else
+        this.setState({fileObj: blob});
+    };
+    reader2.readAsArrayBuffer(fileObj);
+
+  }
+
+  removeExif(arrayBuffer){
+    var dv = new DataView(arrayBuffer);
+    var offset = 0, recess = 0;
+    var pieces = [];
+    var i = 0;
+    if (dv.getUint16(offset) == 0xffd8){ //0xffd8 is for JPEG
+      offset += 2;
+      var app1 = dv.getUint16(offset);
+      offset += 2;
+      while (offset < dv.byteLength){
+        if (app1 == 0xffe1){
+
+          pieces[i] = {recess:recess,offset:offset-2};
+          recess = offset + dv.getUint16(offset);
+          i++;
+        }
+        else if (app1 == 0xffda){
+          break;
+        }
+        offset += dv.getUint16(offset);
+        var app1 = dv.getUint16(offset);
+        offset += 2;
+      }
+      if (pieces.length > 0){
+        var newPieces = [];
+        pieces.forEach(function(v){
+          newPieces.push(arrayBuffer.slice(v.recess, v.offset));
+        }, this);
+        newPieces.push(arrayBuffer.slice(recess));
+        var br = new Blob(newPieces, {type: 'image/jpeg'});
+        return br;
+      }
+    }
+    else
+      return undefined;
   }
 }
