@@ -113,9 +113,11 @@
 }
 
 .addmore-background {
+  position     : relative;
   margin     :  0px;
   padding    :  5px;
   background-color: gold;
+  z-index      : 2;
 }
 
 .addmore-container {
@@ -145,9 +147,11 @@
 }
 
 .upload-background {
+  position     : relative;
   margin     :  0px;
   padding    :  5px;
   background-color: cornflowerblue;
+  z-index      : 2;
 }
 
 .upload-container {
@@ -273,7 +277,7 @@
   justify-contnet: space-around;
   left    : 10%;
   width   : 80%;
-  z-index : 1;
+  z-index : 10;
   background-color: rgba(252, 255, 88, 0.95);
   border-radius: 10px;
   padding:  10px;
