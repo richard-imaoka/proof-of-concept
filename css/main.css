@@ -210,7 +210,7 @@
 
 .animated-fast {
   -webkit-animation-duration: 0.3s;
-  animation-duration: 0.s;
+  animation-duration: 0.3s;
 }
 
 .animate-deletion {
@@ -308,6 +308,7 @@
 
 .background {
   z-index : -1;
+  display : block;
 }
 
 .foreground {

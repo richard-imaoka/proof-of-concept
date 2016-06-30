@@ -6,8 +6,6 @@ function injectCanvas(parent){
     src,
     function (canvas) {
       canvas.className="expand-width" + extraClasses;
-      var a = parent.clientHeight;
-      var b = parent.offsetHeight;
       parent.appendChild(canvas);
     },
     {

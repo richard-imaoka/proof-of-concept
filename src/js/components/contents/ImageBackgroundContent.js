@@ -13,6 +13,7 @@ export default class ImageBackgroundContent extends React.Component {
                data-canvas-comment="a canvas element will be inserted by JavaScript after page load"
                data-canvas-exif-orientation={this.props.data.get("orientation")}
                data-canvas-src={this.props.data.get("src")}
+               data-canvas-classes="display-block"
           />
           <div className="container image-background-content foreground">
             <div className="row"><h2>{this.props.data.get("title")}</h2></div>
