@@ -47,7 +47,12 @@ export default class ImageContentEditor extends React.Component {
 
   onChangeImage(domEvent) {
     let fileObj = domEvent.target.files[0];
+    const fileName = getAvailableFileName( this.props.store.getState(), fileObj.name );
+    this.setState({fileName: fileName});
 
+    //EXIF data will be removed to protect personal information, however, currently we didn't implement a way
+    //to retain EXIF orientation only. So storing EXIF orientation in state here,
+    //which is embedded in canvas data-canvas-orientation attribute later
     loadImage.parseMetaData( fileObj, data => {
         if (!data.imageHead) {
           return;
