@@ -92,7 +92,7 @@ export default class Uplaod extends React.Component {
   }
 
   uploadJS(){
-    return Promise.all( ["load-image.all.min.js", "canvas.js" ].map( this.uploadSingleJsFile.bind(this)) );
+    return Promise.all( ["load-image.all.min.js", "canvas.js", "twitter-share.js" ].map( this.uploadSingleJsFile.bind(this)) );
   }
 
   uploadHTML(){

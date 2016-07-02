@@ -24,6 +24,7 @@ export default class LandingHtml extends React.Component {
         </body>
         { jsFiles.map( url => <script key={url} src={url} ></script>) }
         <script>injectCanvasAll();</script>
+        <script>setTwitterShareHrefAll();</script>
       </html>
     );
   }
