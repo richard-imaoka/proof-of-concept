@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4.0.0-alpha.2/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" >
+  <link rel="stylesheet" href="css/main.css"/>
+  <title>Title</title>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<script src="js/load-image.all.min.js"></script>
+<script src="js/canvas.js"></script>
+<script src="js/twitter-share.js"></script>
+<script src="dist/bundle.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBoiAp8dhtnlO9mGEHaiyB_42LO1EYWlho",
+    authDomain: "proof-of-concept-dev.firebaseapp.com",
+    databaseURL: "https://proof-of-concept-dev.firebaseio.com",
+    storageBucket: "proof-of-concept-dev.appspot.com",
+  };
+  firebase.initializeApp(config);
+
+  var auth = firebase.auth();
+  auth.signInAnonymously().then(function(user) {
+    console.log('Anonymous Sign In Success', user);
+  }).catch(function(error) {
+    console.error('Anonymous Sign In Error', error);
+  });
+</script>
+</html>
