@@ -59,7 +59,13 @@ export default class Uplaod extends React.Component {
   uploadPictures(){
     //assigning index needs to be here, otherwise, the actual index of the list and index field inside element gets out of sync quickly
     let index = 0;
-    let pictures = getLandingContents(this.props.store.getState()).map( c => c.set("index", index++) ).filter( pickImage );
+    let state    = this.props.store.getState();
+    let pictures = getLandingContents(state).map( c => {
+      return c
+        .set("index", index++)
+        .set("fileName", c.get("fileName") + "_" + index);
+    }).filter( pickImage );
+
     return Promise.all( pictures.map( pictureContent => this.uploadSinglePicture( pictureContent ) ) );
   }
 

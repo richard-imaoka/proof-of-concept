@@ -48,7 +48,7 @@ export default class ImageBackgroundContentEditor extends React.Component {
   onChangeImage(domEvent) {
     let fileObj = domEvent.target.files[0];
 
-    const fileName = getAvailableFileName( this.props.store.getState(), fileObj.name );
+    const fileName = fileObj.name;
     this.setState({fileName: fileName});
 
     //EXIF data will be removed to protect personal information, however, currently we didn't implement a way
