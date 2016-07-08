@@ -58,7 +58,8 @@ export default class ImageBackgroundContentEditor extends React.Component {
         if (!data.imageHead) {
           return;
         }
-        this.setState({orientation: data.exif.get('Orientation')});
+        else if( data.exif !== undefined )
+          this.setState({orientation: data.exif.get('Orientation')});
       }
     );
 
