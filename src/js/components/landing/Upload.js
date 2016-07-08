@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOMServer  from 'react-dom/server'
-import js_beautify     from 'js-beautify'
+import {toJS}               from 'immutable'
+import js_beautify          from 'js-beautify'
 import {getLandingContents} from '../../reducers/rootReducer'
 import {pickImage}          from '../../reducers/contentsReducer'
 import {updateContent}      from '../../actions/contentActions'
@@ -10,8 +11,8 @@ import firebaseUpload       from  '../../main/firebasePromise'
 import {addCss}             from  '../../actions/landingCssActions'
 import {addJs}              from  '../../actions/landingJsActions'
 import {setProgress, startUpload, clearProgress} from  '../../actions/uploadProgressActions'
-import {showURL} from  '../../actions/gotoFirebaseActions'
-
+import {showURL}            from  '../../actions/gotoFirebaseActions'
+import prettyString         from  '../../print/prettyString'
 
 export default class Uplaod extends React.Component {
   render() {
@@ -28,11 +29,28 @@ export default class Uplaod extends React.Component {
 
   onClick() {
     Promise.all( [ this.uploadCSS(), this.uploadJS(),  this.uploadPictures() ] )
+      .then( () => { return this.uploadReduxJson(); } )
       .then( () => { return this.uploadHTML(); } )
       .then( url => {
         this.props.store.dispatch(clearProgress());
         this.props.store.dispatch(showURL(url));
       });
+  }
+
+  uploadReduxJson(){
+    const state      = this.props.store.getState();
+    const jsonString = JSON.stringify(prettyString(state));
+    const jsonBlob   = new Blob([jsonString], {type: "application/json"});
+    const jsonName   = "redux.json";
+
+    this.props.store.dispatch(startUpload(jsonName));
+
+    const onFirebaseStateChange = (snapshot) => {
+      const progressPercentage = Math.round(100 * snapshot.bytesTransferred / snapshot.totalBytes);
+      this.props.store.dispatch(setProgress(jsonName, progressPercentage));
+    };
+
+    return firebaseUpload(jsonBlob, jsonName, onFirebaseStateChange.bind(this));
   }
 
   uploadSinglePicture(pictureContent){
