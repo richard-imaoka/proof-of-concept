@@ -19,10 +19,12 @@ export default function contents(state = List(), action = undefined){
 }
 
 export function getPictures(state) {
-  return state.filter( x => x.get("type") === ImageContent || x.get("type") === ImageBackgroundContent )
+  return state.filter( pickImage );
 }
 
 
 export function pickImage(content) {
-  return content => content.get("type") === ImageContent || content.get("type") === ImageBackgroundContent
+  const a = content.get("type") === ImageContent;
+  const b = content.get("type") === ImageBackgroundContent;
+  return a || b;
 }
